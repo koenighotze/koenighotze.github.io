@@ -1,0 +1,27 @@
+# Welcome to Jekyll!
+#
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: Koenighotze Energy Emporium
+email: david.schmitz.privat_at_gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  This site is just a collection of random stuff about coding, architecture and whatever
+  I find interesting.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://koenighotze.de"
+twitter_username: koenighotze
+github_username:  koenighotze
+github.repository_url: https://github.com/koenighotze/koenighotze.github.io.git
+# Build settings
+markdown: kramdown
+theme: jekyll-theme-architect
+plugins:
+  - jekyll-feed
+  - jekyll-youtube
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - support/
+  - ideas/
+  - build.sh
+  - README.md

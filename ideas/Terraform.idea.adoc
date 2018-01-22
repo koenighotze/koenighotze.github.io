@@ -1,0 +1,32 @@
+Terraform
+
+Configuration-> You declare "where you want to end at (Target State)"
+Terraform decides how to get there
+
+https://github.com/gruntwork-io/terragrunt
+
+
+State ->
+Consul
+
+Security ->
+Set up SSH Key
+
+
+
+# Terraform vs. Rest
+https://www.thoughtworks.com/insights/blog/choosing-right-tool-provision-aws-infrastructure
+
+https://de.slideshare.net/giganati/orchestration-tool-roundup-kubernetes-vs-docker-vs-heat-vs-terra-form-vs-tosca-1
+
+https://www.terraform.io/intro/vs/index.html
+
+# Use Case
+
+https://www.terraform.io/intro/use-cases.html
+
+
+Terraform and Docker
+
+https://www.terraform.io/docs/providers/docker/index.html
+
