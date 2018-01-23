@@ -9,12 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-
     <link rel="stylesheet" href="{{ '/assets/css/bootstrap/bootstrap.min.css' | relative_url }}" media="screen" type="text/css">
-
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" media="screen" type="text/css">
-
-    <!-- <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}" type="text/css"> -->
     <link rel="stylesheet" href="{{ '/assets/css/print.css' | relative_url }}" media="print" type="text/css">
 
     <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
@@ -32,23 +28,57 @@
   </head>
 
   <body>
-    <div class="blog-masthead">
+
+    <!-- <nav class="navbar navbar-inverse navbar-fixed-top"> -->
+    <nav class="navbar navbar-inverse blog-masthead navbar-fixed-top">
       <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="text-left navbar-brand" href="/">//Koenighotze Energy Emporium</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <a class="blog-nav-item" href="/blog.html">Blog</a>
+            </div>
+            <!-- <div class="form-group">
+              <a class="blog-nav-item" href="/sideprojects.html">Side projects</a>
+            </div> -->
+            <div class="form-group">
+              <a class="blog-nav-item" href="/talksandpresentations.html">Talks and presentations</a>
+            </div>
+            <div class="form-group">
+              <a class="blog-nav-item" href="/about.html">About</a>
+            </div>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+
+<!--     <div class="blog-masthead">
+      <div class="container-fluid">
+
+        <div class="row">
+
+        </div>
+
         <nav class="blog-nav">
-          <a class="blog-nav-item" href="/"><img src="/favicon-32x32.png" alt="Home"/></a>
+          <a class="blog-nav-item home" href="/"><img src="/favicon-32x32.png" alt="Home"/><span>Koenighotze Energy Emporium</span></a>
           <a class="blog-nav-item" href="/blog.html">Blog</a>
-          <!-- <a class="blog-nav-item" href="/sideprojects.html">Side projects</a> -->
+          <a class="blog-nav-item" href="/sideprojects.html">Side projects</a>
           <a class="blog-nav-item" href="/talksandpresentations.html">Talks and presentations</a>
           <a class="blog-nav-item" href="/about.html">About</a>
         </nav>
       </div>
-    </div>
+    </div> -->
 
     <div class="container">
-      <div class="blog-header">
-        <h1 class="blog-title">{{ site.title | default: site.github.repository_name }}</h1>
-        <p class="lead blog-description">Last update {{ "now" | date: "%d.%m.%Y %H:%M" }}</p>
-      </div>
 
       <div class="row">
         <div class="col-sm-8 blog-main">
