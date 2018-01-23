@@ -1,12 +1,10 @@
 ---
-layout: default
+title: Devoxx Belgium 2017 - Recap
+layout: post
 date:   2017-11-14
 description: This post recaps my visit to Devoxx 2017 in Antwerp
 categories: Devoxx Conference
 ---
-
-# Devoxx Belgium 2017 - Recap
-{:.no_toc}
 
 ![Devoxx Belgium 2017](https://thepracticaldev.s3.amazonaws.com/i/nuu4tc5jjoucaj22himb.JPG)
 

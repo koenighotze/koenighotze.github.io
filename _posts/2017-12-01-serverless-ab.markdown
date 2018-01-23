@@ -3,15 +3,12 @@ title: "Serverless blue green deployments and canary releases with traffic shift
 published: true
 description: Introduction into blue green deployments and canaries with AWS Lambda
 tags: AWS Lambda, Serverless, A/B test
-layout: default
+layout: post
 date:   2017-12-04
 description: Introduction into A/B testing with AWS Lambda
 categories: Serverless AWS Lambda Node.JS Cloud
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/tazes9iyvv67emss7ds1.jpg
 ---
-
-# Serverless blue green deployments and canary releases with traffic shifting
-{:.no_toc}
 
 Serverless computing is a hot topic. Especially AWS Lambda is gaining traction. It is being used as the foundation of Amazon's Alexa product-line and the basis of entire web sites like [A Cloud Guru](https://acloud.guru/). We can rapidly build and release new business value to our customers like never before.
 

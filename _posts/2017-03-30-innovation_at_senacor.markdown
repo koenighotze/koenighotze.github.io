@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title:  "Innovation @ Senacor"
 date:   2017-03-30 15:48:54 +0200
 categories: Senacor Innovation 24hSprint

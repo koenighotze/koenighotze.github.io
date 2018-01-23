@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title:  Using Terraform for Cloud Deployments
 date:   2017-04-25
 categories: terraform cloud aws devops

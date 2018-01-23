@@ -1,11 +1,9 @@
 ---
-layout: default
+layout: post
 title:  Vavr - Objekt-funktionale Programmierung leicht gemacht (German)
 date:   2018-01-08
 categories: Vavr
 ---
-
-# Vavr - Objekt-funktionale Programmierung leicht gemacht
 
 [Here](/assets/media/2018-01-08/David-Schmitz-Vavr-Objekt-funktionale-Programmierung-leicht-gemacht.pdf) is an article, that I wrote for [Java Aktuell](http://www.ijug.eu/java-aktuell/das-magazin.html) about functional programming with [Vavr](http://vavr.io).
 

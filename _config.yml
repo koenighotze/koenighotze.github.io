@@ -18,6 +18,7 @@ theme: jekyll-theme-architect
 plugins:
   - jekyll-feed
   - jekyll-youtube
+  - jekyll-bootstrap-sass
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -25,3 +26,5 @@ exclude:
   - ideas/
   - build.sh
   - README.md
+bootstrap:
+  assets: true
