@@ -10,7 +10,7 @@
         {{ post.title | escape }}
       {% endif %}
     </h2>
-    <p class="blog-post-meta">
+    <p class="blog-post-meta">Published on:
       <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
         {% if page.date %}

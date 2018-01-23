@@ -7,13 +7,10 @@
     <meta name="author" content="">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
 
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" media="screen" type="text/css">
     <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}" type="text/css">
-
-
     <link rel="stylesheet" href="{{ '/assets/css/print.css' | relative_url }}" media="print" type="text/css">
 
     <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
@@ -28,16 +25,13 @@
     <![endif]-->
 
     <title>{{ site.title | default: site.github.repository_name }}</title>
-
-<!--     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <link href="blog.css" rel="stylesheet">
- -->  </head>
+  </head>
 
   <body>
-
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
+          <a class="blog-nav-item" href="/">Home</a>
           <a class="blog-nav-item" href="/blog.html">Blog</a>
           <!-- <a class="blog-nav-item" href="/sideprojects.html">Side projects</a> -->
           <a class="blog-nav-item" href="/talksandpresentations.html">Talks and presentations</a>
@@ -47,24 +41,23 @@
     </div>
 
     <div class="container">
-
       <div class="blog-header">
-        <h1 class="blog-title"><a href="/">{{ site.title | default: site.github.repository_name }}</a></h1>
-        <p class="lead blog-description">This site is just a collection of random stuff about coding, architecture and whatever I find interesting.</p>
+        <h1 class="blog-title">{{ site.title | default: site.github.repository_name }}</h1>
+        <p class="lead blog-description">Last update {{ "now" | date: "%d.%m.%Y %H:%M" }}</p>
       </div>
 
       <div class="row">
         <div class="col-sm-8 blog-main">
           {{ content }}
-
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
-            <h4>About</h4>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            <h4>What Emporium?</h4>
+            <p>This site is just a collection of random stuff about coding, architecture and whatever I find interesting.</p>
+
           </div>
-          <div class="sidebar-module">
+          <!-- <div class="sidebar-module">
             <h4>Archives</h4>
             <ol class="list-unstyled">
               <li><a href="#">March 2014</a></li>
@@ -80,14 +73,17 @@
               <li><a href="#">May 2013</a></li>
               <li><a href="#">April 2013</a></li>
             </ol>
-          </div>
+          </div> -->
           <div class="sidebar-module">
-            <h4>Elsewhere</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">GitHub</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
-            </ol>
+            <h4>Contact</h4>
+            <!-- <ol class="list-unstyled"> -->
+              <p class="socialBar">
+                {% include icon-github.html username=site.github_username %}
+                {% include icon-twitter.html username=site.twitter_username %}
+                {% include icon-linkedin.html username=site.twitter_username %}
+                {% include icon-xing.html username=site.twitter_username %}
+              </p>
+            <!-- </ol> -->
           </div>
         </div><!-- /.blog-sidebar -->
 
@@ -96,8 +92,7 @@
     </div><!-- /.container -->
 
     <footer class="blog-footer">
-      <p>{% include icon-github.html username=site.github_username %}</p>
-      <p>{% include icon-twitter.html username=site.twitter_username %}</p>
+      <p>{% include icon-github-repo.html username=site.github_username %} (c) {{ "now" | date: "%Y" }}</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

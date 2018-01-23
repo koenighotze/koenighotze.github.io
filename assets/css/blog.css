@@ -130,24 +130,34 @@ h6, .h6 {
   border-radius: 30px;
 }
 
-
 /*
  * Blog posts
  */
-
 .blog-post {
   margin-bottom: 60px;
 }
 .blog-post-title {
   margin-bottom: 5px;
-  font-size: 40px;
+  font-size: 2em;
 }
 .blog-post-meta {
   margin-bottom: 20px;
   color: #999;
 }
 
+.blog-post h2,h3,h4,h5,h6 {
+  margin-top: 1em;
+}
 
+.blog-post figure {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.blog-post img {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
 /*
  * Footer
  */
@@ -162,7 +172,9 @@ h6, .h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
-
+footer.blog-footer > p {
+  color: black;
+}
 
 
 
@@ -331,4 +343,14 @@ div.background {
 blockquote {
   font-size: 1em;
   font-style: italic;
+}
+
+/*add padding to icon*/
+span.icon {
+  padding: 0.5em;
+}
+
+ul.post-list > li > h2 {
+  font-size: 1.5em;
+  font-weight: bold;
 }
