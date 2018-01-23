@@ -17,7 +17,6 @@ markdown: kramdown
 theme: jekyll-theme-architect
 plugins:
   - jekyll-feed
-  - jekyll-bootstrap-sass
 exclude:
   - Gemfile
   - Gemfile.lock

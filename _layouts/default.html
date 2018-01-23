@@ -10,7 +10,12 @@
 
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" media="screen" type="text/css">
-    <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}" type="text/css">
+
+
+    <link rel="stylesheet" href="{{ '/assets/css/bootstrap/bootstrap.min.css' | relative_url }}" media="screen" type="text/css">
+
+
+    <!-- <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}" type="text/css"> -->
     <link rel="stylesheet" href="{{ '/assets/css/print.css' | relative_url }}" media="print" type="text/css">
 
     <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
@@ -31,7 +36,7 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item" href="/">Home</a>
+          <a class="blog-nav-item" href="/"><img src="/favicon-32x32.png" alt="Home"/></a>
           <a class="blog-nav-item" href="/blog.html">Blog</a>
           <!-- <a class="blog-nav-item" href="/sideprojects.html">Side projects</a> -->
           <a class="blog-nav-item" href="/talksandpresentations.html">Talks and presentations</a>
@@ -73,6 +78,6 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="{{ '/assets/javascripts/bootstrap.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/javascripts/bootstrap/bootstrap.min.js' | relative_url }}"></script>
   </body>
 </html>
