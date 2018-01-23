@@ -7,7 +7,6 @@ gem "jekyll-theme-architect"
 
 gem "html-proofer"
 
-# gem 'bootstrap', '~> 4.0.0'
 gem 'jekyll-bootstrap-sass'
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
@@ -16,7 +15,5 @@ gem 'jekyll-bootstrap-sass'
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
-   gem "jekyll-feed", "~> 0.6"
-   gem "jekyll-youtube"
-   gem 'jekyll-picture-tag' # , '~> 0.2.3'
+   gem "jekyll-feed", "~> 0.9.2"
 end
