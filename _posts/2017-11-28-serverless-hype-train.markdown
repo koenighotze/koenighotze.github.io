@@ -1,4 +1,5 @@
 ---
+title: Join the serverless hype train
 layout: post
 date:   2017-11-28
 description: Introduction to AWS Lambda Serverless computing

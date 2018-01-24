@@ -5,6 +5,7 @@
 body {
   // font-family: 'Source Code Pro', monospace;
   font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
   background: #FFFFFF;
   color: #555;
   padding-top: 8em;
@@ -439,4 +440,11 @@ ul.post-list > li > h2 {
 
 span.icon-bar {
   color: black;
+}
+
+
+a.text-left:nth-child(3)
+
+a.navbar-brand.visible-xs-block {
+  font-size: 1em;
 }
