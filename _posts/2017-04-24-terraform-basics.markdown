@@ -1,12 +1,9 @@
 ---
-layout: default
+layout: post
 title:  Using Terraform for Cloud Deployments
 date:   2017-04-25
 categories: terraform cloud aws devops
 ---
-# Using Terraform for Cloud Deployments
-{:.no_toc}
-
 This post explores [Terraform] from a beginner's perspective.
 We'll look at the problem Terraform solves and what it's distinct features are.
 

@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/koenighotze
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://koenighotze.de
+  * I am koenighotze (https://keybase.io/koenighotze) on keybase.
+  * I have a public key ASBR49XIcYIkVo8aHFx7Rh2ra3_7qMejzR-CHsEq60eorAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "010101da412af875e39797842dfaee74b86389c06c5edb96a6977a0d12a3e2ff110f0a",
+      "host": "keybase.io",
+      "kid": "012051e3d5c8718224568f1a1c5c7b461dab6b7ffba8c7a3cd1f821ec12aeb47a8ac0a",
+      "uid": "d14218202acfa85b2744b0cb77c12019",
+      "username": "koenighotze"
+    },
+    "merkle_root": {
+      "ctime": 1516784533,
+      "hash": "3100e3db9edca2c75fa04b1bc98aa1994ea3526e0d09c381b93d004f13943fdb3ea76cafc1b4992b2c26d7c1149e64602cb14ebdff39ba41d337470299fd2fed",
+      "hash_meta": "4f8160d936c3142070978ed4b6a0d5d73ec70aa50d50a327647510365ec9cc70",
+      "seqno": 1971480
+    },
+    "service": {
+      "hostname": "koenighotze.de",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.39"
+  },
+  "ctime": 1516784563,
+  "expire_in": 504576000,
+  "prev": "bae77e63064d2ce8f4a86d8f3224bea25d7919082d0c16da84676f23452d07a6",
+  "seqno": 13,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgUePVyHGCJFaPGhxce0Ydq2t/+6jHo80fgh7BKutHqKwKp3BheWxvYWTFA0l7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxMDFkYTQxMmFmODc1ZTM5Nzk3ODQyZGZhZWU3NGI4NjM4OWMwNmM1ZWRiOTZhNjk3N2EwZDEyYTNlMmZmMTEwZjBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwNTFlM2Q1Yzg3MTgyMjQ1NjhmMWExYzVjN2I0NjFkYWI2YjdmZmJhOGM3YTNjZDFmODIxZWMxMmFlYjQ3YThhYzBhIiwidWlkIjoiZDE0MjE4MjAyYWNmYTg1YjI3NDRiMGNiNzdjMTIwMTkiLCJ1c2VybmFtZSI6ImtvZW5pZ2hvdHplIn0sIm1lcmtsZV9yb290Ijp7ImN0aW1lIjoxNTE2Nzg0NTMzLCJoYXNoIjoiMzEwMGUzZGI5ZWRjYTJjNzVmYTA0YjFiYzk4YWExOTk0ZWEzNTI2ZTBkMDljMzgxYjkzZDAwNGYxMzk0M2ZkYjNlYTc2Y2FmYzFiNDk5MmIyYzI2ZDdjMTE0OWU2NDYwMmNiMTRlYmRmZjM5YmE0MWQzMzc0NzAyOTlmZDJmZWQiLCJoYXNoX21ldGEiOiI0ZjgxNjBkOTM2YzMxNDIwNzA5NzhlZDRiNmEwZDVkNzNlYzcwYWE1MGQ1MGEzMjc2NDc1MTAzNjVlYzljYzcwIiwic2Vxbm8iOjE5NzE0ODB9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoia29lbmlnaG90emUuZGUiLCJwcm90b2NvbCI6Imh0dHA6In0sInR5cGUiOiJ3ZWJfc2VydmljZV9iaW5kaW5nIiwidmVyc2lvbiI6MX0sImNsaWVudCI6eyJuYW1lIjoia2V5YmFzZS5pbyBnbyBjbGllbnQiLCJ2ZXJzaW9uIjoiMS4wLjM5In0sImN0aW1lIjoxNTE2Nzg0NTYzLCJleHBpcmVfaW4iOjUwNDU3NjAwMCwicHJldiI6ImJhZTc3ZTYzMDY0ZDJjZThmNGE4NmQ4ZjMyMjRiZWEyNWQ3OTE5MDgyZDBjMTZkYTg0Njc2ZjIzNDUyZDA3YTYiLCJzZXFubyI6MTMsInRhZyI6InNpZ25hdHVyZSJ9o3NpZ8RAdwKFzoMQhkqkR8T7NyTdkzE3H+IEsFdKy9mYriXwVh5rYR8G/GpYLmtHIoaW03o+Y57aVHwTe+wJ7UZKo0NqBqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIOc/lRotQk5/ZINKSjd5+U8e/MFCeReK8+x0oA5E60/Jo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/koenighotze
+
+==================================================================

@@ -3,14 +3,11 @@ title: Testing serverless applications with Amazon SAM
 published: false
 description: Introduction to using Serverless Application Model for testing and deploying your Lambdas
 tags: AWS Lambda Serverless Testing Deployment
-layout: default
+layout: post
 date:   2018-01-01
 categories: AWS Lambda, Serverless, Testing, Deployment
 <!-- cover_image: https://thepracticaldev.s3.amazonaws.com/i/tazes9iyvv67emss7ds1.jpg -->
 ---
-
-# Testing serverless applications with Amazon SAM
-{:.no_toc}
 
 Intro text
 

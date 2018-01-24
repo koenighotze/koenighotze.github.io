@@ -1,11 +1,9 @@
 ---
-layout: default
-title:  "Safe the Optional, stop using isPresent"
+layout: post
+title:  Save the Optional, stop using isPresent
 date:   2017-06-11 11:08:54 +0200
 categories: Vavr Javaslang Monad Optional
 ---
-
-# Safe the Optional, stop using isPresent
 
 Most functional programming languages offer a concept called _Option_ or _Maybe_ to deal with the presence or absence of a value, thus avoiding `null`. Java 8 introduced `java.util.Optional`, an implementation of the _Maybe_ type for Java developers.
 Sadly, due to its flexibility, `Optional` is often misused, be it because the developer does not understand its power, or be due to lack of background in functional programming.

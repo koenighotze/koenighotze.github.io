@@ -1,10 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ site.lang | default: "en-US" }}">
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="{{ site.social.name }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ '/assets/css/bootstrap/bootstrap.min.css' | relative_url }}" media="screen" type="text/css">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" media="screen" type="text/css">
     <link rel="stylesheet" href="{{ '/assets/css/print.css' | relative_url }}" media="print" type="text/css">
 
@@ -20,38 +24,67 @@
     <![endif]-->
 
     <title>{{ site.title | default: site.github.repository_name }}</title>
+
+    {% seo %}
   </head>
 
   <body>
-    <header>
-      <div class="inner">
-        <a href="{{ '/' | absolute_url }}">
-          <h1 class="site-title">{{ site.title | default: site.github.repository_name }}</h1>
-        </a>
-        <h2 class="site-description">{{ site.description | default: site.github.project_tagline }}</h2>
+    <nav class="navbar navbar-inverse blog-masthead navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="text-left navbar-brand hidden-xs" href="/">//Koenighotze Energy Emporium</a>
+          <a class="text-left navbar-brand visible-xs-block" href="/">//Koenighotze...</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <a class="blog-nav-item" href="/blog.html">Blog</a>
+            </div>
+            <div class="form-group">
+              <a class="blog-nav-item" href="/talksandpresentations.html">Talks and presentations</a>
+            </div>
+            <div class="form-group">
+              <a class="blog-nav-item" href="/about.html">About</a>
+            </div>
+          </form>
+        </div><!--/.navbar-collapse -->
       </div>
-    </header>
+    </nav>
 
-    <div class="navContainer">
-      <p class="navItem"></p>
-      <p class="navItem"><a href="/blog.html">Blog</a></p>
-      <!-- <p class="navItem"><a href="/sideprojects.html">Side projects</a></p> -->
-      <p class="navItem"><a href="/talksandpresentations.html">Talks and presentations</a></p>
-      <p class="navItem"><a href="/about.html">About</a></p>
-      <p class="navItem"></p>
-    </div>
-
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
           {{ content }}
-        </section>
+        </div><!-- /.blog-main -->
 
-        <aside id="sidebar">
-          <p>{% include icon-github.html username=site.github_username %}</p>
-          <p>{% include icon-twitter.html username=site.twitter_username %}</p>
-        </aside>
-      </div>
-    </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module">
+            <h4>Get in contact</h4>
+              <p class="socialBar">
+                {% include icon-github.html username=site.github_username %}
+                {% include icon-twitter.html username=site.twitter_username %}
+                {% include icon-linkedin.html username=site.twitter_username %}
+                {% include icon-xing.html username=site.twitter_username %}
+              </p>
+            <!-- </ol> -->
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer class="blog-footer">
+      <p>{% include icon-github-repo.html username=site.github_username %} (c) {{ "now" | date: "%Y" }}</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="{{ '/assets/javascripts/bootstrap/bootstrap.min.js' | relative_url }}"></script>
   </body>
 </html>

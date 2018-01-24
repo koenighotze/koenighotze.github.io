@@ -1,27 +1,274 @@
 ---
 ---
+@import url('https://fonts.googleapis.com/css?family=Sansita|Source+Code+Pro|Open+Sans');
 
-@import "{{ site.theme }}";
-@import url('https://fonts.googleapis.com/css?family=Sansita|Source+Code+Pro');
-
-$grey-color:       #828282 !default;
-
-aside a.repo-link  {
-  background: #2e7bcf url(../images/github-button.png) 0 0 no-repeat;
+body {
+  // font-family: 'Source Code Pro', monospace;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+  background: #FFFFFF;
+  color: #555;
+  padding-top: 8em;
 }
 
-header {
-  background: url(../images/IMG_0011-2.jpg) no-repeat;
-  background-position: center;
-  border-bottom: none;
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  margin-top: 0;
+  font-weight: normal;
+  color: #333;
+}
+
+
+/*
+ * Override Bootstrap's default container.
+ */
+@media (min-width: 1200px) {
+  .container {
+    /*width: 970px;*/
+  }
+}
+
+
+/*
+ * Masthead for nav
+ */
+
+nav > div.container {
+  width: 100%
+}
+
+.blog-masthead {
+  color:  #999;
+  font-family: 'Source Code Pro', monospace;
+  background-color: #A9E0F4;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0.3em;
+
+}
+.navbar-inverse .navbar-toggle {
+    // border-color: black;
+}
+
+.navbar-inverse {
+
+}
+
+.navbar-brand {
+  font-size: 1.5em;
+  line-height: 2em;
+}
+
+form.navbar-form  {
+  line-height: 2em;
+}
+
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand {
+    color: black;
+}
+
+div.blog-masthead > div.container {
+  width: 100%
+}
+
+
+.blog-nav {
+  font-size: 1.5em;
+}
+
+a.home {
+  font-size: 2em;
+}
+
+/* Nav links */
+.blog-nav-item {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-size: 1.5em;
+  font-weight: 500;
+  color: black;
+}
+.blog-nav-item:hover,
+.blog-nav-item:focus {
+  color: #fff;
+}
+
+/* Active state gets a caret at the bottom */
+.blog-nav .active {
+  color: #fff;
+}
+.blog-nav .active:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  vertical-align: middle;
+  content: " ";
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid;
+  border-left: 5px solid transparent;
+}
+
+
+div.navbar-header a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+div.navbar-collapse a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #A9E0F4;
+}
+
+/*
+ * Blog name and description
+ */
+
+.blog-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.blog-title {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 60px;
+  font-weight: normal;
+}
+
+.blog-description {
+  font-size: 20px;
+  color: #999;
+}
+
+
+/*
+ * Main column and sidebar layout
+ */
+
+.blog-main {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Sidebar modules for boxing content */
+.sidebar-module {
+  padding: 15px;
+  margin: 0 -15px 15px;
+}
+.sidebar-module-inset {
+  padding: 15px;
+  background-color: #0289BB;
+  color: white;
+  border-radius: 4px;
+}
+.sidebar-module-inset h4 {
+  color: white;
+}
+.sidebar-module-inset p:last-child,
+.sidebar-module-inset ul:last-child,
+.sidebar-module-inset ol:last-child {
+  margin-bottom: 0;
+}
+
+
+/* Pagination */
+.pager {
+  margin-bottom: 60px;
+  text-align: left;
+}
+.pager > li > a {
+  width: 140px;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 30px;
+}
+
+/*
+ * Blog posts
+ */
+.blog-post {
+  margin-bottom: 60px;
+}
+.blog-post-title {
+  margin-bottom: 5px;
+  font-size: 2em;
+}
+.blog-post-meta {
+  margin-bottom: 20px;
+  color: #999;
+}
+
+.blog-post h2,h3,h4,h5,h6 {
+  margin-top: 1em;
+}
+
+.blog-post figure {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.blog-post img {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  max-width: 100%;
+  max-height: 100%;
+}
+/*
+ * Footer
+ */
+
+.blog-footer {
+  font-family: 'Source Code Pro', monospace;
+  padding: 1em 0;
+  text-align: center;
+  color: #999;
+  background-color: #A9E0F4;
+  border-top: 1px solid #e5e5e5;
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 3em;
+
+  font-weight: bold;
+
+}
+
+.blog-footer p:last-child {
+  margin-bottom: 0;
+}
+
+footer.blog-footer > p {
+  color: black;
+}
+footer.blog-footer a {
+  color: black;
+  text-decoration: none;
 }
 
 ul.post-list li {
   padding-bottom: 2em;
 }
 
+ul.post-list img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 ul.post-list li a.post-link {
   color: black;
+  text-decoration: none;
 }
 
 .site-title {
@@ -37,10 +284,6 @@ ul.post-list li a.post-link {
 .icon > svg {
   display: inline-block;
   vertical-align: middle;
-
-  path {
-    fill: $grey-color;
-  }
 }
 
 div.home > ul {
@@ -73,7 +316,8 @@ ul#markdown-toc > li > a {
 }
 
 #main-content h1 {
-  font-family: 'Source Code Pro', monospace;
+  // font-family: 'Source Code Pro', monospace;
+  font-family: 'Open Sans', sans-serif;
   font-size: 2em;
   text-indent: 0;
 }
@@ -85,7 +329,8 @@ ul#markdown-toc > li > a {
 }
 
 #main-content h2 {
-  font-family: 'Source Code Pro', monospace;
+  // font-family: 'Source Code Pro', monospace;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.5em;
   text-indent: 0;
 }
@@ -97,23 +342,25 @@ ul#markdown-toc > li > a {
 }
 
 #main-content h3 {
-  font-family: 'Source Code Pro', monospace;
+  // font-family: 'Source Code Pro', monospace;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1em;
   text-indent: 0;
 }
 
 
 html body div#content-wrapper div.inner.clearfix section#main-content div.home h1.page-heading {
-  font-family: 'Source Code Pro', monospace;
-}
-
-body {
-  font-family: 'Source Code Pro', monospace;
-  background: #FFFFFF;
+  // font-family: 'Source Code Pro', monospace;
+  font-family: 'Open Sans', sans-serif;
 }
 
 a {
   color: black;
+  text-decoration: underline;
+}
+
+div.blog-masthead a {
+  text-decoration: none;
 }
 
 ul#markdown-toc li a {
@@ -167,18 +414,42 @@ div.video > iframe {
 }
 
 div.profile {
-  width: 15em;
 }
 
-div.profilePic {
-
+div.profilePic img {
+  width: 100%;
+  height: 100%;
+  border-radius: 2em;
 }
 
 div.background {
-
 }
 
 blockquote {
   font-size: 1em;
   font-style: italic;
+}
+
+/*add padding to icon*/
+span.icon {
+  padding: 0.5em;
+}
+
+ul.post-list > li > h2 {
+  font-size: 1.5em;
+}
+
+
+// navbar navbar-inverse navbar-fixed-top
+
+
+span.icon-bar {
+  color: black;
+}
+
+
+a.text-left:nth-child(3)
+
+a.navbar-brand.visible-xs-block {
+  font-size: 1em;
 }
