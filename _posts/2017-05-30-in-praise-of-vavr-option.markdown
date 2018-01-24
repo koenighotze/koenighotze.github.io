@@ -4,8 +4,6 @@ title:  "In praise of Vavr's Option"
 date:   2017-05-30 15:08:54 +0200
 categories: Vavr Javaslang Monad
 ---
-# In praise of Vavr's Option
-
 `Null` is sometimes considered the [billion dollar mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare). One could argue about this forever, but certainly, `null` has lead to a lot of awful code.
 
 Most functional programming languages offer a concept called _Option_ or _Maybe_ to deal with the presence or absence of a value, thus avoiding `null`. Wikipedia defines the _Option_ type as [follows](https://en.wikipedia.org/wiki/Option_type):

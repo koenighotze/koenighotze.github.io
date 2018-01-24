@@ -3,8 +3,7 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="{{ site.social.name }}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -25,11 +24,11 @@
     <![endif]-->
 
     <title>{{ site.title | default: site.github.repository_name }}</title>
+
+    {% seo %}
   </head>
 
   <body>
-
-    <!-- <nav class="navbar navbar-inverse navbar-fixed-top"> -->
     <nav class="navbar navbar-inverse blog-masthead navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -58,26 +57,7 @@
       </div>
     </nav>
 
-
-<!--     <div class="blog-masthead">
-      <div class="container-fluid">
-
-        <div class="row">
-
-        </div>
-
-        <nav class="blog-nav">
-          <a class="blog-nav-item home" href="/"><img src="/favicon-32x32.png" alt="Home"/><span>Koenighotze Energy Emporium</span></a>
-          <a class="blog-nav-item" href="/blog.html">Blog</a>
-          <a class="blog-nav-item" href="/sideprojects.html">Side projects</a>
-          <a class="blog-nav-item" href="/talksandpresentations.html">Talks and presentations</a>
-          <a class="blog-nav-item" href="/about.html">About</a>
-        </nav>
-      </div>
-    </div> -->
-
     <div class="container">
-
       <div class="row">
         <div class="col-sm-8 blog-main">
           {{ content }}

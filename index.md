@@ -3,13 +3,13 @@
 layout: home
 ---
 
-<!-- <div class="blog-header">
-  <h1 class="blog-title">{{ site.title | default: site.github.repository_name }}</h1>
-  <p class="lead blog-description">Last update {{ "now" | date: "%d.%m.%Y %H:%M" }}</p>
-</div>
- -->
+This site is just a collection of random stuff about coding, architecture and whatever I find interesting. :+1:
 
-This site is just a collection of random stuff about coding, architecture and whatever I find interesting.
+<!-- {% gist c08ee0f2726fd0e3909d %} -->
+
+My latest post is right below, so enjoy it and give me your feedback.
+
+---
 
 {% assign post = site.posts.first %}
 {% assign content = post.content %}

@@ -1,2 +1,2 @@
 #!/bin/sh
-bundle exec jekyll serve --limit_posts 4 --livereload
+bundle exec jekyll serve

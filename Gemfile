@@ -1,11 +1,17 @@
 source "https://rubygems.org"
 ruby RUBY_VERSION
 
-gem "jekyll", "3.7.0"
+# gem "jekyll" #,  "3.7.0"
 
 gem "jekyll-theme-architect"
 
 gem "html-proofer"
+
+gem 'jemoji'
+
+gem 'jekyll-gist'
+
+gem 'jekyll-seo-tag'
 
 # gem 'jekyll-bootstrap-sass'
 
@@ -15,5 +21,6 @@ gem "html-proofer"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
-   gem "jekyll-feed", "~> 0.9.2"
+   # gem "jekyll-feed", "~> 0.9.2"
+   gem 'github-pages'
 end

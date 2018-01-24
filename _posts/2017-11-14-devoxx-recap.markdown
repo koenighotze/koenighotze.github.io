@@ -6,14 +6,10 @@ description: This post recaps my visit to Devoxx 2017 in Antwerp
 categories: Devoxx Conference
 ---
 
-![Devoxx Belgium 2017](https://thepracticaldev.s3.amazonaws.com/i/nuu4tc5jjoucaj22himb.JPG)
-
 [Devoxx](https://devoxx.com/) is one of the largest developer conferences in Europe. It basically follows a franchise mode, with editions in UK, US, France and others.
-
 Devoxx is one of my favorite developer conferences. Back in the day you had to order DVD with the talks, you might have missed - the conference was known as "Javapolis" then. Today they stream the talks in real time and release everything on Youtube for easy consumption, just check their [channel](https://www.youtube.com/channel/UCCBVCTuk6uJrN3iFV_3vurg).
 
-* TOC
-{:toc}
+![Devoxx Belgium 2017](https://thepracticaldev.s3.amazonaws.com/i/nuu4tc5jjoucaj22himb.JPG)
 
 # The venue
 

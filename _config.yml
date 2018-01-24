@@ -3,12 +3,23 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Koenighotze Energy Emporium
-email: david.schmitz.privat_at_gmail.com
-description: > # this means to ignore newlines until "baseurl:"
+email: koenighotze_NO_SPAM@gmail.com
+description: >
   This site is just a collection of random stuff about coding, architecture and whatever
-  I find interesting.
+  I find interesting. Topics include serverless, devops, microservices, agile software delivery.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://koenighotze.de"
+twitter:
+  username: koenighotze
+logo: /assets/images/IMG_0011-2.jpg
+social:
+  name: David Schmitz
+  links:
+    - https://twitter.com/koenighotze
+    - https://www.linkedin.com/in/david-schmitz-636ab725/
+    - https://github.com/koenighotze
+    - https://keybase.io/koenighotze
+lang: en_US
 twitter_username: koenighotze
 github_username:  koenighotze
 github.repository_url: https://github.com/koenighotze/koenighotze.github.io.git
@@ -17,6 +28,9 @@ markdown: kramdown
 theme: jekyll-theme-architect
 plugins:
   - jekyll-feed
+  - jemoji
+  - jekyll-gist
+  - jekyll-seo-tag
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -26,3 +40,5 @@ exclude:
   - README.md
 bootstrap:
   assets: true
+author:
+  twitter: koenighotze
