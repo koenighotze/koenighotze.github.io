@@ -25,15 +25,28 @@ The project manager, let's call her She-Ra, described the situation as follows..
 >
 >With this success in mind, we wanted to start directly with implementing release 2. This is when things started to break somehow. Now the build has been broken for somewhere around two weeks and we are not sure why and how to fix it. But the teams are working on it. We have so many new features to implement, but we do not see a clear commitment from the developers. Seeing their estimates for the whole backlog, we suspect that they add extra buffer to cover other tasks, but this is something we cannot prove directly.
 >
->Frankly, I would like to look into this in detail, but I really have no time. I spend my day running around, fixing things, kicking buts.
+>Frankly, I would like to look into this in detail, but I really have no time. I spend my day running around, fixing things, kicking butts.
 >
 >So, how can we get back to our excellent velocity?"
 
 Puh. Where to start?
 
-This situation is not uncommon. So, before jumping to any conclusion, I want to dissect this story and focus on certain aspects in detail. 
+This situation is not uncommon. So, before jumping to any conclusion, I want to dissect this story and focus on certain aspects in detail.
 
 TODO
+
+Microtracking and -management
+
+"Kick some butt"
+
+A test and development team
+
+External HiPPO-Scope
+
+Big 3rd party platform
+
+No time for test automation
+
 
 # Quality leads to trust - trust to a sane working environment
 
