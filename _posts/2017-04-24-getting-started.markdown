@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "Getting started with Jekyll, Github pages..."
 date:   2017-04-24 15:48:54 +0200
 categories: jekyll githubpages

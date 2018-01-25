@@ -1,6 +1,5 @@
 ---
 title: Devoxx Belgium 2017 - Recap
-layout: post
 date:   2017-11-14
 description: This post recaps my visit to Devoxx 2017 in Antwerp
 categories: Devoxx Conference

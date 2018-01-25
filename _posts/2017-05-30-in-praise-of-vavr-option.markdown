@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "In praise of Vavr's Option"
 date:   2017-05-30 15:08:54 +0200
 categories: Vavr Javaslang Monad

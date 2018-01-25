@@ -23,7 +23,6 @@ lang: en_US
 twitter_username: koenighotze
 github_username:  koenighotze
 github.repository_url: https://github.com/koenighotze/koenighotze.github.io.git
-# Build settings
 markdown: kramdown
 theme: jekyll-theme-architect
 plugins:
@@ -42,3 +41,11 @@ bootstrap:
   assets: true
 author:
   twitter: koenighotze
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"

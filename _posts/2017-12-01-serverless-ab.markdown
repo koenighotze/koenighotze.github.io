@@ -1,7 +1,6 @@
 ---
 title: "Serverless blue green deployments and canary releases with traffic shifting"
 description: Introduction into blue green deployments and canaries with AWS Lambda
-layout: post
 date:   2017-12-04
 description: Introduction into A/B testing with AWS Lambda
 categories: Serverless AWS Lambda Node.JS Cloud

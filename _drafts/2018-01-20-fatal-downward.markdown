@@ -1,7 +1,6 @@
 ---
 title: The fatal downward spiral of bad software quality
 description: Some thoughts on software quality and why sometimes moving slowly makes total sense
-layout: post
 date:   2018-01-20
 categories: quality testing craftsmanship
 permalink: /agile/fatal-downward.html

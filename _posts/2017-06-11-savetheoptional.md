@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  Save the Optional, stop using isPresent
 date:   2017-06-11 11:08:54 +0200
 categories: Vavr Javaslang Monad Optional

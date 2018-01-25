@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  Vavr - Objekt-funktionale Programmierung leicht gemacht (German)
 date:   2018-01-08
 categories: Vavr
