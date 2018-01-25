@@ -3,6 +3,7 @@ title: Books that made me the developer I am
 published: false
 description: This article looks at the computer science and coding books that basically made me the developer/engineer/architect that I am today.
 tags: programming, architecture
+permalink: /influential-books.html
 ---
 
 Obviously books are one great way to benefit from the experience of other people. This is true for recipe-collections that teach how to bake a really good chocolate cake and this is especially true for computer science and programming in general.

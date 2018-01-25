@@ -3,6 +3,7 @@ layout: post
 title:  "In praise of Vavr's Option"
 date:   2017-05-30 15:08:54 +0200
 categories: Vavr Javaslang Monad
+permalink: /vavr/praise-the-monad.html
 ---
 `Null` is sometimes considered the [billion dollar mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare). One could argue about this forever, but certainly, `null` has lead to a lot of awful code.
 

@@ -2,7 +2,8 @@
 title: 10 tips for failing badly at microservices
 published: false
 description: This post describes 10 recipes for failing at microservices the hard way.
-tags: microservices, failing, cloud, agile
+tags: microservices failing cloud agile
+permalink: /failing-at-microservices.html
 ---
 
 The last 5 or so years I have been part of multiple projects that adopted microservice-oriented architecture. Some went smooth, some went not-so-smooth.

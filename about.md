@@ -1,5 +1,6 @@
 ---
 layout: home
+permalink: /about
 ---
 <div class="profile row">
   <div class="profilePic col-md-4">

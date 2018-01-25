@@ -4,6 +4,7 @@ layout: post
 date:   2017-11-28
 description: Introduction to AWS Lambda Serverless computing
 categories: Serverless AWS Lambda Node.JS Cloud
+permalink: /serverless/hype-train.html
 ---
 
 This post is an introduction to Serverless computing - often called Functions-as-a-Service. I will explain, why this is indeed the Hot-Stuff(tm) and introduce you to AWS Lambda. We will build a completely serverless application that exposes 'Hello World' as a Lambda and as a REST service.

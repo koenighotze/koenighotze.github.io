@@ -1,8 +1,6 @@
 ---
 title: "Serverless blue green deployments and canary releases with traffic shifting"
-published: true
 description: Introduction into blue green deployments and canaries with AWS Lambda
-tags: AWS Lambda, Serverless, A/B test
 layout: post
 date:   2017-12-04
 description: Introduction into A/B testing with AWS Lambda

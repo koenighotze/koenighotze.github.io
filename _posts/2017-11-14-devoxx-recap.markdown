@@ -4,6 +4,7 @@ layout: post
 date:   2017-11-14
 description: This post recaps my visit to Devoxx 2017 in Antwerp
 categories: Devoxx Conference
+permalink: /devoxx/2018_be_recap.html
 ---
 
 [Devoxx](https://devoxx.com/) is one of the largest developer conferences in Europe. It basically follows a franchise mode, with editions in UK, US, France and others.

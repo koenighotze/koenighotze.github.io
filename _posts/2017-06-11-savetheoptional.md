@@ -3,6 +3,7 @@ layout: post
 title:  Save the Optional, stop using isPresent
 date:   2017-06-11 11:08:54 +0200
 categories: Vavr Javaslang Monad Optional
+permalink: /vavr/save-the-optional.html
 ---
 
 Most functional programming languages offer a concept called _Option_ or _Maybe_ to deal with the presence or absence of a value, thus avoiding `null`. Java 8 introduced `java.util.Optional`, an implementation of the _Maybe_ type for Java developers.

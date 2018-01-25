@@ -2,7 +2,8 @@
 layout: post
 title:  "Getting started with Jekyll, Github pages..."
 date:   2017-04-24 15:48:54 +0200
-categories: jekyll update githubpages
+categories: jekyll githubpages
+permalink: /gh-pages/getting-started-with-gh-pages.html
 ---
 This post summarizes the steps needed to setup a site such like this.
 
