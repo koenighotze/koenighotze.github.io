@@ -1,5 +1,6 @@
 ---
-layout: home
+layout: page
+title: Welcome
 ---
 
 This site is just a collection of random stuff about coding, architecture and whatever I find interesting. :+1:

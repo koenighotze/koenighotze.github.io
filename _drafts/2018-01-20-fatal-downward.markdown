@@ -29,7 +29,7 @@ The project manager, let's call her She-Ra, described the situation as follows..
 
 Puh. Where to start?
 
-This situation is not uncommon. So, before jumping to any conclusion, I want to dissect this story and focus on certain aspects in detail.
+This situation is not uncommon. So, before jumping to any conclusion, I want to dissect this story and focus just on certain aspects for this post.
 
 TODO
 

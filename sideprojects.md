@@ -1,9 +1,6 @@
 ---
-layout: default
+layout: page
+title: Side projects
 ---
 
-<div class="home">
-
-  {{ content }}
 - tools/github/alexa
-</div>
