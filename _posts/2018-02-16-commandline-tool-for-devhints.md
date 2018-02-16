@@ -5,9 +5,9 @@ categories: hack
 permalink: /hack/devhints.html
 ---
 
-After listening to episode 283 of [The Changelog Podcast](https://changelog.com/podcast/283), I decided, that I want to use the awesome cheat sheet repository at [Devhints](https://devhints.io) on the commandline.
+After listening to episode 283 of [The Changelog Podcast](https://changelog.com/podcast/283), I decided that I want to use the awesome cheat sheet repository at [Devhints](https://devhints.io) on the commandline.
 
-This is what I came up with, if you want to read the cheat sheet for React, just type
+This is what I came up with: if you want to read the cheat sheet for React, just type
 
 ```bash
 $ hint react
