@@ -22,6 +22,7 @@ Java User Group Hamburg Java User Group Mannheim
 <h2>Slides</h2>
 
 <ul>
+  <li><a href="/assets/media/2018-03-08/real_world_serverless_20180307-voxxed-zurich.pdf">Real World Serverless @ Voxxed Zurich</a></li>
   <li><a href="https://www.slideshare.net/koenighotze/the-faas-and-the-furious">The FaaS and the Furious</a></li>
   <li><a href="https://www.slideshare.net/koenighotze/10-tips-for-failing-at-microservices-badly-bedcon-2017">10 Tips for failing at Microservices</a></li>
   <li><a href="https://www.slideshare.net/koenighotze/javaslang-javaland20170327nodemonocopyright">Javaslang</a></li>
@@ -29,7 +30,6 @@ Java User Group Hamburg Java User Group Mannheim
   <li><a href="https://www.slideshare.net/koenighotze/resilience-testing-with-wiremock-and-spock">Resilience testing with Wiremock and Spock</a></li>
   <li><a href="https://www.slideshare.net/koenighotze/docker-for-the-brave">Docker for the brave</a></li>
 </ul>
-
 
 <h2>Talks</h2>
 <div class="videosContainer">
