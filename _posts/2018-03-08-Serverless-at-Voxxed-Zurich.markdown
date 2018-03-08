@@ -5,6 +5,8 @@ categories: serverless
 permalink: /serverless/realworldatvoxxed.html
 ---
 
+_(Just here for the slides? [Here](/assets/media/2018-03-08/real_world_serverless_20180307-voxxed-zurich.pdf) you are.)_
+
 Serverless computing is quite the rage today. It enables companies to move to a platform with basically limitless capacity and it allows teams to embrace DevOps right from the start.
 So, this is literally the silver bullet we have waited for and everybody should embrace it. Right?
 
