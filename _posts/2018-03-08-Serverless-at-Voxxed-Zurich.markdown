@@ -1,11 +1,12 @@
 ---
-title:  Real World Serverless @ Voxxed Zurich
+title:  Real World Serverless @ Voxxed Zurich and Voxxed Vienna
 date:   2018-03-08
 categories: serverless
 permalink: /serverless/realworldatvoxxed.html
 ---
 
-_(Just here for the slides? [Here](/assets/media/2018-03-08/real_world_serverless_20180307-voxxed-zurich.pdf) you are.)_
+_(Just here for the slides? Voila: [Voxxed Zurich Edition](/assets/media/2018-03-08/real_world_serverless_20180307-voxxed-zurich.pdf)
+and the [Voxxed Vienna Edition](/assets/media/2018-03-13/real_world_serverless_20180311-voxxed-vienna-final.pdf).)_
 
 Serverless computing is quite the rage today. It enables companies to move to a platform with basically limitless capacity and it allows teams to embrace DevOps right from the start.
 So, this is literally the silver bullet we have waited for and everybody should embrace it. Right?
@@ -20,3 +21,9 @@ Finally, we will discuss the drawbacks and misconceptions, like potential vendor
 If you find Serverless computing interesting, then this talk will show you how to adapt this architectural style without getting burned too much.
 
 And [here](/assets/media/2018-03-08/real_world_serverless_20180307-voxxed-zurich.pdf) are the slides for your enjoyment.
+
+
+Slides:
+
+* [Voxxed Zurich Edition](/assets/media/2018-03-08/real_world_serverless_20180307-voxxed-zurich.pdf)
+* [Voxxed Vienna Edition](/assets/media/2018-03-13/real_world_serverless_20180311-voxxed-vienna-final.pdf)
