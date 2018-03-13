@@ -20,9 +20,6 @@ Finally, we will discuss the drawbacks and misconceptions, like potential vendor
 
 If you find Serverless computing interesting, then this talk will show you how to adapt this architectural style without getting burned too much.
 
-And [here](/assets/media/2018-03-08/real_world_serverless_20180307-voxxed-zurich.pdf) are the slides for your enjoyment.
-
-
 Slides:
 
 * [Voxxed Zurich Edition](/assets/media/2018-03-08/real_world_serverless_20180307-voxxed-zurich.pdf)
