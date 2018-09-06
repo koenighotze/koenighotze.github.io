@@ -13,7 +13,7 @@ Eventsourcing and CQRS are two very useful and popular patterns when dealing wit
 
 This combination of half-knowledge and technical confusion leads to many projects that either refactor back to a 'non-eventsourced' architecture or reduce eventsourcing to a message queue.
 
-In this talk, I will summarize our experience while applying eventsourcing and CQRS accros multiple large financial and insurance companies over the last 5 years. We will cover the _Good_, the _Not so Good_, and the _'oh my god...all abandon ships!'_ when doing eventsourcing in the real world...and see how we solved these issues.
+In this talk, I will summarize our experience while applying eventsourcing and CQRS across multiple large financial and insurance companies over the last 5 years. We will cover the _Good_, the _Not so Good_, and the _'oh my god...all abandon ships!'_ when doing eventsourcing in the real world...and see how we solved these issues.
 
 * Introduction to eventsourcing and CQRS - which problems does ES solve, why do we need it
 * Your eventstore is not a message queue - why mixing both up is bad for you
