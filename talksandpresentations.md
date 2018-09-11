@@ -22,6 +22,7 @@ Java User Group Hamburg Java User Group Mannheim
 <h2>Slides</h2>
 
 <ul>
+  <li><a href="/assets/media/2018-09-06/eventsourcing-you-are-doing-it-wrong.pdf">Eventsourcing - You are doing it wrong @ BedCon</a></li>
   <li><a href="/assets/media/2018-03-08/real_world_serverless_20180307-voxxed-zurich.pdf">Real World Serverless @ Voxxed Zurich</a></li>
   <li><a href="https://www.slideshare.net/koenighotze/the-faas-and-the-furious">The FaaS and the Furious</a></li>
   <li><a href="https://www.slideshare.net/koenighotze/10-tips-for-failing-at-microservices-badly-bedcon-2017">10 Tips for failing at Microservices</a></li>
@@ -53,6 +54,4 @@ Java User Group Hamburg Java User Group Mannheim
     <iframe width="425" height="240" src="https://www.youtube.com/embed/5M3AzAk70SM" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
   </div>
 </div>
-
-
 </div>
