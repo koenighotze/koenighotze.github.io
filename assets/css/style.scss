@@ -57,9 +57,16 @@ nav > div.container {
   color: #1EAEDB;
 }
 
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+  border-color: #eee;
+  border-top: 0px;
+}
+
 form.navbar-form  {
   line-height: 2em;
   background-color: white;
+  border-top: 0px;
+  border-color: #eee;
 }
 
 .navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand {
@@ -338,7 +345,6 @@ ul#markdown-toc > li > a {
 
 
 html body div#content-wrapper div.inner.clearfix section#main-content div.home h1.page-heading {
-  // font-family: 'Source Code Pro', monospace;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -362,7 +368,6 @@ section#main-content a {
 aside#sidebar {
     background: none;
 }
-
 
 .nav ul {
   list-style: none;
@@ -401,16 +406,10 @@ div.video > iframe {
   border: none;
 }
 
-div.profile {
-}
-
 div.profilePic img {
   width: 100%;
   height: 100%;
   border-radius: 2em;
-}
-
-div.background {
 }
 
 blockquote {
