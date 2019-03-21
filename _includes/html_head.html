@@ -2,16 +2,17 @@
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; child-src https://www.youtube.com; base-uri 'none'; frame-ancestors: 'none'; form-action 'none'; script-src 'self' https://gist.github.com https://fonts.googleapis.com https://ajax.googleapis.com https://html5shiv.googlecode.com; img-src 'self' https://*.s3.amazonaws.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' https://github.githubassets.com https://fonts.googleapis.com https://fonts.gstatic.com; ">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; child-src https://www.youtube.com; manifest-src: 'self'; base-uri 'none'; form-action 'none'; script-src 'self' https://gist.github.com https://fonts.googleapis.com https://ajax.googleapis.com https://html5shiv.googlecode.com; img-src 'self' https://*.s3.amazonaws.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' https://github.githubassets.com https://fonts.googleapis.com https://fonts.gstatic.com; ">
   <meta http-equiv="Strict-Transport-Security" content="max-age=63072000; includeSubDomains; preload">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Cache-Control" content="max-age=31536000">
 
   <meta name="author" content="{{ site.social.name }}">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link href="https://fonts.googleapis.com/css?family=Anton|Roboto" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/bootstrap/bootstrap.min.css' | relative_url }}" media="screen" type="text/css">
+  <link rel="stylesheet" href="{{ '/assets/css/bootstrap/bootstrap.min.css' | relative_url }}" media="screen" type="text/css" >
   <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" media="screen" type="text/css">
   <link rel="stylesheet" href="{{ '/assets/css/print.css' | relative_url }}" media="print" type="text/css">
 

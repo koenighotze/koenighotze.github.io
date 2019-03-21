@@ -1,7 +1,5 @@
 ---
 ---
-@import url('https://fonts.googleapis.com/css?family=Sansita|Source+Code+Pro|Open+Sans');
-
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
@@ -206,7 +204,8 @@ span.icon-bar {
 }
 .blog-post-meta {
   margin-bottom: 20px;
-  color: #999;
+  color: black;
+  font-style: italic
 }
 
 .blog-post h2,h3,h4,h5,h6 {
