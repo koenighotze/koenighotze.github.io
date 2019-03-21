@@ -35,6 +35,10 @@ Java User Group Hamburg Java User Group Mannheim
 <h2>Talks</h2>
 <div class="videosContainer">
   <div class="video">
+      <iframe width="425" height="240" src="https://www.youtube.com/embed/GzrZworHpIk" allow="encrypted-media" allowfullscreen></iframe>
+  </div>
+
+  <div class="video">
       <iframe width="425" height="240" src="https://www.youtube.com/embed/uMCtcZ46gns" allow="encrypted-media" allowfullscreen></iframe>
   </div>
 
