@@ -6,3 +6,4 @@ _site
 foo/
 _site/
 tmp/
+*-e
