@@ -22,6 +22,7 @@ Java User Group Hamburg Java User Group Mannheim
 <h2>Slides</h2>
 
 <ul>
+  <li><a href="/assets/media/2019-06-24/eventsourcing-you-are-doing-it-wrong-devoxx-pl.pdf">Eventsourcing - You are doing it wrong @ Devoxx PL (with major changes)</a></li>
   <li><a href="/assets/media/2018-09-06/eventsourcing-you-are-doing-it-wrong.pdf">Eventsourcing - You are doing it wrong @ BedCon</a></li>
   <li><a href="/assets/media/2018-03-08/real_world_serverless_20180307-voxxed-zurich.pdf">Real World Serverless @ Voxxed Zurich</a></li>
   <li><a href="https://www.slideshare.net/koenighotze/the-faas-and-the-furious">The FaaS and the Furious</a></li>
