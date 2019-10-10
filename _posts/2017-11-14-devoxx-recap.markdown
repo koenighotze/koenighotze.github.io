@@ -6,15 +6,15 @@ categories: Devoxx Conference
 permalink: /devoxx/2018_be_recap.html
 ---
 
-[Devoxx](https://devoxx.com/) is one of the largest developer conferences in Europe. It basically follows a franchise mode, with editions in UK, US, France and others.
-Devoxx is one of my favorite developer conferences. Back in the day you had to order DVD with the talks, you might have missed - the conference was known as "Javapolis" then. Today they stream the talks in real time and release everything on Youtube for easy consumption, just check their [channel](https://www.youtube.com/channel/UCCBVCTuk6uJrN3iFV_3vurg).
+[Devoxx](https://devoxx.com/) is one of the largest developer conferences in Europe. It follows a franchise model, with editions in UK, US, France, and others.
+Devoxx is one of my favorite developer conferences. Back in the day, you had to order DVD with the talks, you might have missed - the conference was known as "Javapolis" then. Today they stream the talks in real-time and release everything on Youtube for easy consumption, just check their [channel](https://www.youtube.com/channel/UCCBVCTuk6uJrN3iFV_3vurg).
 
 ![Devoxx Belgium 2017](https://thepracticaldev.s3.amazonaws.com/i/nuu4tc5jjoucaj22himb.JPG)
 
 # The venue
 
-Devoxx takes place at the Kinopolis in Antwerp, Belgium. The talks are held in the cinemas, guaranteeing top seats, top audio and top visual quality.
-As the conference is always sold out, both rooms and venue are packed to the rim with people. Really popular talks are sometimes overfilled, meaning, that sometimes interested watchers must stick to a recording.
+Devoxx takes place at the Kinopolis in Antwerp, Belgium. The talks are held in the cinemas, guaranteeing top seats, top audio, and top visual quality.
+As the conference is always sold out, both rooms and venues are packed to the brim with people. Really popular talks are sometimes overfilled, meaning, that sometimes interested watchers must stick to a recording.
 
 The atmosphere is always infectious. A place by and for hackers, nerds and developers.
 
@@ -48,7 +48,7 @@ As always Kevlin Henney delivers deep insights on how development works.
 
 ### Build, Deploy, Debug and Tune Serverless Microservices - Randall Hunt
 
-Rather disappointing talk an the basics of serverless with AWS lambda. Based on the agenda, I would have expected more actual production insights.
+Rather disappointing talk on the basics of serverless with AWS lambda. Based on the agenda, I would have expected more actual production insights.
 
 2/5
 
@@ -62,18 +62,18 @@ In essence: I need to learn Kotlin and Webflux. Enough said.
 ### Continuous Delivery with Containers: The Good, the Bad, and the Ugly - Daniel Bryant
 ![Continuous Delivery with Containers](https://thepracticaldev.s3.amazonaws.com/i/zw0g3x5sh14p5g9nvyat.JPG)
 
-Top talk on everything CI/CD related with containers. Every slide as deep as it gets. Terrific.
+Top talk on everything CI/CD related to containers. Every slide is as deep as it gets. Terrific.
 
 5/5
 
 ### API Versioning for Zero Downtime, Patrice Krakow
-IMHO disappointing description on what ING build internally to work with multi-version REST API releases. To high-level in my opinion.
+IMHO disappointing description on what ING build internally to work with multi-version REST API releases. Too high-level in my opinion.
 
 2/5
 
 ### Angular for Java Developers, Yakov Fain
 
-A hands on introduction to the foundations of Angular. Although interesting, the talk itself was to high level, which could be expected at a Java conference, I guess.
+A hands-on introduction to the foundations of Angular. Although interesting, the talk itself was too high level, which could be expected at a Java conference, I guess.
 
 3/5
 
@@ -87,7 +87,7 @@ Best moment: explaining internal and external iteration with Mario's daughter.
 4/5
 
 ### Fallacies of Doom - Lessons learned from porting Doom 3 to Java - Mahmoud Abdelghany
-Funny and interesting talk about Mahmoud's porting of Doom 3 to Java. Basically a comparison of C++ and Java.
+Funny and interesting talk about Mahmoud's porting of Doom 3 to Java. A comparison of C++ and Java.
 I would have loved more Doom, however.
 
 3/5
@@ -101,13 +101,13 @@ The basics going from callbacks to async/await and ending in Rx. Frankly, I do n
 
 ### Spring Boot 2.0 Web Applications - Stéphane Nicoll, Brian Clozel
 
-A rather dry and uninspired presentation of Spring Boot 2, one bonus point because content-wise this is totally relevant to my day-to-day work.
+A rather dry and uninspired presentation of Spring Boot 2, one bonus point because content-wise this is relevant to my day-to-day work.
 
 3/5
 
 ### Devops @Scale - Baruch Sadogursky
 
-Great talk about Devops structured as a Greek tragedy (everybody dies at the end). Just too true to life!
+Great talk about Devops structured like a Greek tragedy (everybody dies at the end). Just too true to life!
 
 4/5
 
@@ -117,11 +117,11 @@ Funny comparison of Angular and React. At the end, not enough content for my tas
 
 3/5
 
-### Tensorflow, deep learning and modern convnets, without a PhD - Martin Görner
+### Tensorflow, deep learning, and modern concepts, without a Ph.D. - Martin Görner
 ![Tensorflow](https://thepracticaldev.s3.amazonaws.com/i/4dr4ghkl77f5s5e654sq.JPG)
 
-Martin builds a system to recognize planes in images using Tensorflow. Obviously, I need to learn this stuff, as I could not really follow all of the slides.
-Here is an example, I finished university is too long ago ;) :
+Martin builds a system to recognize planes in images using Tensorflow. I need to learn this stuff, as I could not follow all of the slides.
+Here is an example, I finished university too long ago ;) :
 ![Whoot](https://thepracticaldev.s3.amazonaws.com/i/l2d5gkri2e5jols1f5z9.JPG)
 
 4/5
@@ -134,7 +134,7 @@ No spoilers here. Watch it NOW, [here](https://www.youtube.com/watch?v=PazlKN_Fu
 
 ## Day three
 
-### Building Event Driven Services with Apache Kafka and Kafka Streams - Ben Stopford
+### Building Event-Driven Services with Apache Kafka and Kafka Streams - Ben Stopford
 
 Maybe I was tired, but this talk on Kafka sounded too much like a sales pitch...which might be unfair.
 
@@ -154,10 +154,10 @@ Insight into Project Amber and language features beyond modules. As always, deep
 4/5
 
 # Top 3 talks (so far)
-As I have obviously not watched all talks (how could I, with so many sessions), my top list may not feature your personal favorite. If so, leave a comment and drop me a hint, for you must-see-talk.
+As I have not watched all the talks (how could I, with so many sessions), my top list may not feature your personal favorite. If so, leave a comment and drop me a hint, for your must-see-talk.
 
 You may have noticed, that I did not mention any Venkat Subramaniam talks. The reason is, that all his talks are a must watch anyway and I will check them out on Youtube (and a top talk list containing only his talks would be boring ;)
-Also I'll exclude the keynotes, as these always tend to be exceptional. Finally, this includes a talk, I have since caught up with on Youtube.
+Also, I'll exclude the keynotes, as these always tend to be exceptional. Finally, this includes a talk, I have since caught up with on Youtube.
 
 1. Continuous Delivery with Containers: The Good, the Bad, and the Ugly
 2. Video Games are for idiots - Laurent Victorino (How development on games differs from our day to day IT work, I laughed hard, look [here](https://www.youtube.com/watch?v=uI0MI4xZWQU))
@@ -167,7 +167,7 @@ Also I'll exclude the keynotes, as these always tend to be exceptional. Finally,
 
 Devoxx.BE 2017 was once again a great conference. The price is fair and the content is of very high quality. The top themes seem to be Serverless, Kotlin and of course Java 9. My "to-learn-list" is filled to the brim, and I'll be busy watching missed talks on Youtube for the next months.
 
-Two gripes come to mind however. First of all, the number of people is staggering. Second, the number of sponsor-slot seems a little high. There are so many slots filled with Redhat, Pivotal, Oracle people, that one may get the impression, that the community aspect is left behind. Note, that I do not want to imply, that the schedule or anything...this is just a personal impression, that I had. I'll watch the development closely, as the community involvement was (and is) always a strong point of Devoxx.
+Two gripes come to mind, however. First of all, the number of people is staggering. Second, the number of sponsor-slot seems a little high. There are so many slots filled with Redhat, Pivotal, Oracle people, that one may get the impression, that the community aspect is left behind. Note, that I do not want to imply, that the schedule or anything...this is just a personal impression, that I had. I'll watch the development closely, as the community involvement was (and is) always a strong point of Devoxx.
 
 If you want to consume the whole Devoxx.BE 2017 goodness, visit the [Youtube playlist](https://www.youtube.com/watch?v=Yacu1yUktjY&list=PLRsbF2sD7JVqZ4RpHYkqSuCNhxumGP5eo).
 

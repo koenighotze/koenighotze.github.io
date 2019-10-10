@@ -4,7 +4,7 @@ date:   2017-04-24 15:48:54 +0200
 categories: jekyll githubpages
 permalink: /gh-pages/getting-started-with-gh-pages.html
 ---
-This post summarizes the steps needed to setup a site such like this.
+This post summarizes the steps needed to set up a site such as this.
 
 * TOC
 {:toc}
@@ -12,12 +12,12 @@ This post summarizes the steps needed to setup a site such like this.
 ## Setup github
 
 Create a new repository following the convention `<USERNAME>.github.io` as the repository name. E.g.
-in my case this is the repository available at [https://github.com/koenighotze/koenighotze.github.io].
-As this a so called organization site, every push to the `master` branch will be published to the site itself.
+in my case, this is the repository available at [https://github.com/koenighotze/koenighotze.github.io].
+Like this, a so-called organization site, every push to the `master` branch will be published to the site itself.
 
 ## Setup local Jekyll
 
-Jekyll is used to both create the online presence and to create a local preview of the site.
+Jekyll is used to both create an online presence and to create a local preview of the site.
 See below for rendering locally.
 
 The installation is explained at [Github's Jekyll Tutorial](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/).
@@ -67,7 +67,7 @@ $ cp -rvf ../minima/_layouts .
 $ rm _layouts/default.html
 {% endhighlight %}
 
-We basically copy the `_includes` and `_layouts` to our local, new site. But, as we do not want to mess with the default `jekyll-theme-architect` theme layout, we remove the `default.html`.
+We copy the `_includes` and `_layouts` to our local, new site. But, as we do not want to mess with the default `jekyll-theme-architect` theme layout, we remove the `default.html`.
 
 ## Render locally
 
@@ -75,7 +75,7 @@ We basically copy the `_includes` and `_layouts` to our local, new site. But, as
 $ bundle exec jekyll serve
 {% endhighlight %}
 
-The site is available at [http://127.0.0.1:4000/]. Any errors will be reported by Jekyll, so you can fix locally before pushing to github.
+The site is available at [http://127.0.0.1:4000/]. Any errors will be reported by Jekyll, so you can fix it locally before pushing to github.
 
 ## Combining with Browser-Sync
 

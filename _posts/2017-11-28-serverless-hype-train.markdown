@@ -13,13 +13,13 @@ This post is an introduction to Serverless computing - often called Functions-as
 
 ## Serverless in a Nutshell
 
-Defining Serverless is actually harder than one might think.
+Defining Serverless is harder than one might think.
 The name is rather unfortunate, as defining something by what it is _not_, seldom works.
 I'll try to define the Serverless approach by looking at something, that was missing until now.
 
-Let's talk about containers, yes - Docker. These are hyper-flexible, basically allowing you to do whatever you want. At least as long as it works with CGROUPS. There are _no_ fixed rules or binding principles that you have to follow, only sets of common or so-called best practices. Going into production with containers implies thinking about scaling, provisioning, security, monitoring, deployment and so on. In some projects teams opt to introduce [Kubernetes](https://kubernetes.io/), which in turn can prove very challenging.
+Let's talk about containers, yes - Docker. These are hyper-flexible, basically allowing you to do whatever you want. At least as long as it works with CGROUPS. There are _no_ fixed rules or binding principles that you have to follow, only sets of common or so-called best practices. Going into production with containers implies thinking about scaling, provisioning, security, monitoring, deployment and so on. In some projects, teams opt to introduce [Kubernetes](https://kubernetes.io/), which in turn can prove very challenging.
 
-The [12 Factor App](https://12factor.net/) proves to be a rather useful guideline for cloud native applications. This set of guidelines describes which rules an application should follow to be easily deployed into the cloud. It covers topics like configuration, logging and building among others. This is taken directly form their site:
+The [12 Factor App](https://12factor.net/) proves to be a rather useful guideline for cloud-native applications. This set of guidelines describes which rules an application should follow to be easily deployed into the cloud. It covers topics like configuration, logging, and building among others. This is taken directly from their site:
 
 {% highlight text %}
 I. Codebase
@@ -37,7 +37,7 @@ Execute the app as one or more stateless processes
 VII. Port binding
 Export services via port binding
 VIII. Concurrency
-Scale out via the process model
+Scale-out via the process model
 IX. Disposability
 Maximize robustness with fast startup and graceful shutdown
 X. Dev/prod parity
@@ -48,11 +48,11 @@ XII. Admin processes
 Run admin/management tasks as one-off processes
 {% endhighlight %}
 
-These are architectural questions you need to answer before you can be successful with you applications in the cloud.
+These are architectural questions you need to answer before you can be successful with your applications in the cloud.
 
 In a sense, Serverless embodies these 12 Factor App principles and offers you a binding corset to plug your business code easily into the cloud. This means you trade flexibility for easy of development.
 
-You basically need to ask yourself: would you rather spend 6 months building infrastructure or building actual applications (I do have to admit, that building infrastructure _can_ be fun, of course).
+You need to ask yourself: would you rather spend 6 months building infrastructure or building actual applications (I do have to admit, that building infrastructure _can_ be fun, of course).
 
 For the rest of this post, let's assume we want to build applications.
 
@@ -69,22 +69,22 @@ Before we get into the details, we need to look at the definition of a AWS Lambd
 
 A Lambda function is any piece of code that gets executed by the AWS Lambda runtime. The code must follow certain guidelines.
 
-* _Single purpose_: Each function should focus on a single task. For example converting a blog post to speech using AWS Polly.
-* _Event driven_: A function is triggered by an event. That means, that in general you need to think about some outside event that the function should react to. For example, trigger a function if a document is uploaded to S3.
-* _Stateless_: All functions are executed in ephemeral containers. You cannot rely on any state such as in Node.JS `global`. Containers may be reused but in general you must design as if you could not have any persistent state. State in that sense should be moved to a database or similar store.
-* _Asynchronous_: Functions support being called in a request/reply mode but also in an asynchronous mode. The function receives an event and processes the event, without any block to the event source.
+* _Single purpose_: Each function should focus on a single task. For example, converting a blog post to speech using AWS Polly.
+* _Event driven_: A function is triggered by an event. That means, that in general, you need to think about some outside event that the function should react to. For example, trigger a function if a document is uploaded to S3.
+* _Stateless_: All functions are executed in ephemeral containers. You cannot rely on any state such as in Node.JS `global`. Containers may be reused but in general, you must design as if you could not have any persistent state. State in that sense should be moved to a database or similar store.
+* _Asynchronous_: Functions support being called in a request/reply model but also an asynchronous mode. The function receives an event and processes the event, without any block to the event source.
 
 ### Execution model and programming model
 
-The execution model is the great strength of the Serverless approach. It is both simple on a conceptual level and powerful on what you can actual achieve with it. Functions are triggered by events.
+The execution model is the great strength of the Serverless approach. It is both simple on a conceptual level and powerful on what you can achieve with it. Functions are triggered by events.
 
 
 ![Lambdas are executed when triggered by an event](https://thepracticaldev.s3.amazonaws.com/i/m3jzbu8eh0g3u7rynqnn.png)
 
 If a function is triggered, a new runtime container is instantiated. The event is passed to the function as an argument. The function can either be executed in a _request-reply_ mode or purely _asynchronously_.
-In the request-reply case the result of executing the function can be returned to the event-source using a callback function. Asynchronously means that no result is returned to the event-source. After the function finished executing, the runtime container is destroyed.
+In the request-reply case, the result of executing the function can be returned to the event-source using a callback function. Asynchronously means that no result is returned to the event source. After the function finished executing, the runtime container is destroyed.
 
-Actually, the last past is not completely true. AWS Lambda reuses runtime containers if possible. But you, as the developer, must never rely on that fact. Code as if the function is executed in a fresh environment each time.
+The last past is not completely true. AWS Lambda reuses runtime containers if possible. But you, as the developer, must never rely on that fact. Code as if the function is executed in a fresh environment each time.
 
 In any case, you'll only be charged for the execution time of the function, currently rounded up to 100ms. If your function is just lying around, you won't be charged anything.
 
@@ -94,7 +94,7 @@ Events can be anything ranging from a direct call by a single page application t
 
 ### Hello Lambda
 
-No demo is complete without 'Hello World', so here is the AWS Lambda version. AWS Lambda supports Python, Node, C# and JVM as its primary runtime of choice and you can add other stacks via some trickery, for example using [APEX](https://github.com/apex/apex).
+No demo is complete without 'Hello World', so here is the AWS Lambda version. AWS Lambda supports Python, Node, C#, and JVM as its primary runtime of choice and you can add other stacks via some trickery, for example using [APEX](https://github.com/apex/apex).
 
 We'll just use Node as the runtime for the example code, just to make things easier.
 
@@ -113,11 +113,11 @@ exports.helloworld = (event, context, callback) => {
 
 This is a AWS Lambda function that just receives an `event` and logs that event to the console `(1)`. If the event contains a field `name`, then we'll welcome that name otherwise a default `world`. Finally, we return the result by calling the `callback` function `(3)`. Since we left `null` as the first argument, we indicate that no error occurred.
 
-Deploying this function to AWS Lambda is easy. We Zip the source code and create a function using the command line...but before we can actually do this, we need to talk about security.
+Deploying this function to AWS Lambda is easy. We Zip the source code and create a function using the command line...but before we can do this, we need to talk about security.
 
 ### Secure Lambdas with IAM
 
-Everything you try to do on AWS involves [AWS Identity and Access Management (IAM)](https://aws.amazon.com/documentation/iam/). It is the Amazon way of restricting access to resources and handling privileges for executing operations on resources. This is not intended to be an introduction to IAM, so we keep things simple. The security involves _roles_ and _policies_. A role is just some kind of identity with a permission policy. The policy in turn determines what is allowed and what is forbidden.
+Everything you try to do on AWS involves [AWS Identity and Access Management (IAM)](https://aws.amazon.com/documentation/iam/). It is the Amazon way of restricting access to resources and handling privileges for executing operations on resources. This is not intended to be an introduction to IAM, so we keep things simple. Security involves _roles_ and _policies_. A role is just some kind of identity with a permission policy. The policy, in turn, determines what is allowed and what is forbidden.
 
 Our function needs a role with a policy that allows the function to at least write log files to [Cloudwatch](https://aws.amazon.com/cloudwatch/). Cloudwatch is Amazon's monitoring service for everything running on their platform. If we omit this, our function would not be able to write logs, and we would not be able to see any output.
 
@@ -168,7 +168,7 @@ $ aws iam create-role --role-name basic-lambda-logging --assume-role-policy-docu
 
 Two things are of notice. First of all, the name of the role is `basic-lambda-logging` `(1)`. Second of all, the attached trust-policy is stored as part of the role `(2)`.
 
-Instead of creating a policy ourselves, we'll use a pre-created (_managed_) policy, that fits perfectly: `AWSLambdaBasicExecutionRole`. This needs to be attached to the role, and then we are ready to role (sorry).
+Instead of creating a policy ourselves, we'll use a pre-created (_managed_) policy, that fits perfectly: `AWSLambdaBasicExecutionRole`. This needs to be attached to the role, and then we are ready to roll (sorry).
 
 {% highlight bash %}
 $ aws iam attach-role-policy --role-name basic-lambda-logging --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
@@ -197,7 +197,7 @@ $ aws iam get-role --role-name basic-lambda-logging
 }
 {% endhighlight %}
 
-When developing Lambda functions it is always a Good Thing to start with the very least permissions needed to execute the function. Only add further policies if absolutely needed!
+When developing Lambda functions it is always a Good Thing to start with the very least permissions needed to execute the function. Only add further policies if needed!
 
 ### Creating the Lambda
 
@@ -233,11 +233,11 @@ $ aws lambda create-function
 
 I'll explain this command option by option.
 
-* `--function-name HelloWorld`: this sets the function name, obviously.
-* `--runtime nodejs6.10`: sets the runtime to Node.JS in version 6.10. You can check the available runtimes online.
+* `--function-name HelloWorld`: this sets the function name.
+* `--runtime nodejs6.10`: set the runtime to Node.JS in version 6.10. You can check the available runtimes online.
 * `--role arn:aws:iam::604370441254:role/basic-lambda-logging-permissions`: The AWS id of the role, that this lambda function should use.
 * `--handler index.helloworld`: Tells AWS Lambda that the functions entry point is the exported method `helloworld` in file `index.js`. So you could export multiple functions, and configure multiple Lambdas with different handlers.
-* `--zip-file fileb://index.zip`: This defines the location of the code to be uploaded. Can be a S3 resource or like in this case a local file. Note that `fileb` is not a typo, but tells AWS that this is binary data.
+* `--zip-file fileb://index.zip`: This defines the location of the code to be uploaded. It can be a S3 resource or like, in this case, a local file. Note that `fileb` is not a typo, but tells AWS that this is binary data.
 
 Invoking this function is rather easy.
 
@@ -262,7 +262,7 @@ $ cat helloevent.json
 }
 {% endhighlight %}
 
-Depending on the event source, the event can be rather complex in nature.
+Depending on the event source, the event can be rather complex.
 
 Now invoke the function and pass the event as a `payload`:
 
@@ -275,7 +275,7 @@ $ cat out.txt
 "Hello David"
 {% endhighlight %}
 
-Things get clearer, if we examine the log output of our function. I'll use [AWSLogs](https://github.com/jorgebastida/awslogs) for fetching the log output and I'll trim the output a little, so we can focus on the essential parts.
+Things get clearer if we examine the log output of our function. I'll use [AWSLogs](https://github.com/jorgebastida/awslogs) for fetching the log output and I'll trim the output a little, so we can focus on the essential parts.
 
 {% highlight bash %}
 $ awslogs get /aws/lambda/HelloWorld
@@ -332,21 +332,21 @@ As you can see, the output has changed to `Bonjour`.
 
 ### About scale
 
-AWS Lambda takes care of scaling you functions. That means, you do not worry if 1 user accesses your functions or 100. AWS Lambda will just create enough instances of your function, as needed. And it will destroy all instances that are not needed any longer.
+AWS Lambda takes care of scaling your functions. That means you do not worry if 1 user accesses your functions or 100. AWS Lambda will just create enough instances of your function, as needed. And it will destroy all instances that are not needed any longer.
 
-That said, you as a developer must size the runtime appropriately. That means, you have to configure the available RAM and CPUs you want for each instance of you Lambda function. Let's look at an example. You remember the log output from above:
+That said, you as a developer must size the runtime appropriately. That means you have to configure the available RAM and CPUs you want for each instance of your Lambda function. Let's look at an example. You remember the log output from above:
 
 {% highlight bash %}
 REPORT RequestId: 347078b1-... Duration: 47.58 ms Billed Duration: 100 ms Memory Size: 128 MB Max Memory Used: 19 MB
 {% endhighlight %}
 
-The essential part is `Memory Size: 128 MB Max Memory Used: 19 MB`. When creating a Lambda function, you can configure the maximum available memory for the underlying runtime, in this case the default `128 MB`. The more memory you allow for your runtime, the more CPUs are assigned to the function when executing.
+The essential part is `Memory Size: 128 MB Max Memory Used: 19 MB`. When creating a Lambda function, you can configure the maximum available memory for the underlying runtime, in this case, the default `128 MB`. The more memory you allow for your runtime, the more CPUs are assigned to the function when executing.
 
 Imagine the possibilities. We could deploy the same function code twice, creating two different Lambdas: `standard` and `premium`. Whereas `standard` uses the default 128 MB RAM and corresponding CPU, we assign 512 MB to `premium` along with the additional CPUs. This allows for an easy way to configure a certain quality-of-service.
 
 ## 'REST' with Lambdas
 
-Although you can invoke an AWS Lambda function using the commandline like above and via the AWS SDK (which I do not cover here), sometimes it makes sense to expose a function via 'REST'. Why do I write 'REST' and not REST? Well, REST is an architectural style, far more complex than what I am going to do here. In this example, I'll expose the function using HTTP/JSON, which can be used to build REST-systems using Lambdas. (Splitting hairs, I know).
+Although you can invoke an AWS Lambda function using the command-line like above and via the AWS SDK (which I do not cover here), sometimes it makes sense to expose a function via 'REST'. Why do I write 'REST' and not REST? Well, REST is an architectural style, far more complex than what I am going to do here. In this example, I'll expose the function using HTTP/JSON, which can be used to build REST-systems using Lambdas. (Splitting hairs, I know).
 
 Back to the topic.
 
@@ -357,7 +357,7 @@ The Amazon API Gateway is used to easily expose functions via HTTP. Consider the
 
 The API Gateway maps requests to resources (in the diagram `/schedule`) based on the request-method (again in the diagram `GET`, `PUT`, `POST`) to the invocation of a Lambda function. You can either map the interaction explicitly, or use a shorthand notation called _proxy integration_. We'll use the latter approach.
 
-Creating an API Gateway is rather cumbersome and involves quite a bit commandline magic. We need take the following steps:
+Creating an API Gateway is rather cumbersome and involves quite a bit of command line magic. We need to take the following steps:
 
 * Create a policy and role that allows the API Gateway to invoke our function
 * Create the API
@@ -471,7 +471,7 @@ In our case this means we need to change the function callback code to:
 callback(null, { body: 'Hello ' + greeting })
 {% endhighlight %}
 
-And of course we need to upload the new function code. Finally, we are able to call the Lambda function using plain old HTTP.
+And of course, we need to upload the new function code. Finally, we can call the Lambda function using plain old HTTP.
 
 {% highlight bash %}
 $ http https://${REST_API_ID}.execute-api.${AWS_DEFAULT_REGION}.amazonaws.com/test/hello
@@ -489,7 +489,7 @@ x-amzn-RequestId: 171b4e2a-caeb-11e7-b863-3d72645e1f57
 Bonjour world
 {% endhighlight %}
 
-Obviously, the API Gateway is a beast. In a follow up to this post, I'll introduce [Claudia.JS](https://claudiajs.com/), which makes things far easier.
+The API Gateway is a beast. In a follow up to this post, I'll introduce [Claudia.JS](https://claudiajs.com/), which makes things far easier.
 
 ## 12 Factor Lambdas
 
@@ -497,7 +497,7 @@ Going back to the 12 Factor App principles, let's take a look at how Serverless 
 
 ### Codebase
 
-This not directly related to AWS Lambda, of course you can use Amazon's offering. You can deploy the same function multiple times and version your deployments easily.
+This not directly related to AWS Lambda, of course, you can use Amazon's offering. You can deploy the same function multiple times and version your deployments easily.
 
 ### Dependencies
 
@@ -505,15 +505,15 @@ Lambda functions are self-contained. If your Node application has module require
 
 ### Config
 
-Configuration is handled via environment variables, similar to what you would do on other PaaS.
+The configuration is handled via environment variables, similar to what you would do on other PaaS.
 
 ### Backing services
 
-Lambda functions are attached to resources only via typical AWS mechanism. For example, is the function is reading from a S3 bucket, then the connection is just via the name of the bucket, thus locality is not an issue.
+Lambda functions are attached to resources only via a typical AWS mechanism. For example, is the function is reading from a S3 bucket, then the connection is just via the name of the bucket, so locality is not an issue.
 
 ### Build, release, run
 
-Lambda deployments are versioned and API Gateways support staging out of the box. Using your own delivery pipeline or Amazon's offering is easy and straightforward.
+Lambda deployments are versioned and API Gateways support staging out of the box. Using your delivery pipeline or Amazon's offering is easy and straightforward.
 
 ### Processes
 
@@ -525,7 +525,7 @@ Lambda functions do not rely on any external server that needs explicit configur
 
 ### Concurrency
 
-Lambda functions are scaled by request. They are concurrent in nature.
+Lambda functions are scaled by request. They are concurrent.
 
 ### Disposability
 
@@ -533,7 +533,7 @@ Lambda containers are ephemeral. They only exist during the execution of the fun
 
 ### Dev/prod parity
 
-You deploy the Zip onto the AWS Lambda environment. Gaps between environments do not exist, unless you take really effort.
+You deploy the Zip onto the AWS Lambda environment. Gaps between environments do not exist unless you take real effort.
 
 ### Logs
 
@@ -541,17 +541,17 @@ AWS Lambda logs are streamed via CloudWatch. The functions themselves use `conso
 
 ### Admin processes
 
-All Lambda related tasks are possible using the commandline. It is up to the user to use the toolset appropriately.
+All Lambda related tasks are possible using the command-line. It is up to the user to use the toolset appropriately.
 
 Finally, one could argue that the Lambda approach fits the 12 Factor App manifest perfectly.
 
 ## Summary and what's next
 
-Although the 'business logic' might be super trivial, we have actually achieved quiet a lot. Think about what we have build: a super-scalable and secure REST service, that is also extremely cheap. We did not need to provision any servers, install any infrastructure or similar tasks.
+Although the 'business logic' might be super trivial, we have achieved quite a lot. Think about what we have built: a super-scalable and secure REST service, that is also extremely cheap. We did not need to provision any servers, install any infrastructure or similar tasks.
 
 Of course, this was not a free lunch.
 
 The ceremony involved for example in creating a simple API Gateway seems rather baroque.
 Finally, you need to be at least aware of the risk of vendor lock-in. From my point of view, vendor lock-in is often used as an excuse to build a piece of complex service yourself. But clearly, this cannot be answered for all projects. You need to weigh your options and risks yourself.
 
-In a follow up post, I'll show you how to simplify things using Claudia.JS and how to test your functions using SAM local and we'll dig into an complex example and discuss some architectural patterns.
+In a follow-up post, I'll show you how to simplify things using Claudia.JS and how to test your functions using SAM local and we'll dig into a complex example and discuss some architectural patterns.
