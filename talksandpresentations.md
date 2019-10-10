@@ -36,27 +36,27 @@ Java User Group Hamburg Java User Group Mannheim
 <h2>Talks</h2>
 <div class="videosContainer">
   <div class="video">
-      <iframe width="425" height="240" src="https://www.youtube.com/embed/GzrZworHpIk" allow="encrypted-media" allowfullscreen></iframe>
+      <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/GzrZworHpIk" allow="encrypted-media" allowfullscreen></iframe>
   </div>
 
   <div class="video">
-      <iframe width="425" height="240" src="https://www.youtube.com/embed/uMCtcZ46gns" allow="encrypted-media" allowfullscreen></iframe>
+      <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/uMCtcZ46gns" allow="encrypted-media" allowfullscreen></iframe>
   </div>
 
   <div class="video">
-    <iframe width="425" height="240" src="https://www.youtube.com/embed/hErwF1Z_THc" allow=" encrypted-media" allowfullscreen></iframe>
+    <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/hErwF1Z_THc" allow=" encrypted-media" allowfullscreen></iframe>
   </div>
   <div class="video">
-      <iframe width="425" height="240" src="https://www.youtube.com/embed/stNj2wmp_Vw" allow="encrypted-media" allowfullscreen></iframe>
+      <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/stNj2wmp_Vw" allow="encrypted-media" allowfullscreen></iframe>
   </div>
   <div class="video">
-    <iframe width="425" height="240" src="https://www.youtube.com/embed/naNN_gJas2A" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/naNN_gJas2A" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
   </div>
   <div class="video">
-    <iframe width="425" height="240" src="https://www.youtube.com/embed/X0tjziAQfNQ" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/X0tjziAQfNQ" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
   </div>
   <div class="video">
-    <iframe width="425" height="240" src="https://www.youtube.com/embed/5M3AzAk70SM" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/5M3AzAk70SM" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
   </div>
 </div>
 </div>
