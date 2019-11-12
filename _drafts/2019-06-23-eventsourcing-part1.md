@@ -6,83 +6,42 @@ categories: eventsourcing ddd microservices
 permalink: /eventsourcing/part1.html
 ---
 
-# Event sourcing with Eventstore
+# Event sourcing with Eventstore: Part 1 - Foundations
 
-In the last couple of months, I was invited to a couple of conference to give a talk about event sourcing and some general patterns and anti-patterns ( TODO link to youtube ). The discussions after the talks showed two things:
+* TOC
+{:toc}
+
+In the last  months, I was invited to a couple of conference to give a talk about event sourcing and some general patterns and anti-patterns. Here is a [video](https://www.youtube.com/watch?v=rdB9Q8GouKI) of that talk at Devoxx Poland. The discussions after the talks showed two things:
 
 * there is a general thirst for tutorials and documentation into actual practical event sourcing, and
 * a decent step-by-step introduction to using Eventstore as an event source is missing as of this writing.
 
 So I decided to try closing both issues, or at least work on closing the cap a little.
 
-This is intended as a series of short articles about event sourcing using [Eventstore](https://Eventstore.org). The plan for the series is as follows:
+This is intended as a series of short articles about event sourcing using [Eventstore](https://eventstore.org). This series will follow the agenda of the talk:
 
 * Introduction and event sourcing bootcamp
 * Aggregate and stream design
 * Versioning and event design
 * Dealing with transactions and validation rules
 * Projections and queries
-* Handling errors
+* Handling errors and correcting errors
 * Refactoring event sourced systems
-* GDPR and „[Datensparsamkeit](TODO LINK TO FOWLER)“
+* GDPR and „[Datensparsamkeit](https://martinfowler.com/bliki/Datensparsamkeit.html)“
 
 Enough introduction, let‘s get started with event sourcing using Eventstore.
 
 ——
+
 **A side note on the coding examples**
 
-Although the HTTP API is comprehensive and very usable, the examples in this series are implemented using NodeJS and the [Eventstore Node client](TODO GITHUB LINK). The reason is mostly convenience, as handling Eventstore using this client is pretty straightforward.
+I will use the [HTTP API](https://eventstore.org/docs/http-api/index.html) of Eventstore in all examples. There are however many different [clients](https://eventstore.org/downloads/) for many different languages. So, feel free to experiment.
 
-There are many clients available that use the TCP protocol of Eventstore. Be aware however that all clients have their different quirks and you will find most „surprises“ in some more complex scenario. We had, for example, the situation that different clients treated permission errors very differently.
-
-TODO nicht verständlich!
+All examples use [NodeJS](https://nodejs.org) and [Express](https://expressjs.com/) without any additional complex frameworks. The reason is, that I just want to focus on the essential parts of event-sourcing.
 
 ——
 
-## Getting started
-
-This next section defines some terms we will be using in the following. Note that these definitions might differ from terms used in other articles. Furthermore the goal is not to be an in-depth introduction into event sourcing, [CQRS](TODO LINK ZU CQRS) and related concepts. We will describe just enough to get us going.
-
-But before continuing, let‘s make sure all tools we need are installed.
-
-* [Docker](TODO)
-* Eventstore Docker image
-* [HTTPie](TODO)
-
-I will not cover how to install Docker or HTTPie, because you will find ample help on their respective sites. But I will help you get up an running a local Eventstore.
-
-### Getting started with Eventstore
-
-[Eventstore](https://eventstore.org) is an open source tool built from the ground up for event sourcing. You will struggle to use it as a general purpose database. We will use this instead of platforms like Kafka, because Eventstore offers features that TODO JA WAS DENN?
-
-HIER NOCH LINK Warum Kafka kein Eventstore ist!
-
-On a technical note, Eventstore is written in C# and Mono and runs on different operating systems. Since we will use the Docker version, our Eventstore runs on Ubuntu.
-
-Once you have Docker up and running, you can start a local instance of Eventstore like this:
-
-```bash
-$ docker run -it
-             -n Eventstore
-             -e PROJECTION ENABLE...
-             -e INMEM
-             -p 2113:2113
-             FOOBAR/eventstore
-HIER OUTPUT REIN
-```
-
-TODO: WHAT DOES THIS MEAN?
-
-After a couple of seconds you should be able to access the web-UI by pointing your browser to http://localhost:2113. You have to login using `admin` as the username and `changeit` as the password. Now you should see the dashboard and a couple of menu items. Fear not, we will explore most of these in due course.
-
-In addition to this web-UI, Eventstore also features a comprehensive HTTP API. For example, say you wanted to access the runtime statistics. You need to send a `GET` request as in the next example:
-
-```bash
-$ http localhost:2113/stats/info
-TODO!!!!
-```
-
-We will make use of this API in the following examples.
+This part defines some terms we will be using. Note that these definitions might differ from terms used in other articles. Furthermore the goal is not to be an in-depth introduction into event-sourcing, [CQRS](https://martinfowler.com/bliki/CQRS.html) and related concepts. I will describe just enough to get going.
 
 ## The event driven business
 
@@ -90,27 +49,30 @@ Before we even go one step further into event sourcing, we need to make one thin
 
 Take for example a typical coffee shop „Barstucks“.
 
-As a customer I enter the stop and order a coffee. This results in a new _event_ „Coffee ordered“. This is a _fact_. Facts never change. Note that facts are usually stated in simple past. They have happened. Nothing can change that.
+As a customer I enter the stop and order a coffee. This results in a new _event_ „Coffee ordered“. This is a _fact_. Facts never change, events do not change. Note that facts are usually stated in simple past. They have happened. Nothing can change that.
 
 A fact also contains some _payload_ describing the fact. In the event „Coffee ordered“ this might be „a large coffee with extra cream but no sugar“.
 
-Since the event „Coffee ordered“ was produced, some employee that _subscribed_ to such events can now react to that event. The employee can start preparing the coffee by looking into the event‘s payload. We call reacting to an event _event handling_. After the coffee is prepared a new fact can be produced „Coffee prepared“, which might again trigger other _subscribers_.
+Since the event „Coffee ordered“ was emitted, some employee that _subscribed_ to such events can now react to that event. The employee can start preparing the coffee by looking into the event‘s payload. We call reacting to an event _event handling_. After the coffee is prepared a new event can be emitted, „Coffee prepared“, which might again trigger other _subscribers_.
 
-In parallel a different employee might also react to the „Coffee ordered“ event, triggering the „payment“ process which might then result in an „Order payed“ event - you get the idea.
+A different employee might also react to the „Coffee ordered“ event in parallel, triggering the „payment“ process which might then result in an „Order payed“ event - you get the idea.
 
 Finally observe, that the customer does not need to wait for the coffee to be prepared in order to pay. These processes are _decoupled_ and can be executed in parallel (_asynchronously_). Just imagine if all „Barstucks“ customers had to wait for someone to order, then that order to be prepared and payed and finally to be served. This would clearly be a very unsatisfactory experience.
 
 This short example already allows us to draw a couple of important observations:
 
 * business operations and process result in one or more facts, which we represent as events
+* facts and events do not change 
 * other business entities can react to these events and trigger new operations and processes which in turn result in one or more events
 * events and event handling allow parallel execution of business process and decouple the different lines of business
+
+But how does one get from a business case to actual events? Well, this is also a great topic for an extra article. In the mean time, allow me to refer you to something called [Eventmodeling](https://www.eventmodeling.org/posts/what-is-event-modeling/).
 
 ## Event sourcing as an implementation detail
 
 Based on this simple business example we might wonder about its technical implementation. In this section we will look at how we could implement „Barstucks“ and introduce additional concepts along the way.
 
-Let‘s consider an architecture for „Barstucks“. We might follow the microservice approach and setup - for now — three different services
+Let‘s consider an architecture for „Barstucks“. We might follow the [microservice](https://martinfowler.com/articles/microservices.html) approach and setup - for now — three different services
 
 * Coffee order service
 * Coffee preparation service
@@ -118,9 +80,14 @@ Let‘s consider an architecture for „Barstucks“. We might follow the micros
 
 Each service needs to hold some state. And each service needs to be informed of certain state changes within other services.
 
-So the question arises: how do we represent this data and how do we represent the real-world dynamics in our microservice architecture?
+So the question arises: _how do we represent this data and how do we represent the real-world dynamics in our microservice architecture?_
 
-One way is using event sourcing. Each microservice publishes events of a type like „Coffee ordered“ and may subscribe to multiple different event types. E.g. the Coffee preparation service may subscribe to „Coffee ordered“ events to trigger a new preparation task.
+One approach is a shared database, illustrated by the following diagram.
+
+
+
+
+A different way is using event sourcing. Each microservice publishes events of a type like „Coffee ordered“ and may subscribe to multiple different event types. E.g. the Coffee preparation service may subscribe to „Coffee ordered“ events to trigger a new preparation task.
 
 In general I like to model services in a way, that events of a certain type can only originate in a single service. Ownership and domain-fit is achieved more easily that way.
 
@@ -166,6 +133,68 @@ For example, let's say we have the following sequence of three events about a co
 ```
 
 The first thing we have to realize is, that asking _what is the state of the coffee order?_ is meaningless. We also need to consider the timeframe we are inquiring. E.g. _what is the state of the coffee order at 11:05 on 23.06.2019?_. This is not different then asking about
+
+
+### Getting started with Eventstore
+
+[Eventstore](https://eventstore.org) is an open source tool built from the ground up for event sourcing. You will struggle to use it as a general purpose database.
+
+But before continuing, let‘s make sure all tools we need are installed.
+
+1. Install [Docker](https://docs.docker.com/install/) if you have not already
+2. Pull the Eventstore Docker image `docker pull eventstore/eventstore:release-5.0.2`
+3. Install [HTTPie](https://httpie.org/), an awesome tool for dispatching HTTP requests. Think `curl`, but with better UX
+
+I will not cover installing Docker or HTTPie, because you will find ample help on their respective sites.
+
+——
+
+**Why Kafka is not the best tool for eventsourcing**
+
+TODO HIER NOCH LINK Warum Kafka kein Eventstore ist!
+
+——
+
+On a technical note, Eventstore is written in C# and Mono and runs on different operating systems. Since we will use the Docker version, our Eventstore runs on Ubuntu.
+
+Once you have Docker up and running, you can start a local instance of Eventstore like this:
+
+```bash
+$ docker run \
+         --tty \
+         --interactive \
+         --name eventstore \
+         --env EVENTSTORE_START_STANDARD_PROJECTIONS=True \
+         --publish 2113:2113  \
+         eventstore/eventstore:release-5.0.2
+#  many lines of output
+```
+
+So, what happens here?
+
+* We run the image `eventstore/eventstore:release-5.0.2` naming the container `eventstore`
+* By passing `--tty --interactive` we can stop it using `control+c` in the shell
+* We publish the HTTP port of Eventstore using the same port `2113`
+* Finally, we ask Eventstore to start all standard projections (`EVENTSTORE_START_STANDARD_PROJECTIONS=True`). More on this later
+
+After a couple of seconds you should be able to access the web-UI by pointing your browser to http://localhost:2113. You have to login using `admin` as the username and `changeit` as the password. Now you should see the dashboard and a couple of menu items. Explore the UI as you see fit. We will focus on the HTTP API for the most part.
+
+Eventstore features a comprehensive HTTP API. Let's try it out, by requesting the Eventstores info.
+You need to send a `GET` request to `/info` as in the next example:
+
+```bash
+$ http localhost:2113/info
+HTTP/1.1 200 OK
+...
+
+{
+    "esVersion": "5.0.2.0",
+    "projectionsMode": "All",
+    "state": "master"
+}
+```
+
+The response tells us the version of Eventstore (`5.0.2.0`), the type of node we are talking to (`master`), and if we have started the projections (`All`). As we will not discuss operations, you can ignore the meaning of those values for now.
 
 
 ### Aggregates and stream design
