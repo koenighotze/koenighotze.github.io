@@ -1,6 +1,6 @@
 ---
-title: "Serverless blue green deployments and canary releases with traffic shifting"
-description: Introduction into blue green deployments and canaries with AWS Lambda
+title: "Serverless blue-green deployments and canary releases with traffic shifting"
+description: Introduction into blue-green deployments and canaries with AWS Lambda
 date:   2017-12-04
 description: Introduction into A/B testing with AWS Lambda
 categories: Serverless AWS Lambda Node.JS Cloud
@@ -9,35 +9,35 @@ cover_image: https://thepracticaldev.s3.amazonaws.com/i/tazes9iyvv67emss7ds1.jpg
 
 Serverless computing is a hot topic. Especially AWS Lambda is gaining traction. It is being used as the foundation of Amazon's Alexa product-line and the basis of entire web sites like [A Cloud Guru](https://acloud.guru/). We can rapidly build and release new business value to our customers like never before.
 
-That said, we still want to deploy working solutions even at high velocity. Our production releases should be of highest quality and should not endanger any users or depending systems.
+That said, we still want to deploy working solutions even at high velocity. Our production releases should be of the highest quality and should not endanger any users or depending systems.
 
 Typically we apply techniques like [Canary Releases](https://martinfowler.com/bliki/CanaryRelease.html) and [Blue Green Deployments](https://martinfowler.com/bliki/BlueGreenDeployment.html) to reduce the risk of going into production and to be able to easily rollback any broken solutions.
 
-In this short post, I want to introduce you to AWS Lambda _traffic shifting_. This rather new feature allows us to do Canary Releases and Blue Green Deployments in a Serverless world. I will show you, how to use this to rollout new features in a controlled fashion and how to rollback to a safe point if things go wrong.
+In this short post, I want to introduce you to AWS Lambda _traffic shifting_. This rather new feature allows us to do Canary Releases and Blue-Green Deployments in a Serverless world. I will show you, how to use this to roll out new features in a controlled fashion and how to roll back to a safe point if things go wrong.
 
 If you need a quick refresher on AWS Lambda, please look at a previous [post](https://dev.to/koenighotze/serverless-hype-train-with-aws-lambda-21p).
 
 * TOC
 {:toc}
 
-## Blue Green Deployments and Canary Releases
+## Blue-Green Deployments and Canary Releases
 
 Before we dive into AWS Lambda traffic shifting, we need to refresh our understanding of _Blue Green Deployments_ and _Canary Releases_.
 
 When we deploy our solutions to production or update an existing solution, we want to keep downtime at a minimum. In today's world being down for 4 hours of maintenance is simply no viable option anymore.
 
-Blue Green Deployments can help us here. Consider the following illustration.
+Blue-Green Deployments can help us here. Consider the following illustration.
 
 ![Blue Green Deployments reduce downtime to a minimum](https://thepracticaldev.s3.amazonaws.com/i/o8nrrh97gekqtxy9sg59.png)
 
-A customer accesses our system's current version, the _Blue Release_ via a load balancer. Upon release of the new version (the green box) we can wait for the new version to stabilize, e.g. database migrations to take place and so on.
-At the time the _Green Release_ is ready to be used, we can switch the load balancer to the the new version without any visible implications to the customer. In addition, if the _Green Release_ somehow fails, we can easily switch back to the _Blue Release_. A safe haven if things go wrong.
+A customer accesses our system's current version, the _Blue Release_ via a load balancer. Upon the release of the new version (the green box), we can wait for the new version to stabilize, e.g. database migrations to take place and so on.
+At the time the _Green Release_ is ready to be used, we can switch the load balancer to the new version without any visible implications to the customer. Besides, if the _Green Release_ somehow fails, we can easily switch back to the _Blue Release_. A haven if things go wrong.
 
-Canary Releases are similar to Blue Green Deployments. They try to reduce the risk of deploying new versions by slowly rolling out the update to a reduced set of users. You could start by directing 10% of incoming traffic to the new _Green Release_ and step wise increase that percentage until you reach 100%. At that point you can decommission the _Blue Release_.
+Canary Releases are similar to Blue-Green Deployments. They try to reduce the risk of deploying new versions by slowly rolling out the update to a reduced set of users. You could start by directing 10% of incoming traffic to the new _Green Release_ and stepwise increase that percentage until you reach 100%. At that point, you can decommission the _Blue Release_.
 
 ## Versions and Lambda functions
 
-Before we can continue our discussion of Blue Green Deployments and Canaries, we need to look at the exact way, AWS Lambda handles our functions.
+Before we can continue our discussion of Blue-Green Deployments and Canaries, we need to look at the exact way, AWS Lambda handles our functions.
 
 Whenever you upload your code to AWS Lambda, AWS stores your code in a S3 bucket. Let's check this using a simple Hello-World Lambda:
 
@@ -49,7 +49,7 @@ exports.handler = (event, context, callback) => {
 {% endraw %}
 {% endhighlight %}
 
-We create the Lambda function using the command line. First create the Zip-file containing the code.
+We create the Lambda function using the command line. First, create the Zip-file containing the code.
 
 {% highlight bash %}
 $ zip index.zip index.js
@@ -76,7 +76,7 @@ $ aws lambda create-function \
 
 The point I want to stress is the `"Version": "$LATEST"` field. As the name suggests, `$LATEST` points to the very latest version.
 
-Contrast this to _publishing_ a Lambda function. First delete the function again.
+Contrast this to _publishing_ a Lambda function. First, delete the function again.
 
 {% highlight bash %}
 $ aws lambda delete-function --function-name TrafficShiftDemo
@@ -107,7 +107,7 @@ Consider this illustration.
 
 ![Versioning](https://thepracticaldev.s3.amazonaws.com/i/ot0y6088vu2v0aeyv9f0.png)
 
-We publish a Lambda function trice. Version 1, version 2 and version 3 are identifiable by their respective version number. The `$LATEST` version always points to the most recent version uploaded to AWS Lambda.
+We publish a Lambda function trice. Version 1, version 2 and version 3 are identifiable by their respective version numbers. The `$LATEST` version always points to the most recent version uploaded to AWS Lambda.
 
 Let's modify the function code as follows:
 
@@ -147,7 +147,7 @@ $  aws lambda list-versions-by-function \
 "arn:aws:...:TrafficShiftDemo:2"
 {% endhighlight %}
 
-You can see the so called _fully qualified name_ of the function. And we can use that name to invoke the different versions.
+You can see the so-called _fully qualified name_ of the function. And we can use that name to invoke the different versions.
 
 {% highlight bash %}
 $ aws lambda invoke \
@@ -179,7 +179,7 @@ Cloudwatch reports which version was used, too:
  REPORT RequestId: 2dd66...043d  Duration: 37.58 ms  Billed Duration: 100 ms   Memory Size: 128 MB Max Memory Used: 19 MB
 {% endhighlight %}
 
-As I said above, a published function is an immutable snapshot. That also implies, that version numbers are not reused. If, for example, you remove version 2 of the function and publish the function again, then you end up with version 3. Version 2 will never be reused.
+As I said above, a published function is an immutable snapshot. That also implies that version numbers are not reused. If, for example, you remove version 2 of the function and publish the function again, then you end up with version 3. Version 2 will never be reused.
 
 {% highlight bash %}
 $ aws lambda delete-function \
@@ -200,7 +200,7 @@ $ aws lambda update-function-code \
 
 ## Stable client with Lambda Aliases
 
-An _alias_ allows us to refer to a specific version of a AWS Lambda function by name. Think of it as a simple logical link, similar to what you would do on a standard *nix-like file system.
+An _alias_ allows us to refer to a specific version of an AWS Lambda function by name. Think of it as a simple logical link, similar to what you would do on a standard *nix-like file system.
 
 Let's create an alias called `HELLO` for version 1 of our Hello-World Lambda.
 
@@ -266,7 +266,7 @@ $ cat out.txt
 "Bonjour le monde!"
 {% endhighlight %}
 
-With this we are able to have a stable client, that only ever calls our alias and we can safely replace the version behind the curtains without ever touching the client.
+With this we can have a stable client, that only ever calls our alias and we can safely replace the version behind the curtains without ever touching the client.
 
 Consider the example of an Alexa skill that refers to an AWS Lambda alias, without actually knowing which exact version was used. The Alexa skill refers only to the `PROD` Lambda alias. This in turn aliases version 1 of the actual Lambda function.
 
@@ -276,7 +276,7 @@ After an upgrade to a new version 2 and testing that it works as expected, we up
 
 ![Version 2 can be released without impacting the skill](https://thepracticaldev.s3.amazonaws.com/i/ouaaoj3wicrhzkwd3ix1.png)
 
-This is all very nice, but how can we actually ensure, that people like our new Lambda function and that it behaves as expected? This brings us to Canary Releases with traffic shifting.
+This is all very nice, but how can we ensure, that people like our new Lambda function and that it behaves as expected? This brings us to Canary Releases with traffic shifting.
 
 ## Traffic shifting with AWS Lambda
 
@@ -286,16 +286,16 @@ Let's assume we have a Lambda function `1` in production. Now we want to release
 
 Traffic shifting to the rescue.
 
-We deploy both versions, `1` and `2`. Initially all traffic goes to version `1`. But as time progresses we move traffic increasingly to version `2` until at one point 100% of the traffic goes to version `2`. At that time version `1` can be decommissioned.
+We deploy both versions, `1` and `2`. Initially, all traffic goes to version `1`. But as time progresses we move traffic increasingly to version `2` until at one point 100% of the traffic goes to version `2`. At that time version `1` can be decommissioned.
 
-AWS Lambda aliases now support this feature out of the box. We just have to use the new command line argument `--routing-config`. Before continuing, check the version of your AWS CLI tool, as this is a rather new addition to AWS Lambda. It should read as follows:
+AWS Lambda aliases now support this feature out of the box. We just have to use the new command-line argument `--routing-config`. Before continuing, check the version of your AWS CLI tool, as this is a rather new addition to AWS Lambda. It should read as follows:
 
 {% highlight bash %}
 $ aws --version
 aws-cli/1.14.2
 {% endhighlight %}
 
-First of all delete the `HELLO` alias that was created above:
+First of all, delete the `HELLO` alias that was created above:
 
 {% highlight bash %}
 $ aws lambda delete-alias \
@@ -313,7 +313,7 @@ $ aws lambda create-alias \
    --routing-config AdditionalVersionWeights={'1'=0.7}
 {% endhighlight %}
 
-The `--routing-config AdditionalVersionWeights={'1'=0.7}` tells AWS Lambda to redirect 70% of the traffic to version 1, instead of using version 2. You can verify this behavior by invoking the function multiple times an checking the `"ExecutedVersion"` in the response.
+The `--routing-config AdditionalVersionWeights={'1'=0.7}` tells AWS Lambda to redirect 70% of the traffic to version 1, instead of using version 2. You can verify this behavior by invoking the function multiple times checking the `"ExecutedVersion"` in the response.
 
 
 {% highlight bash %}
@@ -343,9 +343,9 @@ We can finally release new Lambda functions and check their behavior and impact 
 
 ## Summary
 
-Traffic shifting is an important part of Blue Green Deployments and Canary releases. With this new feature, we can release new business functions and see how people are using it and how the market reacts to it. Think of simple things like testing if people like seeing more details about a movie on a streaming service instead of just the title and the running time.
+Traffic shifting is an important part of Blue-Green Deployments and Canary releases. With this new feature, we can release new business functions and see how people are using it and how the market reacts to it. Think of simple things like testing if people like seeing more details about a movie on a streaming service instead of just the title and the running time.
 
-If you want to dig deeper into this topic, I urge you to look at [AWS Codedeploy](http://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html) which automates rolling-updates and rollbacks even further. With Codedeploy you can configure your Lambda to scale up to the new version with a rate of 10% every 5min, for example.
+If you want to dig deeper into this topic, I urge you to look at [AWS Codedeploy](http://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html) which automates rolling-updates and rollbacks even further. With Codedeploy you can configure your Lambda to scale up to the new version with a rate of 10% every 5 min, for example.
 
-In a follow-up, I will cover an integrated example, that brings Lambda, traffic shifting, Codedeploy and the Serverless Application Model together into a truly serverless continuous delivery pipeline.
+In a follow-up, I will cover an integrated example, that brings Lambda, traffic shifting, Codedeploy, and the Serverless Application Model together into a truly serverless continuous delivery pipeline.
 

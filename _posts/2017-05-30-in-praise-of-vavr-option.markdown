@@ -40,17 +40,17 @@ public Optional<User> findUser(String id) {
 }
 {% endhighlight %}
 
-This literally says _"sometimes no User is returned"_. `null`-safe. Say "adios" to `NullPointerExceptions`.
+This says _"sometimes no User is returned"_. `null`-safe. Say "adios" to `NullPointerExceptions`.
 
 ## However...
 
-As with all of Java 8's functional interfaces, `Optionals` API is rather spartanic, just a dozen methods, with "highlights" such as
+As with all of Java 8's functional interfaces, `Optionals` API is rather spartan, just a dozen methods, with "highlights" such as
 
 {% highlight java %}
 Optional.ofNullable(user)
 {% endhighlight %}
 
-If you are used to the expressivness of Scala's `Option`, then you will find `Optional` rather disappointing.
+If you are used to the expressiveness of Scala's `Option`, then you will find `Optional` rather disappointing.
 
 Furthermore, `Optional` is not serializable and should neither be used as an argument type nor stored as a field - at least according to the design goals of the JDK experts (http://mail.openjdk.java.net/pipermail/jdk8-dev/2013-September/003274.html).
 
@@ -82,9 +82,9 @@ Option.<String>some(null)
 {% endhighlight %}
 
 
-`Option` is tightly integrated with Vavr's `Value` and `Iterable` types. This allows for a very consistent API. You can basically treat an `Option` like a collection with zero or one elements.
+`Option` is tightly integrated with Vavr's `Value` and `Iterable` types. This allows for a very consistent API. You can treat an `Option` like a collection with zero or one element.
 
-This might sound like a small thing, but consider this JDK8 `Optional` example.
+This might sound like a small thing but consider this JDK8 `Optional` example.
 We have a list of users.
 
 {% highlight java %}
@@ -111,7 +111,7 @@ Option<User> optionUser = Option.of(user);
 List<User> moreUsers = users.appendAll(optionUser);
 {% endhighlight %}
 
-Vavr treats `Some<T>` as a collection with one element, and `None<T>` as an empty collection, leading to cleaner code. In addition, note that a new list is created, because Vavr collections are immutable and persistent - a topic for a different day.
+Vavr treats `Some<T>` as a collection with one element, and `None<T>` as an empty collection, leading to cleaner code. Also, note that a new list is created, because Vavr collections are immutable and persistent - a topic for a different day.
 
 `Option` has more syntactic sugar for us:
 
@@ -126,9 +126,9 @@ Option<String> driverName = Option.when(age > 18, this::loadDrivingPermit)
                                   // Print it to the console
 {% endhighlight %}
 
-Of course, as I said, this _is_ basically sugar, but anything that reduced boilerplate code is highly appreciated.
+Of course, as I said, this _is_ sugar, but anything that reduced boilerplate code is highly appreciated.
 
-`Option` is thightly integrated into Vavr's overall API and architecture. You can easily combine it with Vavr's `Try` monad, that helps dealing with exceptions in a functional way. Take the following example.
+`Option` is tightly integrated into Vavr's overall API and architecture. You can easily combine it with Vavr's `Try` monad, which helps to deal with exceptions in a functional way. Take the following example.
 
 {% highlight java %}
 Option<Configuration> config = Try.of(Configuration::load)
@@ -163,6 +163,6 @@ I hope this short post illustrates the usefulness of Vavr and its `Option` abstr
 
 Vavr as a library offers many amazing extensions for object-functional programming in Java, even for brownfield projects. You can leverage its utilities where they make sense and need not migrate to Scala or similar platforms to reap at least some benefits of functional programming.
 
-Of course, this is all syntactic sugar. But as any good library, Vavr fixes things, the core JDK cannot take care of so easily without breaking a lot of code.
+Of course, this is all syntactic sugar. But like any good library, Vavr fixes things, the core JDK cannot take care of so easily without breaking a lot of code.
 
-Future posts will cover its other amazing features like pattern matching, property based testing, collections and other functional enhancements.
+Future posts will cover its other amazing features like pattern matching, property-based testing, collections, and other functional enhancements.

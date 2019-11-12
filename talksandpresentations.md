@@ -22,6 +22,7 @@ Java User Group Hamburg Java User Group Mannheim
 <h2>Slides</h2>
 
 <ul>
+  <li><a href="/assets/media/2019-06-24/eventsourcing-you-are-doing-it-wrong-devoxx-pl.pdf">Eventsourcing - You are doing it wrong @ Devoxx PL (with major changes)</a></li>
   <li><a href="/assets/media/2018-09-06/eventsourcing-you-are-doing-it-wrong.pdf">Eventsourcing - You are doing it wrong @ BedCon</a></li>
   <li><a href="/assets/media/2018-03-08/real_world_serverless_20180307-voxxed-zurich.pdf">Real World Serverless @ Voxxed Zurich</a></li>
   <li><a href="https://www.slideshare.net/koenighotze/the-faas-and-the-furious">The FaaS and the Furious</a></li>
@@ -35,27 +36,27 @@ Java User Group Hamburg Java User Group Mannheim
 <h2>Talks</h2>
 <div class="videosContainer">
   <div class="video">
-      <iframe width="425" height="240" src="https://www.youtube.com/embed/GzrZworHpIk" allow="encrypted-media" allowfullscreen></iframe>
+      <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/GzrZworHpIk" allow="encrypted-media" allowfullscreen></iframe>
   </div>
 
   <div class="video">
-      <iframe width="425" height="240" src="https://www.youtube.com/embed/uMCtcZ46gns" allow="encrypted-media" allowfullscreen></iframe>
+      <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/uMCtcZ46gns" allow="encrypted-media" allowfullscreen></iframe>
   </div>
 
   <div class="video">
-    <iframe width="425" height="240" src="https://www.youtube.com/embed/hErwF1Z_THc" allow=" encrypted-media" allowfullscreen></iframe>
+    <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/hErwF1Z_THc" allow=" encrypted-media" allowfullscreen></iframe>
   </div>
   <div class="video">
-      <iframe width="425" height="240" src="https://www.youtube.com/embed/stNj2wmp_Vw" allow="encrypted-media" allowfullscreen></iframe>
+      <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/stNj2wmp_Vw" allow="encrypted-media" allowfullscreen></iframe>
   </div>
   <div class="video">
-    <iframe width="425" height="240" src="https://www.youtube.com/embed/naNN_gJas2A" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/naNN_gJas2A" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
   </div>
   <div class="video">
-    <iframe width="425" height="240" src="https://www.youtube.com/embed/X0tjziAQfNQ" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/X0tjziAQfNQ" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
   </div>
   <div class="video">
-    <iframe width="425" height="240" src="https://www.youtube.com/embed/5M3AzAk70SM" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    <iframe width="425" height="240" src="https://www.youtube-nocookie.com/embed/5M3AzAk70SM" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
   </div>
 </div>
 </div>

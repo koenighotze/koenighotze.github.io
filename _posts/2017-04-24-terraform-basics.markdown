@@ -21,10 +21,10 @@ _Note: I am neither a Terraform nor an AWS expert...so take everything with a gr
 
 # What is Terraform and why should I care?
 
-Terraform is an open source tool from Hashicorp (of Vagrant fame).
+Terraform is an open-source tool from Hashicorp (of Vagrant fame).
 It takes care of codifying your infrastructure.
 That means, instead of clicking around in the AWS console, you write configuration files.
-The files are pure text, thus can be shared, versioned, peer reviewed as any code.
+The files are pure text, thus can be shared, versioned, peer-reviewed as any code.
 
 Basically, Terraform is a tool that helps you with achieving [Infrastructure as Code] (IaC).
 
@@ -34,7 +34,7 @@ We'll install Terraform and run a simple demo, to make things clear.
 
 Installing Terraform is extra easy.
 Download the appropriate Zip from [https://www.terraform.io/downloads.html]().
-Unzip the file and put the `terraform` binary to some place on your `PATH`.
+Unzip the file and put the `terraform` binary to someplace on your `PATH`.
 
 Run this command to check if everything is working:
 
@@ -62,12 +62,12 @@ resource "aws_instance" "simple" {
 }
 {% endhighlight %}
 
-Here we are basically saying, that we want to use [AWS] as our cloud `provider`.
+Here we are saying, that we want to use [AWS] as our cloud `provider`.
 Terraform is mostly cross provider capable.
 This means, you can easily configure your landscape across AWS, Heruko, Azure, whatever.
 As mentioned above, I'll keep to AWS in this post.
 
-In addition a `resource` created.
+Besides, a `resource` created.
 In this case a new EC2 `aws_instance`.
 We refer to this resource by its name `simple`.
 E.g. `${aws_instance.simple.ami}` refers to `"ami-a8d2d7ce"`.
@@ -85,13 +85,13 @@ $ terraform plan
 `plan` basically dry-runs your configuration.
 This allows you to check in advance, what is going to happen.
 
-Then `apply` the configuration to actually create the resources.
+Then `apply` the configuration to create the resources.
 
 {% highlight bash %}
 $ terraform apply
 {% endhighlight %}
 
-The output will tell you what actually was created by Terraform.
+The output will tell you what was created by Terraform.
 
 ```
 aws_instance.simple: Creating...
@@ -154,12 +154,12 @@ aws_instance.simple:
   vpc_security_group_ids.# = 1
 {% endhighlight %}
 
-Obviously, things will look different for you.
+Things will look different for you.
 
 If you look closely, you will notice a file `terraform.tfstate` that was created.
-We'll come back to that later, when we talk about state.
+We'll come back to that later when we talk about state.
 For now just be aware, that this file is used by Terraform to know how to update a certain cloud configuration...*so do not delete it*!
-Otherwise you have to clean it up yourself.
+Otherwise, you have to clean it up yourself.
 
 Because we like things to be clean and proper, let's destroy the created instance
 
@@ -191,7 +191,7 @@ Destroy complete! Resources: 1 destroyed.
 ---
 **Sidenote: What if things go wrong?**
 
-By setting the log level via `TF_LOG` you can get a detailled view of Terraform's behaviour.
+By setting the log level via `TF_LOG` you can get a detailed view of Terraform's behavior.
 
 {% highlight bash %}
 $ TF_LOG=INFO terraform apply
@@ -200,7 +200,7 @@ $ TF_LOG=INFO terraform apply
 ---
 
 ## But wait...how does Terraform know my credentials
-You can define you credentials explicitly using environment variables or configuration parameters like
+You can define your credentials explicitly using environment variables or configuration parameters like
 
 {% highlight ruby %}
 provider "aws" {
@@ -216,7 +216,7 @@ With this simple example behind us, we'll jump directly into a more complex, rea
 # Going enterprise
 
 We'll now build on the basic example.
-Our case will be build in two stages.
+Our case will be built in two stages.
 Stage 1 will just be a simple instance, running a LAMP stack.
 Stage 2 will be more complex, tackling state with [Consul] and provisioning using [Ansible].
 This will be part of the next post.
@@ -265,9 +265,9 @@ Find the Gist for this step at [https://gist.github.com/koenighotze/fdb630f548f4
 
 ## Adding SSH connectivity
 
-Obviously, that thing is boring and not really accessible without network connection.
+That thing is boring and not accessible without a network connection.
 
-In order to allow SSH we define a new security group.
+To allow SSH we define a new security group.
 
 {% highlight ruby %}
 resource "aws_security_group" "stage1-sec-group" {
@@ -288,7 +288,7 @@ resource "aws_security_group" "stage1-sec-group" {
 
 We define a new `aws_security_group` resource called `stage1-sec-group`.
 Once again we add a tag, so we can find things easier.
-Currently only a single ingress (incoming rule) is defined.
+Currently, only a single ingress (incoming rule) is defined.
 This rule allows port 22 connections from any address (`"0.0.0.0/0"`).
 
 And then we need to associate our instance to this security group by adding to the instance configuration.
@@ -309,7 +309,7 @@ Run again run `terraform plan` to check what gets created and changed.
 
 {% highlight bash %}
 $ terraform plan
-Refreshing Terraform state in-memory prior to plan...
+Refreshing Terraform state in-memory before plan...
 ....
 
 ~ aws_instance.stage1
@@ -352,8 +352,8 @@ $ terraform show | grep 'public_id =' # get the public ip
 $ ssh ubuntu@<PUBLIC IP>
 {% endhighlight %}
 
-...and of course it fails, because we need to associate a key with this instance.
-I won't go into public key configuration, so I'll just assume that you configured a key pair.
+...and of course, it fails, because we need to associate a key with this instance.
+I won't go into the public key configuration, so I'll just assume that you configured a key pair.
 Just look at [http://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html]() and [http://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-keypairs.html]() for details on that topic.
 
 ---
@@ -385,7 +385,7 @@ key_name = "terraform-test-key"
 
 {% highlight bash %}
 $ terraform plan
-Refreshing Terraform state in-memory prior to plan...
+Refreshing Terraform state in-memory before the plan...
 ...
 
 -/+ aws_instance.stage1
@@ -400,7 +400,7 @@ Plan: 1 to add, 0 to change, 1 to destroy.
 
 So go ahead and `apply` the configuration.
 After Terraform is finished you can access your instance via SSH.
-Note that the public id will change between recreation of instances.
+Note that the public id will change between the recreation of instances.
 
 {% highlight bash %}
 $ ssh -i terraform-test-key.pem  ubuntu@<PUBLIC IP>
@@ -412,7 +412,7 @@ Find the Gist for this at [https://gist.github.com/koenighotze/28eb1930148d8bc51
 
 ## Provision the instance
 
-Provisioners are used to bootstrap resources, apply configurations and so on.
+Provisioners are used to bootstrapping resources, apply configurations and so on.
 The follow-up post will show this using [Ansible].
 For now, we'll use a rather simple file and inline example.
 Now we need to install the LAMP stack.
@@ -438,7 +438,7 @@ resource "aws_instance" "stage1" {
 }
 {% endhighlight %}
 
-Without going into the details, we basically install a LAMP stack and modify the `index.html`.
+Without going into the details, we install a LAMP stack and modify the `index.html`.
 
 But, if you execute `terraform plan` it will tell you, that nothing has changed?
 
@@ -451,7 +451,7 @@ configuration and real physical resources that exist. As a result, Terraform
 doesn't need to do anything.
 {% endhighlight %}
 
-This is due to the reason, that Terraform will only apply provisioners upon creation of a resource.
+This is due to the reason, that Terraform will only apply provisioners upon the creation of a resource.
 So we first need to destroy and recreate the resource.
 
 {% highlight bash %}
@@ -473,11 +473,11 @@ Error applying plan:
 
 Terraform does not automatically rollback in the face of errors.
 Instead, your Terraform state file has been partially updated with
-any resources that successfully completed. Please address the error
+any resources that completed. Please address the error
 above and apply again to incrementally change your infrastructure.
 {% endhighlight %}
 
-If you run it with debug enabled `TF_LOG=INFO terraform apply` or if you logon via SSH and try the first command yourself `sudo apt update` you will notice a timeout at
+If you run it with debugging enabled `TF_LOG=INFO terraform apply` or if you logon via SSH and try the first command yourself `sudo apt update` you will notice a timeout at
 
 {% highlight bash %}
 ubuntu@ip-172-31-19-15:~$ sudo apt update
@@ -486,7 +486,7 @@ ubuntu@ip-172-31-19-15:~$ sudo apt update
 
 In AWS each created EC2 instance has a security rule that allows outgoing network connections.
 Terraform per default deletes that rule.
-So we need to add that rule ourself.
+So we need to add that rule ourselves.
 
 {% highlight ruby %}
 resource "aws_security_group" "sec-group" {
@@ -513,9 +513,9 @@ You can find the complete example at [https://gist.github.com/koenighotze/362a09
 This post just covered some basics. The next part will explore a more complex example, that will resemble something
 you would do in the real world.
 
-Furthermore, we'll compare Terraform to its contenders like Chef, Puppet etc.
+Furthermore, we'll compare Terraform to its contenders like Chef, Puppet, etc.
 
-If you want to know more, obviously, there is a book: [Terraform up and running].
+If you want to know more there is a book: [Terraform up and running].
 This is highly recommended, although the official documentation is top-notch.
 
 You should be aware that Terraform is still in a 0.x version, so things may still break.
@@ -527,7 +527,7 @@ Terraform is not a silver bullet.
 You will need other tools, such as [Ansible] for configuration management and [Consul] for managing state.
 
 The IaC-space is crowded and in constant shift.
-The only way to find the best tool for _your_ case, is to try things out.
+The only way to find the best tool for _your_ case is to try things out.
 
 [Ansible]: https://www.ansible.com/
 [Consul]: https://www.consul.io/
