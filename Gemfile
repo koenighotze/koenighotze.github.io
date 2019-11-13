@@ -13,6 +13,8 @@ gem 'jekyll-gist'
 
 gem 'jekyll-seo-tag'
 
+gem 'jekyll-sitemap'
+
 # gem 'jekyll-bootstrap-sass'
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
