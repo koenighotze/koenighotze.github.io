@@ -6,11 +6,6 @@ categories: eventsourcing ddd microservices
 permalink: /eventsourcing/part1.html
 ---
 
-# Event sourcing with Eventstore: Part 1 - Foundations
-
-* TOC
-{:toc}
-
 In the last  months, I was invited to a couple of conference to give a talk about event sourcing and some general patterns and anti-patterns. Here is a [video](https://www.youtube.com/watch?v=rdB9Q8GouKI) of that talk at Devoxx Poland. The discussions after the talks showed two things:
 
 * there is a general thirst for tutorials and documentation into actual practical event sourcing, and
@@ -39,7 +34,7 @@ I will use the [HTTP API](https://eventstore.org/docs/http-api/index.html) of Ev
 
 All examples use [NodeJS](https://nodejs.org) and [Express](https://expressjs.com/) without any additional complex frameworks. The reason is, that I just want to focus on the essential parts of event-sourcing.
 
-——
+——****
 
 This part defines some terms we will be using. Note that these definitions might differ from terms used in other articles. Furthermore the goal is not to be an in-depth introduction into event-sourcing, [CQRS](https://martinfowler.com/bliki/CQRS.html) and related concepts. I will describe just enough to get going.
 
@@ -84,8 +79,13 @@ So the question arises: _how do we represent this data and how do we represent t
 
 One approach is a shared database, illustrated by the following diagram.
 
+![Microservice collaboration using a shared database](/assets/images/eventsourcing1/shared_db.PNG){:
+.img-responsive}
 
+We could also allow microservices that call each other as illustrated below.
 
+![Microservices call each other](/assets/images/eventsourcing1/runtime_called_db.PNG){:
+.img-responsive}
 
 A different way is using event sourcing. Each microservice publishes events of a type like „Coffee ordered“ and may subscribe to multiple different event types. E.g. the Coffee preparation service may subscribe to „Coffee ordered“ events to trigger a new preparation task.
 

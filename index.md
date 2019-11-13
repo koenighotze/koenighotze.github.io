@@ -7,5 +7,4 @@ _This site is just a collection of random stuff about coding, architecture and w
 ---
 
 {% assign post = site.posts.first %}
-{% assign content = post.content %}
-{% include single_post.html %}
+{% include single_post_excerpt.html %}

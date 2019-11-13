@@ -2,7 +2,10 @@
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   {% include single_post_header.html %}
   <div class="post-content" itemprop="articleBody">
-    {{ content }}
+    {{ post.content | strip_title | strip_html | truncatewords:75 }}
   </div>
+  <p class="keep-reading-link">
+    <a href="{{post.url}}">...keep reading</a>
+  </p>
 </article>
 </div>
