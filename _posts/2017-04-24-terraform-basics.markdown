@@ -16,9 +16,6 @@ I'll use free-tier resources only, so even a demo account is enough.
 
 _Note: I am neither a Terraform nor an AWS expert...so take everything with a grain of salt ;)_
 
-* TOC
-{:toc}
-
 # What is Terraform and why should I care?
 
 Terraform is an open-source tool from Hashicorp (of Vagrant fame).
@@ -38,9 +35,9 @@ Unzip the file and put the `terraform` binary to someplace on your `PATH`.
 
 Run this command to check if everything is working:
 
-{% highlight bash %}
+```javascript
 $ terraform -v
-{% endhighlight %}
+```
 
 The output should resemble
 
@@ -51,7 +48,7 @@ is 0.9.3. You can update by downloading from www.terraform.io
 
 Create a simple file with the following content:
 
-{% highlight ruby %}
+```ruby
 provider "aws" {
   region = "eu-west-1"
 }
@@ -60,7 +57,7 @@ resource "aws_instance" "simple" {
   instance_type = "t2.micro"
   ami = "ami-a8d2d7ce"
 }
-{% endhighlight %}
+```
 
 Here we are saying, that we want to use [AWS] as our cloud `provider`.
 Terraform is mostly cross provider capable.
@@ -78,18 +75,18 @@ The AMI defines the image, that is used for creating the instance.
 
 Run this command to validate your configuration:
 
-{% highlight bash %}
+```javascript
 $ terraform plan
-{% endhighlight %}
+```
 
 `plan` basically dry-runs your configuration.
 This allows you to check in advance, what is going to happen.
 
 Then `apply` the configuration to create the resources.
 
-{% highlight bash %}
+```javascript
 $ terraform apply
-{% endhighlight %}
+```
 
 The output will tell you what was created by Terraform.
 
@@ -137,7 +134,7 @@ use the "terraform show" command.`.
 Just do that now.
 This will tell you everything, that was created and configured on behalf of you configuration (some lines removed, for sake of readability):
 
-{% highlight bash %}
+```javascript
 $ terraform show
 aws_instance.simple:
   id = i-0df9487a7eb151059
@@ -152,7 +149,7 @@ aws_instance.simple:
   tags.% = 0
   tenancy = default
   vpc_security_group_ids.# = 1
-{% endhighlight %}
+```
 
 Things will look different for you.
 
@@ -163,18 +160,18 @@ Otherwise, you have to clean it up yourself.
 
 Because we like things to be clean and proper, let's destroy the created instance
 
-{% highlight bash %}
+```javascript
 $ terraform destroy
 Do you really want to destroy?
   Terraform will delete all your managed infrastructure.
   There is no undo. Only 'yes' will be accepted to confirm.
 
   Enter a value:
-{% endhighlight %}
+```
 
 Answer with `yes` and Terraform will remove everything it has created.
 
-{% highlight bash %}
+```javascript
 aws_instance.simple: Refreshing state... (ID: i-0df9487a7eb151059)
 aws_instance.simple: Destroying... (ID: i-0df9487a7eb151059)
 aws_instance.simple: Still destroying... (ID: i-0df9487a7eb151059, 10s elapsed)
@@ -186,28 +183,28 @@ aws_instance.simple: Still destroying... (ID: i-0df9487a7eb151059, 1m0s elapsed)
 aws_instance.simple: Destruction complete
 
 Destroy complete! Resources: 1 destroyed.
-{% endhighlight %}
+```
 
 ---
 **Sidenote: What if things go wrong?**
 
 By setting the log level via `TF_LOG` you can get a detailed view of Terraform's behavior.
 
-{% highlight bash %}
+```javascript
 $ TF_LOG=INFO terraform apply
-{% endhighlight %}
+```
 
 ---
 
 ## But wait...how does Terraform know my credentials
 You can define your credentials explicitly using environment variables or configuration parameters like
 
-{% highlight ruby %}
+```ruby
 provider "aws" {
   access_key = "myaccess"
   secret_key = "mysecret"
 }
-{% endhighlight %}
+```
 
 If you do not provide these values, then Terraform falls back to using the values in `.aws/credentials`.
 
@@ -229,15 +226,15 @@ Finally, we'll modify the index page, such that the standard 'Hello World' is di
 
 The starting point as always is the declaration of the provider
 
-{% highlight ruby %}
+```ruby
 provider "aws" {
   region = "eu-west-1"
 }
-{% endhighlight %}
+```
 
 Now we'll add the EC2 instance
 
-{% highlight ruby %}
+```ruby
 resource "aws_instance" "stage1" {
   instance_type = "t2.micro"
   ami = "ami-a8d2d7ce"
@@ -246,7 +243,7 @@ resource "aws_instance" "stage1" {
     Name = "stage1"
   }
 }
-{% endhighlight %}
+```
 
 This should look familiar.
 I have added a `tags` section, that allows us to add metadata to created resources.
@@ -269,7 +266,7 @@ That thing is boring and not accessible without a network connection.
 
 To allow SSH we define a new security group.
 
-{% highlight ruby %}
+```ruby
 resource "aws_security_group" "stage1-sec-group" {
   name = "Allow SSH"
 
@@ -284,7 +281,7 @@ resource "aws_security_group" "stage1-sec-group" {
     Name = "stage1"
   }
 }
-{% endhighlight %}
+```
 
 We define a new `aws_security_group` resource called `stage1-sec-group`.
 Once again we add a tag, so we can find things easier.
@@ -293,7 +290,7 @@ This rule allows port 22 connections from any address (`"0.0.0.0/0"`).
 
 And then we need to associate our instance to this security group by adding to the instance configuration.
 
-{% highlight ruby %}
+```ruby
 resource "aws_instance" "stage1" {
   # ...
 
@@ -301,13 +298,13 @@ resource "aws_instance" "stage1" {
 
   # ...
 }
-{% endhighlight %}
+```
 
 We refer to the id of the security group using the reference expression `${aws_security_group.stage1-sec-group.id}`.
 
 Run again run `terraform plan` to check what gets created and changed.
 
-{% highlight bash %}
+```javascript
 $ terraform plan
 Refreshing Terraform state in-memory before plan...
 ....
@@ -335,7 +332,7 @@ Refreshing Terraform state in-memory before plan...
 
 
 Plan: 1 to add, 1 to change, 0 to destroy.
-{% endhighlight %}
+```
 
 Two things are of note.
 First, Terraform tells us that the resource `aws_instance.stage1` is going to change.
@@ -346,11 +343,11 @@ If you examine the output, you will notice the `ingress` configuration for SSH.
 
 Now apply it and connect to it.
 
-{% highlight bash %}
+```javascript
 $ terraform apply                     # apply the changed configuration
 $ terraform show | grep 'public_id =' # get the public ip
 $ ssh ubuntu@<PUBLIC IP>
-{% endhighlight %}
+```
 
 ...and of course, it fails, because we need to associate a key with this instance.
 I won't go into the public key configuration, so I'll just assume that you configured a key pair.
@@ -361,7 +358,7 @@ Just look at [http://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pai
 
 Just add the following fragment at the bottom of the Terraform config and you will be told the public ip directly.
 
-{% highlight ruby %}
+```ruby
 resource "aws_eip" "ip" {
   instance = "${aws_instance.stage1.id}"
 }
@@ -369,7 +366,7 @@ resource "aws_eip" "ip" {
 output "ip" {
   value  = "${aws_eip.ip.public_ip}"
 }
-{% endhighlight %}
+```
 
 ---
 
@@ -377,13 +374,13 @@ Let's assume you now have a key pair called `terraform-test-key`.
 We need to associate that key pair with our instance.
 Add the following line to our EC2 resource:
 
-{% highlight ruby %}
+```ruby
 key_name = "terraform-test-key"
-{% endhighlight %}
+```
 
 `terraform plan` will tell you, that it needs to destroy and recreate the instance.
 
-{% highlight bash %}
+```javascript
 $ terraform plan
 Refreshing Terraform state in-memory before the plan...
 ...
@@ -396,17 +393,17 @@ Refreshing Terraform state in-memory before the plan...
 
 
 Plan: 1 to add, 0 to change, 1 to destroy.
-{% endhighlight %}
+```
 
 So go ahead and `apply` the configuration.
 After Terraform is finished you can access your instance via SSH.
 Note that the public id will change between the recreation of instances.
 
-{% highlight bash %}
+```javascript
 $ ssh -i terraform-test-key.pem  ubuntu@<PUBLIC IP>
 Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-1013-aws x86_64)
 ...
-{% endhighlight %}
+```
 
 Find the Gist for this at [https://gist.github.com/koenighotze/28eb1930148d8bc5192495e5e790e380]().
 
@@ -417,7 +414,7 @@ The follow-up post will show this using [Ansible].
 For now, we'll use a rather simple file and inline example.
 Now we need to install the LAMP stack.
 
-{% highlight ruby %}
+```ruby
 resource "aws_instance" "stage1" {
   # ...
   provisioner "remote-exec" {
@@ -436,32 +433,32 @@ resource "aws_instance" "stage1" {
   }
   # ...
 }
-{% endhighlight %}
+```
 
 Without going into the details, we install a LAMP stack and modify the `index.html`.
 
 But, if you execute `terraform plan` it will tell you, that nothing has changed?
 
-{% highlight bash %}
+```javascript
 $ terraform plan
 ...
 
 This means that Terraform did not detect any differences between your
 configuration and real physical resources that exist. As a result, Terraform
 doesn't need to do anything.
-{% endhighlight %}
+```
 
 This is due to the reason, that Terraform will only apply provisioners upon the creation of a resource.
 So we first need to destroy and recreate the resource.
 
-{% highlight bash %}
+```javascript
 $ terraform destroy
 $ terraform apply
-{% endhighlight %}
+```
 
 ...and it fails.
 
-{% highlight bash %}
+```javascript
 ...
 Error applying plan:
 
@@ -475,20 +472,20 @@ Terraform does not automatically rollback in the face of errors.
 Instead, your Terraform state file has been partially updated with
 any resources that completed. Please address the error
 above and apply again to incrementally change your infrastructure.
-{% endhighlight %}
+```
 
 If you run it with debugging enabled `TF_LOG=INFO terraform apply` or if you logon via SSH and try the first command yourself `sudo apt update` you will notice a timeout at
 
-{% highlight bash %}
+```javascript
 ubuntu@ip-172-31-19-15:~$ sudo apt update
 0% [Connecting to eu-west-1.ec2.archive.ubuntu.com (54.217.155.209)] [Connecting to security.ubuntu.com (91.189.88.149)]
-{% endhighlight %}
+```
 
 In AWS each created EC2 instance has a security rule that allows outgoing network connections.
 Terraform per default deletes that rule.
 So we need to add that rule ourselves.
 
-{% highlight ruby %}
+```ruby
 resource "aws_security_group" "sec-group" {
   # ...
   egress {
@@ -499,7 +496,7 @@ resource "aws_security_group" "sec-group" {
   }
   # ...
 }
-{% endhighlight %}
+```
 
 So apply the configuration yet again. And then point your browser to the public ip and you should see the following:
 

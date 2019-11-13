@@ -24,21 +24,21 @@ If you have ever yearned for really good immutable and persistent collections, w
 
 Java 8 introduced `Optional` to handle the absence or presence of a value. Without `Optional`, when you face a method like this
 
-{% highlight java %}
+```java
 public User findUser(String id) {
   ...
 }
-{% endhighlight %}
+```
 
 you need to rely on Javadoc or annotations like `@NotNull` to decipher if that method returns a `null`.
 
 Using `Optional` things can be stated quite explicitly:
 
-{% highlight java %}
+```java
 public Optional<User> findUser(String id) {
   ...
 }
-{% endhighlight %}
+```
 
 This says _"sometimes no User is returned"_. `null`-safe. Say "adios" to `NullPointerExceptions`.
 
@@ -46,13 +46,13 @@ This says _"sometimes no User is returned"_. `null`-safe. Say "adios" to `NullPo
 
 As with all of Java 8's functional interfaces, `Optionals` API is rather spartan, just a dozen methods, with "highlights" such as
 
-{% highlight java %}
+```java
 Optional.ofNullable(user)
-{% endhighlight %}
+```
 
 If you are used to the expressiveness of Scala's `Option`, then you will find `Optional` rather disappointing.
 
-Furthermore, `Optional` is not serializable and should neither be used as an argument type nor stored as a field - at least according to the design goals of the JDK experts (http://mail.openjdk.java.net/pipermail/jdk8-dev/2013-September/003274.html).
+Furthermore, `Optional` is not serializable and should neither be used as an argument type nor stored as a field - at least according to the design goals of the JDK experts [http://mail.openjdk.java.net/pipermail/jdk8-dev/2013-September/003274.html]().
 
 ## Vavr `Option` to the rescue
 
@@ -62,24 +62,24 @@ The Vavr `Option` takes a different approach. See the following image, that illu
 
 `Option` follows the design of other functional programming languages, representing absence and presence by distinct classes, `None` and `Some` respectively. Thus avoiding the `ofNullable` nonsense.
 
-{% highlight java %}
+```java
 Option.of(user)
-{% endhighlight %}
+```
 
 And the result would either be a `Some<User>` or a `None<User>`.
 
 Internally absence is represented as `null`, so you if you wanted to wrap a `null`, you need to use
 
-{% highlight java %}
+```java
 Option.some(null)
-{% endhighlight %}
+```
 
 although I do not recommend this approach. Just try the following snippet and you will see what I mean
 
-{% highlight java %}
+```java
 Option.<String>some(null)
       .map(String::toUpperCase);
-{% endhighlight %}
+```
 
 
 `Option` is tightly integrated with Vavr's `Value` and `Iterable` types. This allows for a very consistent API. You can treat an `Option` like a collection with zero or one element.
@@ -87,35 +87,35 @@ Option.<String>some(null)
 This might sound like a small thing but consider this JDK8 `Optional` example.
 We have a list of users.
 
-{% highlight java %}
+```java
 List<User> users = new ArrayList<>(...);
-{% endhighlight %}
+```
 
 And now an `Optional<User>` which we want to add to the list.
 
-{% highlight java %}
+```java
 Optional<User> optionalUser = Optional.ofNullable(user);
 
 optionalUser.map(users::add);
-{% endhighlight %}
+```
 
 The intention is lost in the baroque syntax enforced by JDK8 `Collection` and `Optional` API.
 
 Vavr's `Option` allows for a much cleaner syntax (note that we are using `io.vavr.collection.List<T>` not `java.util.List<T>`).
 
-{% highlight java %}
+```java
 List<User> users = List.of(...);
 
 Option<User> optionUser = Option.of(user);
 
 List<User> moreUsers = users.appendAll(optionUser);
-{% endhighlight %}
+```
 
 Vavr treats `Some<T>` as a collection with one element, and `None<T>` as an empty collection, leading to cleaner code. Also, note that a new list is created, because Vavr collections are immutable and persistent - a topic for a different day.
 
 `Option` has more syntactic sugar for us:
 
-{% highlight java %}
+```java
 Option<String> driverName = Option.when(age > 18, this::loadDrivingPermit)
                                   // Option<DrivingPermit>
                                   .peek(System.out::println)
@@ -124,38 +124,38 @@ Option<String> driverName = Option.when(age > 18, this::loadDrivingPermit)
                                   // Fetch the driver's name
                                   .peek(System.out::println);
                                   // Print it to the console
-{% endhighlight %}
+```
 
 Of course, as I said, this _is_ sugar, but anything that reduced boilerplate code is highly appreciated.
 
 `Option` is tightly integrated into Vavr's overall API and architecture. You can easily combine it with Vavr's `Try` monad, which helps to deal with exceptions in a functional way. Take the following example.
 
-{% highlight java %}
+```java
 Option<Configuration> config = Try.of(Configuration::load)
                                   .toOption();
-{% endhighlight %}
+```
 
 We `Try` to load a `Configuration` and convert the result to `Option`. If an exception is thrown, then the
 result is `None` otherwise it is `Some`.
 
 Finally, you can use Vavr's pattern matching to decompose an `Option`
 
-{% highlight java %}
+```java
 Match(option).of(
    Case($Some($()), String::toUpperCase),
    Case($None(),    () -> ""));
-{% endhighlight %}
+```
 
 If you have ever coded in a functional programming language, then this should be familiar to you. We basically `Match` the option against two patterns `$Some($())` and `$None()`. Depending on the matched pattern we either convert the string to uppercase or return an empty string.
 
 Using [Vavr Jackson](https://github.com/vavr-io/vavr-jackson) you can even use `Option` and all other Vavr datatypes over the wire. For Spring Boot projects you only need to declare the module such as:
 
-{% highlight java %}
+```java
 @Bean
 public Module vavrModule() {
     return new VavrModule();
 }
-{% endhighlight %}
+```
 
 # Summary
 

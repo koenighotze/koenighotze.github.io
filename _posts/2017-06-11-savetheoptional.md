@@ -58,7 +58,7 @@ if (opt.isPresent()) {
 Right?
 
 Wrong! Each time `Option` is used like this, a microservice dies in production.
-This fix is the same as above. Same complexity, same __Cascading Pile of Shame_.
+This fix is the same as above. Same complexity, same _Cascading Pile of Shame_.
 
 Instead, we use the `map` operator.
 
@@ -140,7 +140,7 @@ repo.findOne("id")
 
 If you read it from top to bottom, this is as literal as it gets.
 
-```
+```java
 Find a user
     if an address is available
     fetch the addresses street

@@ -9,7 +9,7 @@ After listening to episode 283 of [The Changelog Podcast](https://changelog.com/
 
 This is what I came up with: if you want to read the cheat sheet for React, just type
 
-```bash
+```javascript
 $ hint react
 ```
 

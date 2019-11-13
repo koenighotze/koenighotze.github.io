@@ -1,5 +1,8 @@
 ---
 ---
+
+@import "monokai.css";
+
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
@@ -441,4 +444,9 @@ a.navbar-brand.visible-xs-block {
 
 p.keep-reading-link {
   margin-top: 2em;
+}
+
+pre code {
+  font-size: 80%;
+  color: white;
 }
