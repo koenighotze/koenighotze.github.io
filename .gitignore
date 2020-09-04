@@ -8,3 +8,6 @@ _site/
 tmp/
 *-e
 *report.html
+
+# Local Netlify folder
+.netlify
