@@ -1,5 +1,5 @@
 ---
-title: Dealing with data in microservice architectures - part 2
+title: Dealing with data in microservice architectures - part 2 - Synchronous calls
 description: The second part of a series dealing with the problem of data and data ownership in microservice architectures
 date:   2020-12-13
 categories: ddd microservices
@@ -7,9 +7,9 @@ permalink: /microservices-data-patterns/part2.html
 ---
 
 
-[Microservices](https://martinfowler.com/articles/microservices.html) are a popular and wide-spread architectural style for building non-trivial applications. They offer huge advantages but also some [challenges and traps](https://www.youtube.com/watch?v=X0tjziAQfNQ). Some obvious, some of a more insidious nature. In this short article, I want to focus on how to integrate microservices.
+[Microservices](https://martinfowler.com/articles/microservices.html) are a popular and wide-spread architectural style for building non-trivial applications. They offer immense advantages but also some [challenges and traps](https://www.youtube.com/watch?v=X0tjziAQfNQ). Some obvious, some of a more insidious nature. In this brief article, I want to focus on how to integrate microservices.
 
-This overview explains and compares common patterns for dealing with data in microservice architectures. I neither assume to be complete with regards to available approaches nor do I cover every pros and con of each pattern. As always, experience and context matter.
+This overview explains and compares common patterns for dealing with data in microservice architectures. I neither assume to be complete regarding approaches nor do I cover every pros and cons of each pattern. As always, experience and context matter.
 
 Four different parts focus on different patterns.
 
@@ -36,12 +36,12 @@ The bank-account service checks if the caller can view the requested data. The b
 
 The actual communication protocol does not impact this discussion much. The arguments do not change whether we use REST, gRPC, or even SOAP.
 
-Even so, be aware that the actual protocol may worsen some implications. For example by increasing the communication overhead. Concrete requirements and use cases should drive the selection of the protocol.
+Be aware that the actual protocol may worsen some implications. For example, by increasing the communication overhead. Concrete requirements and use cases should drive the selection of the protocol.
 
 The advantages of reusing assets via API calls are clear.
 
 The API protects its users from internal implementation details. Whether a service uses a SQL database or a graph database does not leak to its users.
-Even changes become easier. Changes to the internal data structure and logic do not impact users of the API. This allows for a more nuanced release strategy for new features. Finally, API reuse does not require special middleware or infrastructure. It does not get easier than a HTTPS call.
+Even changes become easier. Changes to the internal data structure and logic do not impact users of the API. This allows for a more nuanced release strategy for additional features. Finally, API reuse does not require special middleware or infrastructure. It does not get easier than a HTTPS call.
 
 I do not want to go into any detailed discussion around the advantages of great APIs. The [internet](https://www.thoughtworks.com/radar/techniques/apis-as-a-product) provides lot's of documentation on this topic.
 
@@ -79,12 +79,12 @@ The actor uses the transaction (TRX) service (I) to execute a money transfer. Th
 
 But what happens, if things do not work as expected.
 
-What happens if the connection from the actor to the TRX service gets dropped. The calling service has no idea, whether the money transfer succeeded or not.
+What happens if the connection from the actor to the TRX service gets dropped. The calling service has no idea whether or not the money transfer succeeded.
 
 * Did the transfer service execute the request? Did it only fail to return a response to the calling service?
 * Can we retry the money transfer without the risk of transferring the money twice?
 
-This situation requires implementing extra orchestration and compensation logic. Business request ids can determine if a money transfer request was already served.
+This situation requires implementing extra orchestration and compensation logic. Service using business request ids can determine if it already served a money transfer request.
 
 ### Latency
 
@@ -92,9 +92,9 @@ The following image illustrates the impact on latency.
 
 ![index](https://dev-to-uploads.s3.amazonaws.com/i/xnw7phcmyoqwzp2gxe2u.png)
 
-The bank-account service calls the access privilege service. The access privilege service calls the business partner service. The call between access and business partner takes 1 second. Bank-account sends the final reply after 2 seconds.
+The bank-account service calls the access privilege service. The access privilege service calls the business partner service. The call between access and business partner takes 1 second. Bank-account sends the last reply after 2 seconds.
 
-Now assume that the bank-account service should respond in at most 1,5 seconds. In this case, the end-to-end example above will not meet that rule.
+Now assume that the bank-account service should respond in 1,5 seconds. Here, the end-to-end example above will not meet that rule.
 
 The access privilege service could skip the call to business partner service. It could return an error to the bank-account service instead. Passing a deadline from service to service may be one solution. The bank-account service passes an extra deadline parameter. The deadline parameter says: “Hey, access privilege service, you have 1 second to reply to my request. Otherwise, I don’t need an answer and won’t wait for an answer”.
 
@@ -102,11 +102,11 @@ The details don’t matter. The performance will suffer because of the communica
 
 ### Team Interlock
 
-This implication is less technical but rather organisational. Let’s consider an extended scenario, illustrated by the following image.
+This implication is less technical, but organisational. Let’s consider an extended scenario, illustrated by the following image.
 
 ![PNG-Bild-80CF60D4E262-1](https://dev-to-uploads.s3.amazonaws.com/i/o9jmokwri0sfc3ytx4ud.png)
 
-The bank-account and the access privilege services depend on a third service. This service provides business partner information. For example first and last name, mail address, and so on. In principle this setup may work, keeping in mind the implications outlined above.
+The bank-account and the access privilege services depend on a third service. This service provides business partner information. For example, first and last name, mail address, and so on. In principle this setup may work, keeping in mind the implications outlined above.
 
 The more severe problem lies on the organisational level. Suppose different teams own each service, see the following illustration.
 
@@ -114,13 +114,13 @@ The more severe problem lies on the organisational level. Suppose different team
 
 Team A and team B depend on team C. Looking at the relationship between the teams, the underlying challenge becomes obvious.
 
-First, let’s consider a "customer/supplier" relationship. Team C provides a service for the other teams and both team A and B can pass feature requests to team C.
+First, let’s consider a "customer/supplier" relationship. Team C provides a service for the other teams, and both team A and B can pass feature requests to team C.
 
 In this scenario, team C may face a prioritisation problem. Should A or B get their requested feature first? What about conflicting requirements? What about versioning?
 
 This can lead to very complicated management discussion and change management processes. Note that politics can and will play a role here. If the owner of C is more incentivised to support A than B then this may become problematic for team B. This boils down to bonuses or career moves.
 
-Another interesting relationship is the "conformist", where A and B have to take team C’s services as-is. This means both are at the mercy of team C. If team C changes the API for whatever reason, then team A and B have to conform to the new version. This introduces unplanned engineering effort into A and B. Furthermore, the risk for issues when deploying new versions into production increases.
+Another interesting relationship is the "conformist", where A and B have to take team C’s services as-is. This means both are at the mercy of team C. If team C changes the API for whatever reason, then team A and B have to conform to the new version. This introduces unplanned engineering effort into A and B. the risk for issues when deploying new versions into production increases.
 
 These are only two examples, the relationships can be very complex. Vernon goes into extreme detail in his book about "Implementing Domain Driven Design".
 
@@ -135,7 +135,7 @@ The following image illustrates this situation.
 
 ![PNG-Bild-7263F4DCC491-1](https://dev-to-uploads.s3.amazonaws.com/i/17kmxfnjafl6s405s3mq.png)
 
-Team A finished their implementation in February. Yet, they have to postpone until May before they can continue with deployment. Team B also needs to wait for team C to finish its implementation. The release cascade becomes clear. This requires a high degree of planning alignment between the teams. Finger-pointing due to missed release dates can be one result.
+Team A finished their implementation in February. Yet, they have to postpone until May before they can continue with deployment. Team B also needs to wait for team C to finish its implementation. The release cascade becomes clear. This requires a high degree of planning alignment between the teams. Finger-pointing because of missed release dates can be one result.
 
 [Release trains](https://www.scaledagileframework.com/agile-release-train/) are one method to cope with such temporal dependencies. Although this approach can work, it can also lead to a decrease in quality. If team C has to meet the deadline of April, they take short-cuts and skip testing.
 
@@ -145,16 +145,16 @@ Using synchronous calls to integrate microservices is a straightforward implemen
 
 Yet, as we have seen, technical and organisational challenges - some obvious, some not so.
 
-In any case, the reliability depends on appropriate timeout configurations and circuit breakers.
+The reliability depends on timeout configurations and circuit breakers.
 Effective monitoring, alerting and clear [service level objectives](https://sre.google/sre-book/service-level-objectives/) make life easier for everybody.
 
 Graceful degradation can mitigate business impact. E.g. falling back to a locally cached variant or some default behaviour. The solution space depends on the business domain. The person owning the service must decide on the proper strategy.
 
-The organisational implications are harder to tackle. Personal bias, politics, and money may impact the level of cooperation between teams. Especially, if the teams cross project boundaries. For E.g. one team working on a new and shiny cloud service and the other maintains a not-so-shiny backend legacy service.
+The organisational implications are harder to tackle. Personal bias, politics, and money may impact the level of cooperation between teams. Especially if the teams cross project boundaries. For E.g. one team working on a new and shiny cloud service and the other maintains a not-so-shiny backend legacy service.
 
 We should try to make these dependencies transparent. Especially the kind of relationship (conformist etc.) is very helpful. This can support dealing with such situations. Context-maps from Strategic-Domain-Driven-Design are one great tool to visualise this.
 
-It is worth mentioning, that the organisational challenges are the same for code and library reuse. If different teams own reused libraries, then the same questions need an answer.
+It is worth mentioning that the organisational challenges are the same for code and library reuse. If different teams own reused libraries, then the same questions need an answer.
 
 If you want to dig deeper into these topics, then the following books are worth checking out:
 
@@ -178,6 +178,6 @@ If you want to dig deeper into these topics, then the following books are worth 
 
 ## Outlook
 
-The next article will look at data replication. Autonomous services each relying on a local database. Data is replicated between the databases or some intermediary mechanism. This is the precursor to the final article which tackles asynchronous events.
+The next article will look at data replication. Autonomous services, each relying on a local database. Data is replicated between the databases or some intermediary mechanism. This is the precursor to the final article, which tackles asynchronous events.
 
 
