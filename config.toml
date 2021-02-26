@@ -1,0 +1,82 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Koenighotze Energy Emporium"
+theme = "ghostwriter"
+copyright = "David Schmitz"
+
+[author]
+  name = "David Schmitz"
+  profile = ""
+
+# markup:
+#   highlight:
+#     codeFences: true
+#     guessSyntax: false
+#     hl_Lines: ""
+#     lineNoStart: 1
+#     lineNos: false
+#     lineNumbersInTable: true
+#     noClasses: true
+#     tabWidth: 2
+
+# privacy:
+#   disqus:
+#     disable: true
+#   googleAnalytics:
+#     anonymizeIP: true
+#     respectDoNotTrack: true
+#     useSessionStorage: false
+
+[taxonomies]
+   tag = "tags"
+
+[Params]
+    mainSections = ["post"]
+    intro = true
+    headline = "Koenighotze Energy Emporium"
+    description = "Random stuff about coding, architecture and whatever I find interesting."
+    github = "https://github.com/koenighotze"
+    twitter = "https://twitter.com/koenighotze"
+    linkedin = "https://www.linkedin.com/in/david-schmitz-636ab725/"
+    email = "koenighotze@gmail.com"
+    opengraph = true
+    shareTwitter = true
+    shareLinkedIn = false
+    rss = true
+    dateFormat = "Mon, Jan 2, 2006"
+    readingTime = true
+    readingTimeText = "Estimated reading time:"
+
+[Permalinks]
+    post = "/:year/:month/:day/:filename/"
+
+
+#   exponeaJsUrl: ""
+#   exponeaTarget: ""
+#   exponeaToken: ""
+#   exponeaTrackVisits: false
+#   fathomUrl: ""
+#   fathomSiteId: ""
+  # If you want to use plausible(https://plausible.io) for analytics, add this section
+
+
+[[menu.main]]
+    name = "Blog"
+    url = "/"
+    weight = 1
+
+# [[menu.main]]
+#     name = "Projects"
+#     url = "/projects/"
+#     weight = 2
+
+# [[menu.main]]
+#     name = "Contact"
+#     url = "/page/contact/"
+#     weight = 3
+
+[[menu.main]]
+    name = "About"
+    url = "/page/about/"
+    weight = 4
+
