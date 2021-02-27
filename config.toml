@@ -1,7 +1,7 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "Koenighotze Energy Emporium"
-theme = "ghostwriter"
+# theme = "ghostwriter"
 copyright = "David Schmitz"
 
 [author]
@@ -50,33 +50,18 @@ copyright = "David Schmitz"
 [Permalinks]
     post = "/:year/:month/:day/:filename/"
 
-
-#   exponeaJsUrl: ""
-#   exponeaTarget: ""
-#   exponeaToken: ""
-#   exponeaTrackVisits: false
-#   fathomUrl: ""
-#   fathomSiteId: ""
-  # If you want to use plausible(https://plausible.io) for analytics, add this section
-
-
 [[menu.main]]
     name = "Blog"
     url = "/"
     weight = 1
 
-# [[menu.main]]
-#     name = "Projects"
-#     url = "/projects/"
-#     weight = 2
-
-# [[menu.main]]
-#     name = "Contact"
-#     url = "/page/contact/"
-#     weight = 3
+[[menu.main]]
+    name = "Talks and Presentations"
+    url = "/page/talks-and-presentations/"
+    weight = 2
 
 [[menu.main]]
     name = "About"
     url = "/page/about/"
-    weight = 4
+    weight = 3
 
