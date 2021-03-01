@@ -47,6 +47,20 @@ copyright = "David Schmitz"
     readingTime = true
     readingTimeText = "Estimated reading time:"
 
+[privacy]
+  [privacy.disqus]
+    disable = true
+  [privacy.googleAnalytics]
+    disable = true
+  [privacy.instagram]
+    disable = true
+  [privacy.twitter]
+    disable = true
+  [privacy.vimeo]
+    disable = true
+  [privacy.youtube]
+    disable = true
+
 [Permalinks]
     post = "/:year/:month/:day/:filename/"
 
