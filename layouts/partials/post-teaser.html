@@ -1,0 +1,14 @@
+<article class="post-container teaser" itemscope="" itemtype="http://schema.org/BlogPosting">
+    <a href="{{ .Permalink }}" itemprop="url" class="post-stub-title">
+        <h4 class="post-stub-title" itemprop="name">{{ .Title }}</h4>
+    </a>
+    <time class="post-stub-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ dateFormat (default "Mon, Jan 2, 2006" .Site.Params.dateFormat) .Date }}</time>
+
+    <div class="post-content clearfix" itemprop="articleBody">
+        {{ .Summary }}
+    </div>
+
+    <div class="keep-reading">
+        <a href="{{ .Permalink }}" itemprop="url">Keep reading &rarr;</a>
+    </div>
+</article>

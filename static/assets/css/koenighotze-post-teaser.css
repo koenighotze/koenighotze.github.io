@@ -1,0 +1,22 @@
+article.teaser a.post-stub-title:hover {
+    color: #173e43;
+}
+
+article.teaser a.post-stub-title {
+    font-size: larger;
+    font-family: 'Anton', sans-serif;
+    color: #424242;
+}
+
+article.teaser div.post-content {
+    margin-top: 1em;
+}
+
+article.teaser div.keep-reading {
+    margin-top: 1em;
+}
+
+article.teaser div.keep-reading a {
+    color: #173e43;
+    text-transform: uppercase;
+}

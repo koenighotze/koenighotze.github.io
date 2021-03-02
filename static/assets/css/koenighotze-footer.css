@@ -1,0 +1,30 @@
+p.footer-copyright a:hover {
+    background-color: #fff;
+    color: #173e43;
+    text-decoration: underline;
+}
+
+footer.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    font-size: 0.5rem;
+    color: #173e43;
+    padding-bottom: 1.5em;
+}
+
+footer.footer div.site-title-wrapper {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem
+}
+
+footer a.button-square {
+    background-color: white;
+    color: #173e43;
+}
+
+p.footer-copyright {
+    font-size: 1em;
+}

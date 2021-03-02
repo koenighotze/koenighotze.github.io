@@ -1,0 +1,52 @@
+div.fluid-width-video-wrapper {
+    margin-bottom: 0px;
+}
+
+div.fluid-width-video-wrapper iframe.youtube-iframe {
+    width: 425px; 
+    height: 240px;
+}
+
+.post-stub-date::before {
+    content: "";
+}
+
+.post-stub a {
+    padding-top: 0;
+    padding-bottom: 1rem;
+}
+
+.post-stub a:hover {
+    background: none;
+    color: #173e43;
+    font-size: 1.5rem;
+    padding: 20px 12px;
+}
+
+.newer-posts, .older-posts {
+    background-color: #fff;
+    color: #173e43;
+}
+
+.newer-posts:hover, .older-posts:hover {
+    background-color: #fff;
+    text-decoration: underline;
+}
+
+h4.post-stub-title {
+    font-size: larger;
+    font-family: 'Anton', sans-serif;
+}
+
+.post-stub a {
+    padding: 0px;
+    padding-bottom: 2rem;
+}
+
+li.post-stub {
+    border-bottom: none;
+}
+
+time.post-stub-date {
+    font-size: smaller;
+}

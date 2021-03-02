@@ -1,0 +1,38 @@
+.site-title a {
+    background-color: #173e43;
+}
+
+.site-title a:hover {
+    background-color: #173e43;
+}
+
+.button-square {
+    background-color: #173e43;
+}
+
+.button-square:hover {
+    background-color: #173e43;
+}
+
+ul.site-nav a {
+    color: #173e43;
+    font-family: 'Roboto', sans-serif;
+}
+
+ul.site-nav a:hover {
+    color: #173e43;
+    text-decoration: underline;
+}
+
+h1.post-title, h1.site-title {
+    font-family: 'Roboto', sans-serif;
+}
+
+header.site-header {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 1030;
+    background-color: white;
+}
