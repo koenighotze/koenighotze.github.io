@@ -7,25 +7,6 @@ copyright = "David Schmitz"
   name = "David Schmitz"
   profile = ""
 
-# markup:
-#   highlight:
-#     codeFences: true
-#     guessSyntax: false
-#     hl_Lines: ""
-#     lineNoStart: 1
-#     lineNos: false
-#     lineNumbersInTable: true
-#     noClasses: true
-#     tabWidth: 2
-
-# privacy:
-#   disqus:
-#     disable: true
-#   googleAnalytics:
-#     anonymizeIP: true
-#     respectDoNotTrack: true
-#     useSessionStorage: false
-
 [taxonomies]
    tag = "tags"
 
@@ -93,5 +74,4 @@ copyright = "David Schmitz"
     lineNumbersInTable = true
     noClasses = true
     style = "vs"
-    # style = "monokailight"
-    tabWidth = 4
+    tabWidth = 2

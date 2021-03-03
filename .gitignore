@@ -11,3 +11,5 @@ tmp/
 
 # Local Netlify folder
 .netlifypublic
+public
+.netlify
