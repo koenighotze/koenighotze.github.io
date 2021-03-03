@@ -1,10 +1,8 @@
 ---
-title: "Serverless blue-green deployments and canary releases with traffic shifting"
-description: Introduction into blue-green deployments and canaries with AWS Lambda
+title: Serverless blue-green deployments and canary releases with traffic shifting
 date:   2017-12-04
 description: Introduction into A/B testing with AWS Lambda
-categories: Serverless AWS Lambda Node.JS Cloud
-cover_image: https://thepracticaldev.s3.amazonaws.com/i/tazes9iyvv67emss7ds1.jpg
+tags: ["Serverless", "AWS Lambda", "Node.JS", "Cloud"]
 ---
 
 Serverless computing is a hot topic. Especially AWS Lambda is gaining traction. It is being used as the foundation of Amazon's Alexa product-line and the basis of entire web sites like [A Cloud Guru](https://acloud.guru/). We can rapidly build and release new business value to our customers like never before.
@@ -16,9 +14,6 @@ Typically we apply techniques like [Canary Releases](https://martinfowler.com/bl
 In this short post, I want to introduce you to AWS Lambda _traffic shifting_. This rather new feature allows us to do Canary Releases and Blue-Green Deployments in a Serverless world. I will show you, how to use this to roll out new features in a controlled fashion and how to roll back to a safe point if things go wrong.
 
 If you need a quick refresher on AWS Lambda, please look at a previous [post](https://dev.to/koenighotze/serverless-hype-train-with-aws-lambda-21p).
-
-* TOC
-{:toc}
 
 ## Blue-Green Deployments and Canary Releases
 
@@ -41,23 +36,21 @@ Before we can continue our discussion of Blue-Green Deployments and Canaries, we
 
 Whenever you upload your code to AWS Lambda, AWS stores your code in a S3 bucket. Let's check this using a simple Hello-World Lambda:
 
-{% highlight javascript %}
-{% raw %}
+```javascript
 exports.handler = (event, context, callback) => {
   callback(null, 'Hello World!')
 }
-{% endraw %}
-{% endhighlight %}
+```
 
 We create the Lambda function using the command line. First, create the Zip-file containing the code.
 
-{% highlight bash %}
+```bash
 $ zip index.zip index.js
-{% endhighlight %}
+```
 
 Then create the function called `TrafficShiftDemo`. Note that I refer to a role-arn using `$ROLE_ARN`, see my previous [post](https://dev.to/koenighotze/serverless-hype-train-with-aws-lambda-21p) if you need help with this...and I have truncated all arns to keep things readable.
 
-{% highlight bash %}
+```bash
 $ aws lambda create-function \
    --function-name TrafficShiftDemo \
    --runtime nodejs6.10 \
@@ -72,19 +65,19 @@ $ aws lambda create-function \
     "Version": "$LATEST",
     ...
 }
-{% endhighlight %}
+```
 
 The point I want to stress is the `"Version": "$LATEST"` field. As the name suggests, `$LATEST` points to the very latest version.
 
 Contrast this to _publishing_ a Lambda function. First, delete the function again.
 
-{% highlight bash %}
+```bash
 $ aws lambda delete-function --function-name TrafficShiftDemo
-{% endhighlight %}
+```
 
 Then re-create and publish the function using the command-line argument `--publish`.
 
-{% highlight bash %}
+```bash
 $ aws lambda create-function \
    --function-name TrafficShiftDemo \
    --runtime nodejs6.10 \
@@ -99,7 +92,7 @@ $ aws lambda create-function \
     "Version": "1",
     ...
 }
-{% endhighlight %}
+```
 
 Instead of `$LATEST`, the function features a version of `1`. A published function is essentially an immutable snapshot of the function code and its configuration, such as environment variables.
 
@@ -111,15 +104,15 @@ We publish a Lambda function trice. Version 1, version 2 and version 3 are ident
 
 Let's modify the function code as follows:
 
-{% highlight javascript %}
+```javascript
 exports.handler = (event, context, callback) => {
   callback(null, 'Bonjour le monde!')
 }
-{% endhighlight %}
+```
 
 And now we publish this new code, by updating the Lambda function (don't forget to Zip the code):
 
-{% highlight bash %}
+```bash
 $ aws lambda update-function-code \
    --function-name TrafficShiftDemo \
    --zip-file fileb://index.zip \
@@ -131,13 +124,13 @@ $ aws lambda update-function-code \
     "Version": "2",
     ...
 }
-{% endhighlight %}
+```
 
 Now AWS Lambda informs us, that version `2` has been created.
 
 If we examine the function, AWS Lambda lists all versions. I use [JQ](https://github.com/stedolan/jq) to extract the function arn.
 
-{% highlight bash %}
+```bash
 $  aws lambda list-versions-by-function \
     --function-name TrafficShiftDemo \
     |jq '.Versions[] | .FunctionArn'
@@ -145,11 +138,11 @@ $  aws lambda list-versions-by-function \
 "arn:aws:...:TrafficShiftDemo:$LATEST"
 "arn:aws:...:TrafficShiftDemo:1"
 "arn:aws:...:TrafficShiftDemo:2"
-{% endhighlight %}
+```
 
 You can see the so-called _fully qualified name_ of the function. And we can use that name to invoke the different versions.
 
-{% highlight bash %}
+```bash
 $ aws lambda invoke \
    --function-name arn:aws:...:TrafficShiftDemo:1 out.txt
 
@@ -165,11 +158,11 @@ $ aws lambda invoke \
     "ExecutedVersion": "2",
     "StatusCode": 200
 }
-{% endhighlight %}
+```
 
 Cloudwatch reports which version was used, too:
 
-{% highlight bash %}
+```bash
  START RequestId: 2771b...801f Version: 1
  END RequestId: 2771b...801f
  REPORT RequestId: 2771b...801f  Duration: 33.87 ms  Billed Duration: 100 ms   Memory Size: 128 MB Max Memory Used: 19 MB
@@ -177,11 +170,11 @@ Cloudwatch reports which version was used, too:
  START RequestId: 2dd66...043d Version: 2
  END RequestId: 2dd66...043d
  REPORT RequestId: 2dd66...043d  Duration: 37.58 ms  Billed Duration: 100 ms   Memory Size: 128 MB Max Memory Used: 19 MB
-{% endhighlight %}
+```
 
 As I said above, a published function is an immutable snapshot. That also implies that version numbers are not reused. If, for example, you remove version 2 of the function and publish the function again, then you end up with version 3. Version 2 will never be reused.
 
-{% highlight bash %}
+```bash
 $ aws lambda delete-function \
    --function-name arn:aws:...:TrafficShiftDemo:2
 
@@ -196,7 +189,7 @@ $ aws lambda update-function-code \
     "Version": "3",
     ...
 }
-{% endhighlight %}
+```
 
 ## Stable client with Lambda Aliases
 
@@ -204,7 +197,7 @@ An _alias_ allows us to refer to a specific version of an AWS Lambda function by
 
 Let's create an alias called `HELLO` for version 1 of our Hello-World Lambda.
 
-{% highlight bash %}
+```bash
 $ aws lambda create-alias \
    --name HELLO \
    --function-name TrafficShiftDemo \
@@ -216,11 +209,11 @@ $ aws lambda create-alias \
     "Name": "HELLO",
     "Description": ""
 }
-{% endhighlight %}
+```
 
 If we invoke the alias, we get our `Hello World` response, as expected:
 
-{% highlight bash %}
+```bash
 $ aws lambda invoke --function-name arn:aws:...:TrafficShiftDemo:HELLO out.txt
 
 {
@@ -231,13 +224,13 @@ $ aws lambda invoke --function-name arn:aws:...:TrafficShiftDemo:HELLO out.txt
 $ cat out.txt
 
 "Hello World!"
-{% endhighlight %}
+```
 
 AWS Lambda tells us, that we invoked version 1: `"ExecutedVersion": "1"`, just as we wanted.
 
 Now point the alias to the updated french function code:
 
-{% highlight bash %}
+```bash
 $ aws lambda update-alias \
    --name HELLO \
    --function-name TrafficShiftDemo \
@@ -249,11 +242,11 @@ $ aws lambda update-alias \
     "Name": "HELLO",
     "Description": ""
 }
-{% endhighlight %}
+```
 
 If we invoke the alias again, we get the french response:
 
-{% highlight bash %}
+```bash
 $ aws lambda invoke \
    --function-name arn:aws:...:TrafficShiftDemo:HELLO out.txt
 
@@ -264,7 +257,7 @@ $ aws lambda invoke \
 
 $ cat out.txt
 "Bonjour le monde!"
-{% endhighlight %}
+```
 
 With this we can have a stable client, that only ever calls our alias and we can safely replace the version behind the curtains without ever touching the client.
 
@@ -290,33 +283,33 @@ We deploy both versions, `1` and `2`. Initially, all traffic goes to version `1`
 
 AWS Lambda aliases now support this feature out of the box. We just have to use the new command-line argument `--routing-config`. Before continuing, check the version of your AWS CLI tool, as this is a rather new addition to AWS Lambda. It should read as follows:
 
-{% highlight bash %}
+```bash
 $ aws --version
 aws-cli/1.14.2
-{% endhighlight %}
+```
 
 First of all, delete the `HELLO` alias that was created above:
 
-{% highlight bash %}
+```bash
 $ aws lambda delete-alias \
    --function-name arn:aws:...:TrafficShiftDemo \
    --name HELLO
-{% endhighlight %}
+```
 
 Now create a new alias, that redirects 70% of incoming traffic to version 1 and the remaining 30% to version 2.
 
-{% highlight bash %}
+```bash
 $ aws lambda create-alias \
    --name HELLO \
    --function-name TrafficShiftDemo \
    --function-version 2 \
    --routing-config AdditionalVersionWeights={'1'=0.7}
-{% endhighlight %}
+```
 
 The `--routing-config AdditionalVersionWeights={'1'=0.7}` tells AWS Lambda to redirect 70% of the traffic to version 1, instead of using version 2. You can verify this behavior by invoking the function multiple times checking the `"ExecutedVersion"` in the response.
 
 
-{% highlight bash %}
+```bash
 $ aws lambda invoke --function-name arn:aws:...:TrafficShiftDemo:HELLO out.txt
 
 {
@@ -337,7 +330,7 @@ $ aws lambda invoke --function-name arn:aws:...:TrafficShiftDemo:HELLO out.txt
     "ExecutedVersion": "1",
     "StatusCode": 200
 }
-{% endhighlight %}
+```
 
 We can finally release new Lambda functions and check their behavior and impact in a truly agile way.
 

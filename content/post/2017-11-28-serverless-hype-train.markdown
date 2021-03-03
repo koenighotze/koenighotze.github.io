@@ -2,14 +2,10 @@
 title: Join the serverless hype train
 date:   2017-11-28
 description: Introduction to AWS Lambda Serverless computing
-categories: Serverless AWS Lambda Node.JS Cloud
-permalink: /serverless/hype-train.html
+tags: ["Serverless", "AWS Lambda", "Node.JS", "Cloud"]
 ---
 
 This post is an introduction to Serverless computing - often called Functions-as-a-Service. I will explain, why this is indeed the Hot-Stuff(tm) and introduce you to AWS Lambda. We will build a completely serverless application that exposes 'Hello World' as a Lambda and as a REST service.
-
-* TOC
-{:toc}
 
 ## Serverless in a Nutshell
 
@@ -21,7 +17,7 @@ Let's talk about containers, yes - Docker. These are hyper-flexible, basically a
 
 The [12 Factor App](https://12factor.net/) proves to be a rather useful guideline for cloud-native applications. This set of guidelines describes which rules an application should follow to be easily deployed into the cloud. It covers topics like configuration, logging, and building among others. This is taken directly from their site:
 
-{% highlight text %}
+```text
 I. Codebase
 One codebase tracked in revision control, many deploys
 II. Dependencies
@@ -46,7 +42,7 @@ XI. Logs
 Treat logs as event streams
 XII. Admin processes
 Run admin/management tasks as one-off processes
-{% endhighlight %}
+```
 
 These are architectural questions you need to answer before you can be successful with your applications in the cloud.
 
@@ -100,7 +96,7 @@ We'll just use Node as the runtime for the example code, just to make things eas
 
 Create a file called `index.js` and add the following Javascript code to it:
 
-{% highlight javascript %}
+```javascript
 const Util = require('util')
 
 exports.helloworld = (event, context, callback) => {
@@ -109,7 +105,7 @@ exports.helloworld = (event, context, callback) => {
   const greeting = event.name || 'world'           // (2)
   callback(null, 'Hello ' + greeting)              // (3)
 }
-{% endhighlight %}
+```
 
 This is a AWS Lambda function that just receives an `event` and logs that event to the console `(1)`. If the event contains a field `name`, then we'll welcome that name otherwise a default `world`. Finally, we return the result by calling the `callback` function `(3)`. Since we left `null` as the first argument, we indicate that no error occurred.
 
@@ -123,7 +119,7 @@ Our function needs a role with a policy that allows the function to at least wri
 
 Thus, create a role. First the policy:
 
-{% highlight bash %}
+```bash
 $ cat trust-policy.json
 {
   "Version": "2012-10-17",
@@ -137,11 +133,11 @@ $ cat trust-policy.json
     }
   ]
 }
-{% endhighlight %}
+```
 
 This simple policy allows all Lambdas `(1)` to assume the role `(2)`. We can create the actual role now.
 
-{% highlight bash %}
+```bash
 $ aws iam create-role --role-name basic-lambda-logging --assume-role-policy-document file://trust-policy.json
 {
     "Role": {
@@ -164,13 +160,13 @@ $ aws iam create-role --role-name basic-lambda-logging --assume-role-policy-docu
         }
     }
 }
-{% endhighlight %}
+```
 
 Two things are of notice. First of all, the name of the role is `basic-lambda-logging` `(1)`. Second of all, the attached trust-policy is stored as part of the role `(2)`.
 
 Instead of creating a policy ourselves, we'll use a pre-created (_managed_) policy, that fits perfectly: `AWSLambdaBasicExecutionRole`. This needs to be attached to the role, and then we are ready to roll (sorry).
 
-{% highlight bash %}
+```bash
 $ aws iam attach-role-policy --role-name basic-lambda-logging --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
 
 $ aws iam get-role --role-name basic-lambda-logging
@@ -195,7 +191,7 @@ $ aws iam get-role --role-name basic-lambda-logging
         }
     }
 }
-{% endhighlight %}
+```
 
 When developing Lambda functions it is always a Good Thing to start with the very least permissions needed to execute the function. Only add further policies if needed!
 
@@ -203,7 +199,7 @@ When developing Lambda functions it is always a Good Thing to start with the ver
 
 Now create the Lambda by zipping the source code and creating the actual function.
 
-{% highlight bash %}
+```bash
 $ zip index.zip index.js
 
 $ aws lambda create-function
@@ -229,7 +225,7 @@ $ aws lambda create-function
         "Mode": "PassThrough"
     }
 }
-{% endhighlight %}
+```
 
 I'll explain this command option by option.
 
@@ -241,7 +237,7 @@ I'll explain this command option by option.
 
 Invoking this function is rather easy.
 
-{% highlight bash %}
+```bash
 $ aws lambda invoke --function-name HelloWorld out.txt
 {
     "StatusCode": 200
@@ -249,47 +245,47 @@ $ aws lambda invoke --function-name HelloWorld out.txt
 
 $ cat out.txt
 "Hello world"
-{% endhighlight %}
+```
 
 Note that the `invoke` command just returns a status code indicating a successful invocation. The actual output is stored in the file `out.txt`, whose name we passed when invoking the function.
 
 You can also pass an event to the function. An event is just a JSON structure, in our case:
 
-{% highlight bash %}
+```bash
 $ cat helloevent.json
 {
   "name": "David"
 }
-{% endhighlight %}
+```
 
 Depending on the event source, the event can be rather complex.
 
 Now invoke the function and pass the event as a `payload`:
 
-{% highlight bash %}
+```bash
 $ aws lambda invoke --function-name HelloWorld --payload file://helloevent.json out.txt
 {
     "StatusCode": 200
 }
 $ cat out.txt
 "Hello David"
-{% endhighlight %}
+```
 
-Things get clearer if we examine the log output of our function. I'll use [AWSLogs](https://github.com/jorgebastida/awslogs) for fetching the log output and I'll trim the output a little, so we can focus on the essential parts.
+Things get clearer if we examine the log output of our function. I'll use [AWS Logs](https://github.com/jorgebastida/awslogs) for fetching the log output and I'll trim the output a little, so we can focus on the essential parts.
 
-{% highlight bash %}
+```bash
 $ awslogs get /aws/lambda/HelloWorld
 HelloWorld ... START RequestId: 347078b1-... Version: $LATEST
 HelloWorld ... Called with { name: 'David' }
 HelloWorld ... END RequestId: 347078b1-...
 HelloWorld ... REPORT RequestId: 347078b1-... Duration: 47.58 ms Billed Duration: 100 ms Memory Size: 128 MB Max Memory Used: 19 MB
-{% endhighlight %}
+```
 
 You can see the incoming request with the id `RequestId: 347078b1-...`. AWS Lambda creates a new container for our function, starts it and then invokes the function, as you can see by the logged output `Called with { name: 'David' }`. The function finishes (`END RequestId: 347078b1-...`), the container is destroyed and AWS Lambda logs the function invocation's statistics
 
-{% highlight bash %}
+```bash
 REPORT RequestId: 347078b1-... Duration: 47.58 ms Billed Duration: 100 ms Memory Size: 128 MB Max Memory Used: 19 MB
-{% endhighlight %}
+```
 
 This is the essential output. You can see the invocation duration (`47.58 ms`) and how much Amazon charges you for the execution `100 ms`. As I mentioned you only pay what you use. Finally, Amazon reports the memory consumption (`Memory Size: 128 MB Max Memory Used: 19 MB`), which we'll explain below when talking about scale.
 
@@ -297,7 +293,7 @@ This is the essential output. You can see the invocation duration (`47.58 ms`) a
 
 Let's say, we wanted to change the greeting from `Hello` to `Bonjour`. Updating the function only involves modifying the Javascript and then uploading an updated Zip file:
 
-{% highlight bash %}
+```bash
 $ aws lambda update-function-code --function-name HelloWorld --zip-file fileb://index.zip
 {
     "FunctionName": "HelloWorld",
@@ -316,17 +312,17 @@ $ aws lambda update-function-code --function-name HelloWorld --zip-file fileb://
         "Mode": "PassThrough"
     }
 }
-{% endhighlight %}
+```
 We can invoke the new version directly after uploading.
 
-{% highlight bash %}
+```bash
 $ aws lambda invoke --function-name HelloWorld --payload file://helloevent.json out.txt
 {
     "StatusCode": 200
 }
 $ cat out.txt
 "Bonjour David"
-{% endhighlight %}
+```
 
 As you can see, the output has changed to `Bonjour`.
 
@@ -336,9 +332,9 @@ AWS Lambda takes care of scaling your functions. That means you do not worry if 
 
 That said, you as a developer must size the runtime appropriately. That means you have to configure the available RAM and CPUs you want for each instance of your Lambda function. Let's look at an example. You remember the log output from above:
 
-{% highlight bash %}
+```bash
 REPORT RequestId: 347078b1-... Duration: 47.58 ms Billed Duration: 100 ms Memory Size: 128 MB Max Memory Used: 19 MB
-{% endhighlight %}
+```
 
 The essential part is `Memory Size: 128 MB Max Memory Used: 19 MB`. When creating a Lambda function, you can configure the maximum available memory for the underlying runtime, in this case, the default `128 MB`. The more memory you allow for your runtime, the more CPUs are assigned to the function when executing.
 
@@ -367,7 +363,7 @@ Creating an API Gateway is rather cumbersome and involves quite a bit of command
 
 Creating the policy and role is similar to above, I expect `ACCOUNT_ID` to hold your AWS account id. The referenced [policy](https://github.com/koenighotze/devcon-serverless-demo/blob/master/demo3_hellodevcon_api/gw_invokelambda_policy.json) and [trust](https://github.com/koenighotze/devcon-serverless-demo/blob/master/demo3_hellodevcon_api/gw_trustpolicy.json) files can be found on [Github](https://github.com/koenighotze/devcon-serverless-demo/tree/master/demo3_hellodevcon_api).
 
-{% highlight bash %}
+```bash
 $ aws iam create-role \
                --role-name hello-world-api-gateway-role \
                --assume-role-policy-document file://gw_trustpolicy.json
@@ -377,51 +373,51 @@ $ aws iam create-policy
 $ aws iam attach-role-policy
                --role-name hello-world-api-gateway-role \
                --policy-arn arn:aws:iam::${ACCOUNT_ID}:policy/hello-world-invoke-lambda-policy
-{% endhighlight %}
+```
 
 I'll just dump the script that executes the steps above. `API_GW_ROLE_ARN` should contain the AWS id of the role you created above. If you forgot the ARN, just query it again using:
 
-{% highlight bash %}
+```bash
 $ aws iam get-role --role-name hello-world-api-gateway-role | jq -r '.Role.Arn'
 arn:aws:iam::604370441254:role/hello-world-api-gateway-role
-{% endhighlight %}
+```
 
 Create the rest api gateway and store the id:
 
-{% highlight bash %}
+```bash
 REST_API_ID=$(aws apigateway create-rest-api --name 'Hello World Api' | jq -r '.id' )
-{% endhighlight %}
+```
 
 Fetch the id of the root resource ('/'):
 
-{% highlight bash %}
+```bash
 ROOT_RESOURCE_ID=$(aws apigateway get-resources --rest-api-id $REST_API_ID | jq -r '.items[0].id')
-{% endhighlight %}
+```
 
 Create a proxy resource below the root-resource:
 
-{% highlight bash %}
+```bash
 RESOURCE_ID=$(aws apigateway create-resource --rest-api-id $REST_API_ID --parent-id $ROOT_RESOURCE_ID --path-part '{hello+}' | jq -r '.id')
-{% endhighlight %}
+```
 
 Create a HTTP-method mapping - in this case for all HTTP-methods (ANY):
 
-{% highlight bash %}
+```bash
 aws apigateway put-method --rest-api-id $REST_API_ID \
                           --resource-id $RESOURCE_ID \
                           --http-method ANY \
                           --authorization-type NONE
-{% endhighlight %}
+```
 
 Remember the invoke uri for calling the hello world lambda function:
 
-{% highlight bash %}
+```bash
 LAMBDA_URI=arn:aws:apigateway:${AWS_DEFAULT_REGION}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS_DEFAULT_REGION}:${ACCOUNT_ID}:function:HelloWorld/invocations
-{% endhighlight %}
+```
 
 Setup the integration between the resource and the lambda using a proxy approach:
 
-{% highlight bash %}
+```bash
 aws apigateway put-integration --rest-api-id $REST_API_ID \
                                --resource-id $RESOURCE_ID \
                                --http-method ANY \
@@ -429,17 +425,17 @@ aws apigateway put-integration --rest-api-id $REST_API_ID \
                                --integration-http-method POST \
                                --uri $LAMBDA_URI \
                                --credentials arn:aws:iam::${ACCOUNT_ID}:role/hello-world-api-gateway-role
-{% endhighlight %}
+```
 
 Deploy the api to the test stage:
 
-{% highlight bash %}
+```bash
 aws apigateway create-deployment --rest-api-id $REST_API_ID --stage-name test
-{% endhighlight %}
+```
 
 The API is now accessible to `https://${REST_API_ID}.execute-api.${AWS_DEFAULT_REGION}.amazonaws.com/test/hello`. If you try to call this URL now, you will get an internal server error.
 
-{% highlight bash %}
+```bash
 $ http https://${REST_API_ID}.execute-api.${AWS_DEFAULT_REGION}.amazonaws.com/test/hello
 HTTP/1.1 502 Bad Gateway
 Connection: keep-alive
@@ -454,26 +450,26 @@ x-amzn-RequestId: 8c01416b-caea-11e7-a641-ad0271e6c3cd
 {
     "message": "Internal server error"
 }
-{% endhighlight %}
+```
 
 The AWS API Gateway proxy integration requires us to change the actual function code. The returned payload must follow a specific format:
 
-{% highlight javascript %}
+```javascript
 {
     headers: {},
     body: ""
 }
-{% endhighlight %}
+```
 
 In our case this means we need to change the function callback code to:
 
-{% highlight javascript %}
+```javascript
 callback(null, { body: 'Hello ' + greeting })
-{% endhighlight %}
+```
 
 And of course, we need to upload the new function code. Finally, we can call the Lambda function using plain old HTTP.
 
-{% highlight bash %}
+```bash
 $ http https://${REST_API_ID}.execute-api.${AWS_DEFAULT_REGION}.amazonaws.com/test/hello
 HTTP/1.1 200 OK
 Connection: keep-alive
@@ -487,7 +483,7 @@ X-Cache: Miss from cloudfront
 x-amzn-RequestId: 171b4e2a-caeb-11e7-b863-3d72645e1f57
 
 Bonjour world
-{% endhighlight %}
+```
 
 The API Gateway is a beast. In a follow up to this post, I'll introduce [Claudia.JS](https://claudiajs.com/), which makes things far easier.
 

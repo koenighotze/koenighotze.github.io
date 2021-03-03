@@ -17,7 +17,7 @@ img.profile-picture {
 }
 
 a {
-    color: #3fb0ac;
+    color: #e05915;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -34,6 +34,7 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
     color: #555;
+    background-color: #c2dde6;
 }
 
 header.post-header {
@@ -42,4 +43,17 @@ header.post-header {
 
 ul, ol {
     list-style: square;
+}
+
+div.share a {
+    background-color: #431c5d;   
+}
+
+code {
+    background-color: white;
+}
+
+div.tags {
+    padding-top: 1em;
+    padding-left: 2em;
 }

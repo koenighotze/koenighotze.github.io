@@ -2,8 +2,7 @@
 title: Dealing with data in microservice architectures - part 1 - Shared databases
 description: The first part of a series dealing with the problem of data and data ownership in microservice architectures
 date:   2020-09-27
-categories: ddd microservices
-permalink: /microservices-data-patterns/part1.html
+tags: ["DDD", "Development", "Microservices"]
 ---
 
 This is my first article after a long project and COVID induced hiatus. I'll present different ways to deal with data and dependencies in microservice architectures.

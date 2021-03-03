@@ -184,9 +184,10 @@ aws_instance.simple: Destruction complete
 
 Destroy complete! Resources: 1 destroyed.
 ```
-
----
-**Sidenote: What if things go wrong?**
+dsdsadsa
+{{< sidenote >}}
+adsds
+Sidenote: What if things go wrong?
 
 By setting the log level via `TF_LOG` you can get a detailed view of Terraform's behavior.
 
@@ -194,7 +195,7 @@ By setting the log level via `TF_LOG` you can get a detailed view of Terraform's
 $ TF_LOG=INFO terraform apply
 ```
 
----
+{{< sidenote />}}
 
 ## But wait...how does Terraform know my credentials
 You can define your credentials explicitly using environment variables or configuration parameters like

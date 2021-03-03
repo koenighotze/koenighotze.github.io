@@ -1,8 +1,7 @@
 ---
 title:  Real World Serverless @ Voxxed Zurich and Voxxed Vienna
 date:   2018-03-08
-categories: serverless
-permalink: /serverless/realworldatvoxxed.html
+tags: [ "Serverless", "AWS Lambda" ]
 ---
 
 _(Just here for the slides? Voila: [Voxxed Zurich Edition](/assets/media/2018-03-08/real_world_serverless_20180307-voxxed-zurich.pdf)

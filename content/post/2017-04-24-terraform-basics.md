@@ -1,15 +1,14 @@
 ---
 title:  Using Terraform for Cloud Deployments
 date:   2017-04-25
-categories: terraform cloud aws devops
-permalink: /terraform/tutorial-part1.html
+tags: ["Infrastructure-as-Code", "Cloud", "AWS", "devops"]
 ---
-This post explores [Terraform] from a beginner's perspective.
+This post explores [Terraform](https://terraform.io) from a beginner's perspective.
 We'll look at the problem Terraform solves and what it's distinct features are.
 
 By using some rather simple examples we'll get a good feeling of how to use it in real life.
 We will build a running EC2 instance, based on a LAMP stack.
-This post covers the simple version, a follow up will show the advanced configuration using Consul for state synchronization and [Ansible] for configuration management.
+This post covers the simple version, a follow up will show the advanced configuration using Consul for state synchronization and [Ansible](https:/ansible.com) for configuration management.
 
 The examples focus on AWS, so you may need an account to follow along.
 I'll use free-tier resources only, so even a demo account is enough.
@@ -23,7 +22,7 @@ It takes care of codifying your infrastructure.
 That means, instead of clicking around in the AWS console, you write configuration files.
 The files are pure text, thus can be shared, versioned, peer-reviewed as any code.
 
-Basically, Terraform is a tool that helps you with achieving [Infrastructure as Code] (IaC).
+Basically, Terraform is a tool that helps you with achieving Infrastructure-as-Code (IaC).
 
 ## Installing Terraform
 
@@ -59,7 +58,7 @@ resource "aws_instance" "simple" {
 }
 ```
 
-Here we are saying, that we want to use [AWS] as our cloud `provider`.
+Here we are saying, that we want to use AWS as our cloud `provider`.
 Terraform is mostly cross provider capable.
 This means, you can easily configure your landscape across AWS, Heruko, Azure, whatever.
 As mentioned above, I'll keep to AWS in this post.
@@ -185,16 +184,13 @@ aws_instance.simple: Destruction complete
 Destroy complete! Resources: 1 destroyed.
 ```
 
----
-**Sidenote: What if things go wrong?**
+### Sidenote: What if things go wrong?
 
 By setting the log level via `TF_LOG` you can get a detailed view of Terraform's behavior.
 
 ```javascript
 $ TF_LOG=INFO terraform apply
 ```
-
----
 
 ## But wait...how does Terraform know my credentials
 You can define your credentials explicitly using environment variables or configuration parameters like
@@ -215,10 +211,10 @@ With this simple example behind us, we'll jump directly into a more complex, rea
 We'll now build on the basic example.
 Our case will be built in two stages.
 Stage 1 will just be a simple instance, running a LAMP stack.
-Stage 2 will be more complex, tackling state with [Consul] and provisioning using [Ansible].
+Stage 2 will be more complex, tackling state with [Consul](https://www.consul.io/) and provisioning using [Ansible](https:/ansible.com).
 This will be part of the next post.
 
-The goal of this step is a running [LAMP] server.
+The goal of this step is a running [LAMP](https://en.wikipedia.org/wiki/LAMP_(software_bundle)) server.
 That means setting up a Linux box and installing LAMP.
 Finally, we'll modify the index page, such that the standard 'Hello World' is displayed.
 
@@ -258,12 +254,13 @@ The instance's details are exactly as expected.
 
 ![AWS console details](/assets/images/2017-04-25/details.png)
 
-Find the Gist for this step at [https://gist.github.com/koenighotze/fdb630f548f43f3d9c06de4be8e40b1b]()
+See the Gist for this step 
+
+{{< gist koenighotze fdb630f548f43f3d9c06de4be8e40b1b >}}
 
 ## Adding SSH connectivity
 
 That thing is boring and not accessible without a network connection.
-
 To allow SSH we define a new security group.
 
 ```ruby
@@ -351,10 +348,9 @@ $ ssh ubuntu@<PUBLIC IP>
 
 ...and of course, it fails, because we need to associate a key with this instance.
 I won't go into the public key configuration, so I'll just assume that you configured a key pair.
-Just look at [http://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html]() and [http://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-keypairs.html]() for details on that topic.
+Just look at the [key pair documentation](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html) and the [CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-keypairs.html) for details on that topic.
 
----
-**Sidenote: Output the public ip directly**
+### Sidenote: Output the public ip directly
 
 Just add the following fragment at the bottom of the Terraform config and you will be told the public ip directly.
 
@@ -367,8 +363,6 @@ output "ip" {
   value  = "${aws_eip.ip.public_ip}"
 }
 ```
-
----
 
 Let's assume you now have a key pair called `terraform-test-key`.
 We need to associate that key pair with our instance.
@@ -405,12 +399,14 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-1013-aws x86_64)
 ...
 ```
 
-Find the Gist for this at [https://gist.github.com/koenighotze/28eb1930148d8bc5192495e5e790e380]().
+Here is the Gist 
+
+{{< gist koenighotze 28eb1930148d8bc5192495e5e790e380 >}}
 
 ## Provision the instance
 
 Provisioners are used to bootstrapping resources, apply configurations and so on.
-The follow-up post will show this using [Ansible].
+The follow-up post will show this using [Ansible](https:/ansible.com).
 For now, we'll use a rather simple file and inline example.
 Now we need to install the LAMP stack.
 
@@ -502,17 +498,16 @@ So apply the configuration yet again. And then point your browser to the public 
 
 ![Tata](/assets/images/2017-04-25/output.png)
 
-Wow! You should be impressed ;)
-You can find the complete example at [https://gist.github.com/koenighotze/362a0903d0121a4ce7e71b6fdd84cac8]()
+Wow! You should be impressed ;). You can find the complete example here 
+
+{{< gist koenighotze 362a0903d0121a4ce7e71b6fdd84cac8 >}}
 
 # What is next?
 
-This post just covered some basics. The next part will explore a more complex example, that will resemble something
-you would do in the real world.
-
+This post just covered some basics. The next part will explore a more complex example, that will resemble something you would do in the real world.
 Furthermore, we'll compare Terraform to its contenders like Chef, Puppet, etc.
 
-If you want to know more there is a book: [Terraform up and running].
+If you want to know more there is a book: [Terraform up and running](http://www.terraformupandrunning.com/).
 This is highly recommended, although the official documentation is top-notch.
 
 You should be aware that Terraform is still in a 0.x version, so things may still break.
@@ -521,14 +516,7 @@ In summary, Terraform helps you with building your infrastructure reproducibly a
 Everything can be audited, versioned, checked.
 Typical configuration drift scenarios can be avoided.
 Terraform is not a silver bullet.
-You will need other tools, such as [Ansible] for configuration management and [Consul] for managing state.
+You will need other tools, such as [Ansible](https://www.ansible.com/) for configuration management and [Consul](https://www.consul.io/) for managing state.
 
 The IaC-space is crowded and in constant shift.
 The only way to find the best tool for _your_ case is to try things out.
-
-[Ansible]: https://www.ansible.com/
-[Consul]: https://www.consul.io/
-[Infrastructure as Code]: https://en.wikipedia.org/wiki/Infrastructure_as_Code
-[LAMP]: https://en.wikipedia.org/wiki/LAMP_(software_bundle)
-[Terraform]: https://www.terraform.io/
-[Terraform up and running]: http://www.terraformupandrunning.com/

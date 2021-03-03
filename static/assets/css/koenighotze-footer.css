@@ -1,6 +1,6 @@
 p.footer-copyright a:hover {
-    background-color: #fff;
-    color: #173e43;
+    background-color: white;
+    color: #431c5d;
     text-decoration: underline;
 }
 
@@ -9,10 +9,11 @@ footer.footer {
     bottom: 0;
     width: 100%;
     height: auto;
-    background-color: #fff;
-    font-size: 0.5rem;
-    color: #173e43;
+    background-color: white;
+    font-size: 0.6rem;
+    color: #431c5d;
     padding-bottom: 1.5em;
+    border-top: 1px dotted #431c5d;
 }
 
 footer.footer div.site-title-wrapper {
@@ -22,9 +23,14 @@ footer.footer div.site-title-wrapper {
 
 footer a.button-square {
     background-color: white;
-    color: #173e43;
+    color: #431c5d;
 }
 
 p.footer-copyright {
     font-size: 1em;
+    color: #431c5d;
+}
+
+.footer-copyright a {
+    color: #431c5d;
 }

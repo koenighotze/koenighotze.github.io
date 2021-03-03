@@ -1,5 +1,5 @@
 article.teaser a.post-stub-title:hover {
-    color: #173e43;
+    color: #424242;
 }
 
 article.teaser a.post-stub-title {
@@ -17,6 +17,10 @@ article.teaser div.keep-reading {
 }
 
 article.teaser div.keep-reading a {
-    color: #173e43;
+    color: #e05915;
     text-transform: uppercase;
+}
+
+article.teaser {
+    padding-top: 1em;
 }

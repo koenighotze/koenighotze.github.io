@@ -1,11 +1,10 @@
 ---
 title:  Eventsourcing - You are doing it wrong
 date:   2018-09-06
-categories: eventsourcing
-permalink: /eventsourcing/eventsourcing-wrong.html
+tags: [ "Eventsourcing" ]
 ---
 
-_(Just here for the slides? Voila: [BedCon Edition (26MB!)](/assets/media/2018-09-06/eventsourcing-you-are-doing-it-wrong.pdf)
+Just here for the slides? Voila: [BedCon Edition (26MB!)](/assets/media/2018-09-06/eventsourcing-you-are-doing-it-wrong.pdf)
 
 This talk is about staying sane when using event sourcing in your microservices.
 

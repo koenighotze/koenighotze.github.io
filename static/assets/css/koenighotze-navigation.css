@@ -1,26 +1,31 @@
 .site-title a {
-    background-color: #173e43;
+    background-color: #431c5d;
 }
 
 .site-title a:hover {
-    background-color: #173e43;
+    background-color: #431c5d;
 }
 
 .button-square {
-    background-color: #173e43;
+    background-color: #431c5d;
 }
 
 .button-square:hover {
-    background-color: #173e43;
+    background-color: #431c5d;
+}
+
+ul.site-nav {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 ul.site-nav a {
-    color: #173e43;
+    color: #431c5d;
     font-family: 'Roboto', sans-serif;
 }
 
 ul.site-nav a:hover {
-    color: #173e43;
+    color: #431c5d;
     text-decoration: underline;
 }
 
@@ -34,5 +39,13 @@ header.site-header {
     left: 0;
     top: 0;
     z-index: 1030;
-    background-color: white;
+    background-color:white;
+    padding-top: 1rem;
+    border-bottom: 1px dotted #431c5d;
 }
+
+div.post-navigation {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+

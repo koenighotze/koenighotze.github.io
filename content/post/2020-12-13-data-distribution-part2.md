@@ -2,8 +2,7 @@
 title: Dealing with data in microservice architectures - part 2 - Synchronous calls
 description: The second part of a series dealing with the problem of data and data ownership in microservice architectures
 date:   2020-12-13
-categories: ddd microservices
-permalink: /microservices-data-patterns/part2.html
+tags: ["DDD", "Development", "Microservices"]
 ---
 
 

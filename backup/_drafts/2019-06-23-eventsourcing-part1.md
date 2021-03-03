@@ -4,6 +4,7 @@ description: The first part of a series of short articles about event sourcing u
 date:   2019-06-23
 categories: eventsourcing ddd microservices
 permalink: /eventsourcing/part1.html
+tags: ["Development", "Eventsourcing"]
 ---
 
 In the last  months, I was invited to a couple of conference to give a talk about event sourcing and some general patterns and anti-patterns. Here is a [video](https://www.youtube.com/watch?v=rdB9Q8GouKI) of that talk at Devoxx Poland. The discussions after the talks showed two things:

@@ -13,19 +13,22 @@ div.fluid-width-video-wrapper iframe.youtube-iframe {
 
 .post-stub a {
     padding-top: 0;
-    padding-bottom: 1rem;
+    padding-bottom: 1em;
+    color: inherit;
 }
 
 .post-stub a:hover {
+    padding: 0px 0px;
+    padding-top: 0;
+    padding-bottom: 2rem;
     background: none;
-    color: #173e43;
-    font-size: 1.5rem;
-    padding: 20px 12px;
+    color: inherit;
+    transition: none; 
 }
 
 .newer-posts, .older-posts {
     background-color: #fff;
-    color: #173e43;
+    color: #e05915;
 }
 
 .newer-posts:hover, .older-posts:hover {
@@ -49,4 +52,54 @@ li.post-stub {
 
 time.post-stub-date {
     font-size: smaller;
+}
+
+div.post-content {
+    padding-top: 1em;
+    text-align: justify;    
+    text-justify: inter-word;
+}
+
+div.post-content a:hover {
+    border: none;
+    text-decoration: underline;
+}
+
+div.post {
+    padding: 1rem;
+    background-color: white;
+}
+
+header.post-header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+p.post-description {
+    margin-bottom: 0.5em;
+}
+
+p.post-date {
+    margin-top: 0.5em;
+}
+
+p.tags {
+    padding: 0;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    line-height: 1em;
+}
+
+ul.tag-list {
+    font-size: 0.5em;
+    display: inline-block;
+}
+
+li.tag {
+    display: inline-block;
+    text-transform: lowercase;
+}
+
+ol.tag-list {
+    list-style: square;
 }
