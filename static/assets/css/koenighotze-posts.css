@@ -103,3 +103,7 @@ li.tag {
 ol.tag-list {
     list-style: square;
 }
+
+header.post-header {
+    border-bottom: 1px solid #dddfd4;
+}

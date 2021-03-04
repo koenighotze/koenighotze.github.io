@@ -1,13 +1,13 @@
 div#post-index {
-    max-width: 55%;
+    max-width: 90%;
 }
 
 div.container {
-    max-width: 55%;
+    max-width: 90%;
 }
 
 div#container {
-    padding-top: 10rem;
+    padding-top: 4rem;
 }
 
 img.profile-picture {
@@ -37,10 +37,6 @@ body {
     background-color: #c2dde6;
 }
 
-header.post-header {
-    border-bottom: 1px solid #dddfd4;
-}
-
 ul, ol {
     list-style: square;
 }
@@ -56,4 +52,35 @@ code {
 div.tags {
     padding-top: 1em;
     padding-left: 2em;
+}
+
+/* responsive */ 
+.no-mobile {
+    display: none;
+}
+
+.no-desktop {
+    display: inherit;
+}
+
+@media only screen and (min-width: 768px) {
+    .no-mobile {
+        display: inherit;
+    }
+
+    .no-desktop {
+        display: none;
+    }
+
+    div.container {
+        width: 55%;
+    }
+
+    div#container {
+        padding-top: 8rem;
+    }
+    
+    div#post-index {
+        max-width: 55%;
+    }
 }

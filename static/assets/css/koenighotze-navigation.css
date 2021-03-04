@@ -33,17 +33,6 @@ h1.post-title, h1.site-title {
     font-family: 'Roboto', sans-serif;
 }
 
-header.site-header {
-    position: fixed;
-    right: 0;
-    left: 0;
-    top: 0;
-    z-index: 1030;
-    background-color:white;
-    padding-top: 1rem;
-    border-bottom: 1px dotted #431c5d;
-}
-
 div.post-navigation {
     margin-top: 1rem;
     margin-bottom: 1rem;
