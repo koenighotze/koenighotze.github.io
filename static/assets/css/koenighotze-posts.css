@@ -3,7 +3,7 @@ div.fluid-width-video-wrapper {
 }
 
 div.fluid-width-video-wrapper iframe.youtube-iframe {
-    width: 425px; 
+    width: auto; 
     height: 240px;
 }
 

@@ -63,7 +63,7 @@ div.tags {
     display: inherit;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 800px) {
     .no-mobile {
         display: inherit;
     }
@@ -83,4 +83,19 @@ div.tags {
     div#post-index {
         max-width: 55%;
     }
+}
+
+
+div.social-media {
+    padding-bottom: 3em;
+}
+
+div.social-media img {
+    float: left;
+    padding-right: 1em;
+    padding-bottom: 1em;
+}
+
+ul.social-media {
+    list-style: none;
 }

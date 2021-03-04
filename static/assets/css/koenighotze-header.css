@@ -2,9 +2,7 @@
 
 div.hamburger .menu {
     clear: both;
-    max-height: 0;
-    display: none;
-    transition: max-height .2s ease-out;
+    display: none;    
     text-align: left;
 }
 
@@ -38,7 +36,6 @@ div.hamburger .menu-icon .navicon {
     display: block;
     height: 2px;
     position: relative;
-    transition: background .2s ease-out;
     width: 1em;
 }
 
@@ -94,9 +91,11 @@ header.site-header {
 }
 
 div.menu-items {
-    border: solid dashed 1px; 
-    max-height: auto; 
     clear: both;
+}
+
+ul.site-nav.menu a.button-square {
+    color: white;
 }
 
 @media only screen and (min-width: 768px) {
