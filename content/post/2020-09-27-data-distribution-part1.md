@@ -7,7 +7,7 @@ tags: ["DDD", "Development", "Microservices"]
 
 This is my first article after a long project and COVID induced hiatus. I'll present different ways to deal with data and dependencies in microservice architectures.
 
-[Microservices](https://martinfowler.com/articles/microservices.html) are a wide-spread architectural style for building distributed applications. They offer huge advantages but also some [challenges and traps](https://www.youtube.com/watch?v=X0tjziAQfNQ). Some obvious, some of a more insidious nature. In this short article, I want to focus on how to deal with data, when building microservices.
+[Microservices](https://martinfowler.com/articles/microservices.html) is a wide-spread architectural style for building distributed applications. They offer huge advantages but also some [challenges and traps](https://www.youtube.com/watch?v=X0tjziAQfNQ). Some obvious, some of a more insidious nature. In this short article, I want to focus on how to deal with data, when building microservices.
 
 Dealing with data and dependencies in a microservice architecture is difficult. There is no one-size-fits-all solution. The trade-offs can be the difference between succeeding and utter disaster. The typical „every microservice hat its own database“ seems like good advice. But as we will see below has its challenges.
 

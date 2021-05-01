@@ -6,7 +6,7 @@ tags: ["DDD", "Development", "Microservices"]
 ---
 
 
-[Microservices](https://martinfowler.com/articles/microservices.html) are a popular and wide-spread architectural style for building non-trivial applications. They offer immense advantages but also some [challenges and traps](https://www.youtube.com/watch?v=X0tjziAQfNQ). Some obvious, some of a more insidious nature. In this brief article, I want to focus on how to integrate microservices.
+[Microservices](https://martinfowler.com/articles/microservices.html) is a popular and wide-spread architectural style for building non-trivial applications. They offer immense advantages but also some [challenges and traps](https://www.youtube.com/watch?v=X0tjziAQfNQ). Some obvious, some of a more insidious nature. In this brief article, I want to focus on how to integrate microservices.
 
 This overview explains and compares common patterns for dealing with data in microservice architectures. I neither assume to be complete regarding approaches nor do I cover every pros and cons of each pattern. As always, experience and context matter.
 
