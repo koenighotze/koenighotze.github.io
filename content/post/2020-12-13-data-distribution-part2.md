@@ -12,12 +12,12 @@ This overview explains and compares common patterns for dealing with data in mic
 
 Four different parts focus on different patterns.
 
-* [Sharing a database](https://dev.to/koenighotze/dealing-with-data-in-microservice-architectures-part-1-nka)
+* [Sharing a database](https://blog.koenighotze.de/2020/09/27/2020-09-27-data-distribution-part1/)
 * Synchronous calls
 * Replication
 * Event-driven architectures
 
-The [previous article](https://dev.to/koenighotze/dealing-with-data-in-microservice-architectures-part-1-nka) looked at integrating microservices using one shared database. Sharing a database seems to be a straightforward approach. Even so, it led to architectural and organisational challenges.
+The [previous article](https://blog.koenighotze.de/2020/09/27/2020-09-27-data-distribution-part1/) looked at integrating microservices using one shared database. Sharing a database seems to be a straightforward approach. Even so, it led to architectural and organisational challenges.
 
 In this part, we‘ll look at coupling microservices with synchronous calls. We'll start by explaining the pattern itself. Then we'll analyse technological and architectural aspects.
 
