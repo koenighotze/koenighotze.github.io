@@ -13,9 +13,7 @@ This post covers the simple version, a follow up will show the advanced configur
 The examples focus on AWS, so you may need an account to follow along.
 I'll use free-tier resources only, so even a demo account is enough.
 
-_Note: I am neither a Terraform nor an AWS expert...so take everything with a grain of salt ;)_
-
-# What is Terraform and why should I care?
+## What is Terraform and why should I care?
 
 Terraform is an open-source tool from Hashicorp (of Vagrant fame).
 It takes care of codifying your infrastructure.
@@ -24,23 +22,23 @@ The files are pure text, thus can be shared, versioned, peer-reviewed as any cod
 
 Basically, Terraform is a tool that helps you with achieving Infrastructure-as-Code (IaC).
 
-## Installing Terraform
+### Installing Terraform
 
 We'll install Terraform and run a simple demo, to make things clear.
 
 Installing Terraform is extra easy.
-Download the appropriate Zip from [https://www.terraform.io/downloads.html]().
+Download the appropriate Zip from the [Terraform homepage](https://www.terraform.io/downloads.html).
 Unzip the file and put the `terraform` binary to someplace on your `PATH`.
 
 Run this command to check if everything is working:
 
 ```javascript
-$ terraform -v
+terraform -v
 ```
 
 The output should resemble
 
-```
+```bash
 Your version of Terraform is out of date! The latest version
 is 0.9.3. You can update by downloading from www.terraform.io
 ```
@@ -75,7 +73,7 @@ The AMI defines the image, that is used for creating the instance.
 Run this command to validate your configuration:
 
 ```javascript
-$ terraform plan
+terraform plan
 ```
 
 `plan` basically dry-runs your configuration.
@@ -84,12 +82,12 @@ This allows you to check in advance, what is going to happen.
 Then `apply` the configuration to create the resources.
 
 ```javascript
-$ terraform apply
+terraform apply
 ```
 
 The output will tell you what was created by Terraform.
 
-```
+```bash
 aws_instance.simple: Creating...
   ami:                         "" => "ami-a8d2d7ce"
   associate_public_ip_address: "" => "<computed>"
@@ -184,15 +182,16 @@ aws_instance.simple: Destruction complete
 Destroy complete! Resources: 1 destroyed.
 ```
 
-### Sidenote: What if things go wrong?
+#### Sidenote: What if things go wrong?
 
 By setting the log level via `TF_LOG` you can get a detailed view of Terraform's behavior.
 
 ```javascript
-$ TF_LOG=INFO terraform apply
+TF_LOG=INFO terraform apply
 ```
 
-## But wait...how does Terraform know my credentials
+### But wait...how does Terraform know my credentials
+
 You can define your credentials explicitly using environment variables or configuration parameters like
 
 ```ruby
@@ -206,7 +205,7 @@ If you do not provide these values, then Terraform falls back to using the value
 
 With this simple example behind us, we'll jump directly into a more complex, realistic scenario.
 
-# Going enterprise
+## Going enterprise
 
 We'll now build on the basic example.
 Our case will be built in two stages.
@@ -218,7 +217,7 @@ The goal of this step is a running [LAMP](https://en.wikipedia.org/wiki/LAMP_(so
 That means setting up a Linux box and installing LAMP.
 Finally, we'll modify the index page, such that the standard 'Hello World' is displayed.
 
-## Creating the EC2 instance
+### Creating the EC2 instance
 
 The starting point as always is the declaration of the provider
 
@@ -254,11 +253,11 @@ The instance's details are exactly as expected.
 
 ![AWS console details](/assets/images/2017-04-25/details.png)
 
-See the Gist for this step 
+See the Gist for this step
 
 {{< gist koenighotze fdb630f548f43f3d9c06de4be8e40b1b >}}
 
-## Adding SSH connectivity
+### Adding SSH connectivity
 
 That thing is boring and not accessible without a network connection.
 To allow SSH we define a new security group.
@@ -341,16 +340,16 @@ If you examine the output, you will notice the `ingress` configuration for SSH.
 Now apply it and connect to it.
 
 ```javascript
-$ terraform apply                     # apply the changed configuration
-$ terraform show | grep 'public_id =' # get the public ip
-$ ssh ubuntu@<PUBLIC IP>
+terraform apply                     # apply the changed configuration
+terraform show | grep 'public_id =' # get the public ip
+ssh ubuntu@<PUBLIC IP>
 ```
 
 ...and of course, it fails, because we need to associate a key with this instance.
 I won't go into the public key configuration, so I'll just assume that you configured a key pair.
 Just look at the [key pair documentation](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html) and the [CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-keypairs.html) for details on that topic.
 
-### Sidenote: Output the public ip directly
+#### Sidenote: Output the public ip directly
 
 Just add the following fragment at the bottom of the Terraform config and you will be told the public ip directly.
 
@@ -399,11 +398,11 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-1013-aws x86_64)
 ...
 ```
 
-Here is the Gist 
+Here is the Gist
 
 {{< gist koenighotze 28eb1930148d8bc5192495e5e790e380 >}}
 
-## Provision the instance
+### Provision the instance
 
 Provisioners are used to bootstrapping resources, apply configurations and so on.
 The follow-up post will show this using [Ansible](https:/ansible.com).
@@ -448,8 +447,8 @@ This is due to the reason, that Terraform will only apply provisioners upon the 
 So we first need to destroy and recreate the resource.
 
 ```javascript
-$ terraform destroy
-$ terraform apply
+terraform destroy
+terraform apply
 ```
 
 ...and it fails.
@@ -498,11 +497,11 @@ So apply the configuration yet again. And then point your browser to the public 
 
 ![Tata](/assets/images/2017-04-25/output.png)
 
-Wow! You should be impressed ;). You can find the complete example here 
+Wow! You should be impressed ;). You can find the complete example here
 
 {{< gist koenighotze 362a0903d0121a4ce7e71b6fdd84cac8 >}}
 
-# What is next?
+## What is next?
 
 This post just covered some basics. The next part will explore a more complex example, that will resemble something you would do in the real world.
 Furthermore, we'll compare Terraform to its contenders like Chef, Puppet, etc.

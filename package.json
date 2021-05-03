@@ -1,0 +1,24 @@
+{
+  "name": "koenighotze.github.io",
+  "version": "1.0.0",
+  "scripts": {
+    "lint-posts": "markdownlint-cli2 content/post",
+    "lint-posts-fix": "markdownlint-cli2 content/post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koenighotze/koenighotze.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/koenighotze/koenighotze.github.io/issues"
+  },
+  "homepage": "https://github.com/koenighotze/koenighotze.github.io#readme",
+  "devDependencies": {
+    "markdownlint": "^0.23.1",
+    "markdownlint-cli2": "^0.1.3",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "lint-posts"
+  ]
+}

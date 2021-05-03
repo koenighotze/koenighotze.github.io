@@ -13,3 +13,6 @@ tmp/
 .netlifypublic
 public
 .netlify
+node_modules
+poc
+tailwind.config.js
