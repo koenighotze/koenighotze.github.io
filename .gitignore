@@ -10,4 +10,6 @@ tmp/
 *report.html
 
 # Local Netlify folder
+.netlifypublic
 .netlify
+public/
