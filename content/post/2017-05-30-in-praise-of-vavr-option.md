@@ -12,7 +12,7 @@ Most functional programming languages offer a concept called _Option_ or _Maybe_
 
 This short post gives praise to the Vavr version of `Option`. We show how to use it and show its advantages over JDK8 `Optional`.
 
-# Vavr - Elevator pitch
+## Vavr - Elevator pitch
 
 [Vavr](http://vavr.io), previously known as [Javaslang](http://blog.vavr.io/javaslang-changes-name-to-vavr/), is a lightweight library that brings Scala-like features to Java 8 projects. It focuses on providing a great developer experience both through consistent APIs and extensive documentation.
 
@@ -20,7 +20,7 @@ Vavr offers many abstractions such as functional data structures, value types li
 
 If you have ever yearned for really good immutable and persistent collections, working value types, but could not move to Scala and friends because you are working on a brownfield project...then Vavr might just be your fix.
 
-# Optional FTW
+## Optional FTW
 
 Java 8 introduced `Optional` to handle the absence or presence of a value. Without `Optional`, when you face a method like this
 
@@ -42,7 +42,7 @@ public Optional<User> findUser(String id) {
 
 This says _"sometimes no User is returned"_. `null`-safe. Say "adios" to `NullPointerExceptions`.
 
-## However
+### However
 
 As with all of Java 8's functional interfaces, `Optionals` API is rather spartan, just a dozen methods, with "highlights" such as
 
@@ -52,9 +52,9 @@ Optional.ofNullable(user)
 
 If you are used to the expressiveness of Scala's `Option`, then you will find `Optional` rather disappointing.
 
-Furthermore, `Optional` is not serializable and should neither be used as an argument type nor stored as a field - at least according to the design goals of the JDK experts [http://mail.openjdk.java.net/pipermail/jdk8-dev/2013-September/003274.html]().
+Furthermore, `Optional` is not serializable and should neither be used as an argument type nor stored as a field - at least according to the design goals of the [JDK experts](http://mail.openjdk.java.net/pipermail/jdk8-dev/2013-September/003274.html).
 
-## Vavr `Option` to the rescue
+### Vavr `Option` to the rescue
 
 The Vavr `Option` takes a different approach. See the following image, that illustrates the type hierarchy.
 
@@ -156,7 +156,7 @@ public Module vavrModule() {
 }
 ```
 
-# Summary
+## Summary
 
 I hope this short post illustrates the usefulness of Vavr and its `Option` abstraction.
 

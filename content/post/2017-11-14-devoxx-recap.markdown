@@ -10,14 +10,14 @@ Devoxx is one of my favorite developer conferences. Back in the day, you had to 
 
 ![Devoxx Belgium 2017](https://thepracticaldev.s3.amazonaws.com/i/nuu4tc5jjoucaj22himb.JPG)
 
-# The venue
+## The venue
 
 Devoxx takes place at the Kinopolis in Antwerp, Belgium. The talks are held in the cinemas, guaranteeing top seats, top audio, and top visual quality.
 As the conference is always sold out, both rooms and venues are packed to the brim with people. Really popular talks are sometimes overfilled, meaning, that sometimes interested watchers must stick to a recording.
 
 The atmosphere is always infectious. A place by and for hackers, nerds and developers.
 
-# The conference
+## The conference
 
 Monday and Tuesday are reserved for hands-on workshops and university sessions. The actual conference takes place from Wednesday to Friday (only half a day). As I tend to skip the workshops and universities, I'll only cover the sessions themselves.
 
@@ -162,7 +162,7 @@ Insight into Project Amber and language features beyond modules. As always, deep
 
 4/5
 
-# Top 3 talks (so far)
+## Top 3 talks (so far)
 
 As I have not watched all the talks (how could I, with so many sessions), my top list may not feature your personal favorite. If so, leave a comment and drop me a hint, for your must-see-talk.
 
@@ -173,7 +173,7 @@ Also, I'll exclude the keynotes, as these always tend to be exceptional. Finally
 2. Video Games are for idiots - Laurent Victorino (How development on games differs from our day to day IT work, I laughed hard, look [here](https://www.youtube.com/watch?v=uI0MI4xZWQU))
 3. Devops @Scale - Baruch Sadogursky
 
-# In summary
+## In summary
 
 Devoxx.BE 2017 was once again a great conference. The price is fair and the content is of very high quality. The top themes seem to be Serverless, Kotlin and of course Java 9. My "to-learn-list" is filled to the brim, and I'll be busy watching missed talks on Youtube for the next months.
 

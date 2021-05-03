@@ -15,7 +15,7 @@ See [this](https://dev.to/koenighotze/in-praise-of-vavrs-option) short overview 
 
 But, everything here applies to either implementation.
 
-# A real-world example
+## A real-world example
 
 I want to start with a typical example that we can use as a refactoring candidate.
 
@@ -61,7 +61,7 @@ This fix is the same as above. Same complexity, same _Cascading Pile of Shame_.
 
 Instead, we use the `map` operator.
 
-# Map - the Swiss army knife of functional programming
+## Map - the Swiss army knife of functional programming
 
 `map` is your friend when using `Option`. Think of `Option` as a nice gift box with something in it.
 
@@ -79,7 +79,7 @@ What if you are a bad coder and do not write unit tests at all? Well, then you w
 
 If the gift box is empty, then `map` won't even apply the function. So, it is "nothing from nothing".
 
-# Fixing things
+## Fixing things
 
 So going back to the original problem, let's refactor this using `Option`.
 
@@ -146,7 +146,7 @@ Find a user
     otherwise, use the empty string
 ```
 
-# Summary
+## Summary
 
 I hope this short post illustrates the usefulness of Vavr and its `Option` abstraction. If you remember one thing only, then please let it be _Do not use `Option#isPresent` or `Option#get`, the `map` is your friend_.
 
