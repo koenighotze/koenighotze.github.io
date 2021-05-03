@@ -6,5 +6,4 @@ _This site is just a collection of random stuff about coding, architecture and w
 
 ---
 
-{% assign post = site.posts.first %}
-{% include single_post_excerpt.html %}
+You will be forwarded to the <a href="https://blog.koenighotze.de">new site</a> in a couple of seconds. Click on the link if you are not forwarded...
