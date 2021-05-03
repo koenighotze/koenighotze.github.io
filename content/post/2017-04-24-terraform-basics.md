@@ -35,7 +35,7 @@ Unzip the file and put the `terraform` binary to someplace on your `PATH`.
 Run this command to check if everything is working:
 
 ```javascript
-$ terraform -v
+terraform -v
 ```
 
 The output should resemble
@@ -75,7 +75,7 @@ The AMI defines the image, that is used for creating the instance.
 Run this command to validate your configuration:
 
 ```javascript
-$ terraform plan
+terraform plan
 ```
 
 `plan` basically dry-runs your configuration.
@@ -84,7 +84,7 @@ This allows you to check in advance, what is going to happen.
 Then `apply` the configuration to create the resources.
 
 ```javascript
-$ terraform apply
+terraform apply
 ```
 
 The output will tell you what was created by Terraform.
@@ -189,10 +189,11 @@ Destroy complete! Resources: 1 destroyed.
 By setting the log level via `TF_LOG` you can get a detailed view of Terraform's behavior.
 
 ```javascript
-$ TF_LOG=INFO terraform apply
+TF_LOG=INFO terraform apply
 ```
 
 ## But wait...how does Terraform know my credentials
+
 You can define your credentials explicitly using environment variables or configuration parameters like
 
 ```ruby
@@ -254,7 +255,7 @@ The instance's details are exactly as expected.
 
 ![AWS console details](/assets/images/2017-04-25/details.png)
 
-See the Gist for this step 
+See the Gist for this step
 
 {{< gist koenighotze fdb630f548f43f3d9c06de4be8e40b1b >}}
 
@@ -341,9 +342,9 @@ If you examine the output, you will notice the `ingress` configuration for SSH.
 Now apply it and connect to it.
 
 ```javascript
-$ terraform apply                     # apply the changed configuration
-$ terraform show | grep 'public_id =' # get the public ip
-$ ssh ubuntu@<PUBLIC IP>
+terraform apply                     # apply the changed configuration
+terraform show | grep 'public_id =' # get the public ip
+ssh ubuntu@<PUBLIC IP>
 ```
 
 ...and of course, it fails, because we need to associate a key with this instance.
@@ -399,7 +400,7 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-1013-aws x86_64)
 ...
 ```
 
-Here is the Gist 
+Here is the Gist
 
 {{< gist koenighotze 28eb1930148d8bc5192495e5e790e380 >}}
 
@@ -448,8 +449,8 @@ This is due to the reason, that Terraform will only apply provisioners upon the 
 So we first need to destroy and recreate the resource.
 
 ```javascript
-$ terraform destroy
-$ terraform apply
+terraform destroy
+terraform apply
 ```
 
 ...and it fails.
@@ -498,7 +499,7 @@ So apply the configuration yet again. And then point your browser to the public 
 
 ![Tata](/assets/images/2017-04-25/output.png)
 
-Wow! You should be impressed ;). You can find the complete example here 
+Wow! You should be impressed ;). You can find the complete example here
 
 {{< gist koenighotze 362a0903d0121a4ce7e71b6fdd84cac8 >}}
 

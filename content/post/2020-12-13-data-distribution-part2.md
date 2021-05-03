@@ -178,5 +178,3 @@ If you want to dig deeper into these topics, then the following books are worth 
 ## Outlook
 
 The next article will look at data replication. Autonomous services, each relying on a local database. Data is replicated between the databases or some intermediary mechanism. This is the precursor to the final article, which tackles asynchronous events.
-
-

@@ -11,7 +11,7 @@ In this post, I want to highlight a common pattern of misusing `Optional` and ho
 
 Note that instead of `java.util.Optional`, I will use the Vavr `Option` instead.
 [Vavr](http://vavr.io) is a lightweight library that brings Scala-like features to Java 8 projects. It focuses on providing a great developer experience both through consistent APIs and extensive documentation.
-See [this](https://dev.to/koenighotze/in-praise-of-vavrs-option) short overview of how and why optional can help you. Head over to http://vavr.io if you want to know more.
+See [this](https://dev.to/koenighotze/in-praise-of-vavrs-option) short overview of how and why optional can help you. Head over to <http://vavr.io> if you want to know more.
 
 But, everything here applies to either implementation.
 

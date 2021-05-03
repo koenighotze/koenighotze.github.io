@@ -13,8 +13,3 @@ Note that I am to blame for all errors but the broken layout in the summary sect
 > In unseren Brownfield Projekten haben sich gerade die einfachen Konzepte von Vavr, wie die hervorragend designten, funktionalen Datenstrukturen und Abstraktionen wie Option, Lazy und Try bewährt. Diese verbessern den Code und helfen insbesondere dabei die Komplexität typischer, verschachtelter Programme aufzubrechen und Legacy Code funktional zu refaktorieren. Schließlich ist an jeder Stelle erkennbar, dass Einfachheit und Fokus auf Programmierer Designziele von Vavr sind. Man kommt auch ohne einen Kurs in Monadentheorie rasch zu guten Ergebnissen.
 >
 > In Summe lohnt sich der Blick auf Vavr auf jeden Fall. Wer die Vorteile der funktionalen Programmierung innerhalb von Java nutzen möchte, wird sicher viel Freude an Vavr haben.
-
-
-
-
-

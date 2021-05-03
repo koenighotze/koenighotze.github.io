@@ -42,7 +42,7 @@ public Optional<User> findUser(String id) {
 
 This says _"sometimes no User is returned"_. `null`-safe. Say "adios" to `NullPointerExceptions`.
 
-## However...
+## However
 
 As with all of Java 8's functional interfaces, `Optionals` API is rather spartan, just a dozen methods, with "highlights" such as
 
@@ -80,7 +80,6 @@ although I do not recommend this approach. Just try the following snippet and yo
 Option.<String>some(null)
       .map(String::toUpperCase);
 ```
-
 
 `Option` is tightly integrated with Vavr's `Value` and `Iterable` types. This allows for a very consistent API. You can treat an `Option` like a collection with zero or one element.
 

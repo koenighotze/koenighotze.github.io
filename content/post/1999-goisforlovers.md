@@ -60,7 +60,6 @@ Accessing the Page Parameter "bar"
 
     {{ if or (isset .Params "alt") (isset .Params "caption") }} Caption {{ end }}
 
-
 ## Variables
 
 Each go template has a struct (object) made available to it. In hugo each
@@ -135,7 +134,6 @@ range.
 
 If, else, with, or, & and provide the framework for handling conditional
 logic in Go Templates. Like range, each statement is closed with `end`.
-
 
 Go Templates treat the following values as false:
 
@@ -249,7 +247,6 @@ data of each specific piece of content. You can define any values of any
 type (supported by your front matter/config format) and use them however
 you want to inside of your templates.
 
-
 ## Using Content (page) Parameters
 
 In each piece of content you can provide variables to be used by the
@@ -283,6 +280,7 @@ Here is the corresponding code inside of the template:
       {{ end }}
 
 ## Using Site (config) Parameters
+
 In your top-level configuration file (eg, `config.yaml`) you can define site
 parameters, which are values which will be available to you in chrome.
 

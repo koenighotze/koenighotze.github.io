@@ -20,8 +20,3 @@ date = 2020-04-03T02:13:50Z
 The following playlist contains all my public talks.
 
 {{< tube "videoseries?list=PLdU9f-imt5EYWf6pCHq8WYYgIdtY4p3i_" >}}
-
-
-
-
-

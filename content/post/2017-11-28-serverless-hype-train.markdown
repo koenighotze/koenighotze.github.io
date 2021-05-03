@@ -74,7 +74,6 @@ A Lambda function is any piece of code that gets executed by the AWS Lambda runt
 
 The execution model is the great strength of the Serverless approach. It is both simple on a conceptual level and powerful on what you can achieve with it. Functions are triggered by events.
 
-
 ![Lambdas are executed when triggered by an event](https://thepracticaldev.s3.amazonaws.com/i/m3jzbu8eh0g3u7rynqnn.png)
 
 If a function is triggered, a new runtime container is instantiated. The event is passed to the function as an argument. The function can either be executed in a _request-reply_ mode or purely _asynchronously_.
@@ -313,6 +312,7 @@ $ aws lambda update-function-code --function-name HelloWorld --zip-file fileb://
     }
 }
 ```
+
 We can invoke the new version directly after uploading.
 
 ```bash
@@ -347,7 +347,6 @@ Although you can invoke an AWS Lambda function using the command-line like above
 Back to the topic.
 
 The Amazon API Gateway is used to easily expose functions via HTTP. Consider the following diagram.
-
 
 ![AWS API Gateway in a nutshell](https://thepracticaldev.s3.amazonaws.com/i/z1lpbtr83n13oeklk6hs.png)
 

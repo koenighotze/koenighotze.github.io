@@ -45,7 +45,7 @@ exports.handler = (event, context, callback) => {
 We create the Lambda function using the command line. First, create the Zip-file containing the code.
 
 ```bash
-$ zip index.zip index.js
+zip index.zip index.js
 ```
 
 Then create the function called `TrafficShiftDemo`. Note that I refer to a role-arn using `$ROLE_ARN`, see my previous [post](https://dev.to/koenighotze/serverless-hype-train-with-aws-lambda-21p) if you need help with this...and I have truncated all arns to keep things readable.
@@ -72,7 +72,7 @@ The point I want to stress is the `"Version": "$LATEST"` field. As the name sugg
 Contrast this to _publishing_ a Lambda function. First, delete the function again.
 
 ```bash
-$ aws lambda delete-function --function-name TrafficShiftDemo
+aws lambda delete-function --function-name TrafficShiftDemo
 ```
 
 Then re-create and publish the function using the command-line argument `--publish`.
@@ -308,7 +308,6 @@ $ aws lambda create-alias \
 
 The `--routing-config AdditionalVersionWeights={'1'=0.7}` tells AWS Lambda to redirect 70% of the traffic to version 1, instead of using version 2. You can verify this behavior by invoking the function multiple times checking the `"ExecutedVersion"` in the response.
 
-
 ```bash
 $ aws lambda invoke --function-name arn:aws:...:TrafficShiftDemo:HELLO out.txt
 
@@ -341,4 +340,3 @@ Traffic shifting is an important part of Blue-Green Deployments and Canary relea
 If you want to dig deeper into this topic, I urge you to look at [AWS Codedeploy](http://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html) which automates rolling-updates and rollbacks even further. With Codedeploy you can configure your Lambda to scale up to the new version with a rate of 10% every 5 min, for example.
 
 In a follow-up, I will cover an integrated example, that brings Lambda, traffic shifting, Codedeploy, and the Serverless Application Model together into a truly serverless continuous delivery pipeline.
-

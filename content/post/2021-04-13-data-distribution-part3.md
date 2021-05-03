@@ -26,15 +26,15 @@ First of all, let’s discuss replication itself. We use replication to increase
 
 ![Replication in a Nutshell](/assets/images/microservices-data-3/replication.jpeg)
 
-One primary and two secondary instances of a database are set up for replication. Each change to the primary instance is also sent to the secondary instances. If the primary instance fails, an actor could switch to one of the secondary instances. 
-The primary instance is the only one capable of processing any modifications. The primary instance handles all creation, deletion, or modification requests. The primary instance processes these requests. Then it forwards the changes to the secondary instances. This setup works best for read-mostly use cases, as data can be read from any instance. 
+One primary and two secondary instances of a database are set up for replication. Each change to the primary instance is also sent to the secondary instances. If the primary instance fails, an actor could switch to one of the secondary instances.
+The primary instance is the only one capable of processing any modifications. The primary instance handles all creation, deletion, or modification requests. The primary instance processes these requests. Then it forwards the changes to the secondary instances. This setup works best for read-mostly use cases, as data can be read from any instance.
 
 This design looks trivial at first sight. But the implications warrant some discussion.
 
-- How is consistency ensured? 
-- What happens if actors read from the secondary instances and the instance is not up to date?
-- What happens if the network breaks between the instances?
-- and and and.
+* How is consistency ensured?
+* What happens if actors read from the secondary instances and the instance is not up to date?
+* What happens if the network breaks between the instances?
+* and and and.
 
 We discuss these issues in detail in the following sections.
 
@@ -48,10 +48,10 @@ The microservice could access the database directly, see the following illustrat
 
 As we saw in [part one](https://blog.koenighotze.de/2020/09/27/2020-09-27-data-distribution-part1/), sharing a database in this way has its own downsides, such as:
 
-- Classical databases often only [scale vertically](https://www.section.io/blog/scaling-horizontally-vs-vertically/). There is an upper limit to the number of clients such a database can serve at the same time.
-- The classical database may not be available 24/7. It might have some scheduled, regular downtime. 
-- More often than not, the data-model of the database does not fit the use-cases of the microservices.
-- The ownership of the data may be unclear.
+* Classical databases often only [scale vertically](https://www.section.io/blog/scaling-horizontally-vs-vertically/). There is an upper limit to the number of clients such a database can serve at the same time.
+* The classical database may not be available 24/7. It might have some scheduled, regular downtime.
+* More often than not, the data-model of the database does not fit the use-cases of the microservices.
+* The ownership of the data may be unclear.
 
 So, how does one get from the architecture above to something like the following?
 
@@ -87,30 +87,30 @@ We can also transform and enrich the data as part of the data replication proces
 
 ![Transformation pipeline](/assets/images/microservices-data-3/complex-transformation.png)
 
-The source database stores financial transactions. We use CDC to extract data from the source database and to push the data into raw databases (TX-DB). The raw databases contain copies of the original data. 
+The source database stores financial transactions. We use CDC to extract data from the source database and to push the data into raw databases (TX-DB). The raw databases contain copies of the original data.
 
-In our example, some machine learning tool-set (ML-Magic) analyses the raw data. The result of the analysis is a categorization of the financial transaction. The ML-Magic combines the analysis and the financial transaction data. Finally, the ML-Magic stores this result in a separate enhanced business database. In the example, this is a [MongoDB](https://www.mongodb.com/) database. 
+In our example, some machine learning tool-set (ML-Magic) analyses the raw data. The result of the analysis is a categorization of the financial transaction. The ML-Magic combines the analysis and the financial transaction data. Finally, the ML-Magic stores this result in a separate enhanced business database. In the example, this is a [MongoDB](https://www.mongodb.com/) database.
 
-Microservices use only the business databases. These are derived from the raw data and are optimized for specific use cases. The business database could for example be optimized and contain a denormalized view of the data. New business databases can be added as new use cases arise. 
+Microservices use only the business databases. These are derived from the raw data and are optimized for specific use cases. The business database could for example be optimized and contain a denormalized view of the data. New business databases can be added as new use cases arise.
 
 ## Implications
 
 Change-data-capture and transformation pipelines are both valid approaches. Both help to move from existing system landscapes towards a more flexible architecture. We can adopt a microservice landscape without any modification to the existing assets. The microservices each end up with their optimized data-store. This decouples the development teams and increases agility.  
 
-However, introducing Kafka and similar frameworks increases the development complexity. Even so, 
+However, introducing Kafka and similar frameworks increases the development complexity. Even so,
 this may be a valid investment. The resulting architecture may enable the business side to move and grow faster.
 
 But nothing is a silver bullet. We identify at least the following questions that are worth further investigation:
 
-- The Golden Source remains. What should happen if microservices create new data or change existing data?
-- CDC and transformation pipelines take time. How should we deal with data in different states in different parts of our system?
-- How can we ensure that data is only used by systems allowed to use said data?
+* The Golden Source remains. What should happen if microservices create new data or change existing data?
+* CDC and transformation pipelines take time. How should we deal with data in different states in different parts of our system?
+* How can we ensure that data is only used by systems allowed to use said data?
 
 Again, let’s discuss a concrete example. We have talked about financial transactions. Our current system looks like illustrated by the following diagram.
 
 ![Initial microservice setup](/assets/images/microservices-data-3/outbox-4.png)
 
-We hook into the source database (Golden Source) again with Kafka Connect and Debezium (I). Kafka topics store transaction log entries as events. The microservice consumes the topics it needs (II). Afterwards, it manifests a local view in its local business database (III). 
+We hook into the source database (Golden Source) again with Kafka Connect and Debezium (I). Kafka topics store transaction log entries as events. The microservice consumes the topics it needs (II). Afterwards, it manifests a local view in its local business database (III).
 
 If we want to read financial transactions, we need to query the local business database. The microservice owns the business database. In the following illustration, a caller sends a GET request to the microservice (I). The microservice queries the optimized local database (II) and answers the GET request.
 
@@ -122,7 +122,7 @@ How do we approach this?
 
 We could update the local database and then call the API to update the Golden Source. But what happens if the API call fails? Then we need to clean-up the local database and send the error also to the caller.
 
-We could call the API first and only update the local database if the call was successful. Again, this is not as simple as it seems. The problem is the remote call to the API. There are error cases like e.g. timeouts, that leave us clueless. We do not know if the API call booked the transfer at all. 
+We could call the API first and only update the local database if the call was successful. Again, this is not as simple as it seems. The problem is the remote call to the API. There are error cases like e.g. timeouts, that leave us clueless. We do not know if the API call booked the transfer at all.
 
 In the end, it doesn't matter. We cannot span a transactional context across a HTTP API call and a local database in a meaningful way. Consider the documentation of the good-old [HeuristicCommitException](https://docs.jboss.org/jbossas/docs/Server_Configuration_Guide/4/html/TransactionJTA_Overview-Heuristic_exceptions.html).
 
@@ -137,31 +137,31 @@ The microservice can return the result to the caller and finish the request.
 
 Now we get to the tricky part. Handling the message log. Often the API triggers some process side-effects besides updating the Golden Source. For example, calling out to other APIs or sending messages downstream.  
 
-The following diagram explores the communication flow. 
+The following diagram explores the communication flow.
 
 ![Outbox flow](/assets/images/microservices-data-3/outbox-3.png)
 
-The Outbox Handler polls the message log table or subscribes to changes to it (I). It reads the data and calls the API (II). If calling the API was successful, then the handler marks the message log entry as _done_. Otherwise, the Outbox Handler retries the operation. If all fails, the handler marks the entry as _not processable_. 
+The Outbox Handler polls the message log table or subscribes to changes to it (I). It reads the data and calls the API (II). If calling the API was successful, then the handler marks the message log entry as _done_. Otherwise, the Outbox Handler retries the operation. If all fails, the handler marks the entry as _not processable_.
 
 In such cases, other mitigation strategies come into place. But this is outside of our discussion.
 
-Suppose the API call was successful. Next, among other things, the API call updates the Golden Source (III). This triggers the CDC pipeline. The CDC component captures the new data added to the Golden Source’s transaction log. Afterwards this data ends up in the Kafka topics (IV). The consuming microservice receives that data (V). Finally, the microservice updates the business database. The database now reflects the state of the Golden Source, too (VI). 
+Suppose the API call was successful. Next, among other things, the API call updates the Golden Source (III). This triggers the CDC pipeline. The CDC component captures the new data added to the Golden Source’s transaction log. Afterwards this data ends up in the Kafka topics (IV). The consuming microservice receives that data (V). Finally, the microservice updates the business database. The database now reflects the state of the Golden Source, too (VI).
 
-We have omitted many technical details. Still, the complexity of this pattern should stand out. Many things could go wrong at any point. A solid solution must find mitigation strategies for each error case. 
+We have omitted many technical details. Still, the complexity of this pattern should stand out. Many things could go wrong at any point. A solid solution must find mitigation strategies for each error case.
 
-Even so, the eventual consistent character of this architecture does not go away. The new data stored in the business database does not reflect the Golden Source data right away. The time delay may or may not be an issue for the concrete use case. But we need to be aware of it and should analyse the impact of it. 
+Even so, the eventual consistent character of this architecture does not go away. The new data stored in the business database does not reflect the Golden Source data right away. The time delay may or may not be an issue for the concrete use case. But we need to be aware of it and should analyse the impact of it.
 
 The same holds for the topic of data governance. The patterns of this article lead to data replication, i.e. to storing the same data in many places. Depending on the regulatory requirements, we need to control which parts of the system landscape can use which data. This has to be set in place right from the beginning. Refactoring data governance controls into an existing landscape can be very challenging.
 
-Last but not least, let’s not forget that CDC leads to technical events. Real [domain events](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/domain-events-design-implementation) representing business-level processes are not captured. 
+Last but not least, let’s not forget that CDC leads to technical events. Real [domain events](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/domain-events-design-implementation) representing business-level processes are not captured.
 
 ## Summary
 
-All things considered, this can be a good option to grow from a static large datastore to a [reactive](https://www.reactivemanifesto.org/) and distributed multi-datastore landscape. 
+All things considered, this can be a good option to grow from a static large datastore to a [reactive](https://www.reactivemanifesto.org/) and distributed multi-datastore landscape.
 
 Moving towards modern architectures without any major refactoring of existing systems is possible. We can leverage and use so-called legacy systems without any direct extra cost of doing so.
 
-We do not change existing systems. So we end up with the "old", "legacy" system landscape, and the new microservice landscape. Complexity and cost increase. We need more engineers. We need more infrastructure. And so on. 
+We do not change existing systems. So we end up with the "old", "legacy" system landscape, and the new microservice landscape. Complexity and cost increase. We need more engineers. We need more infrastructure. And so on.
 
 But, we must not confuse this with [event-sourcing](https://martinfowler.com/eaaDev/EventSourcing.html) or an [event driven architecture](https://en.wikipedia.org/wiki/Event-driven_architecture). It can be the first step into those areas, but only the first. We are considering technical events a la _"Row x in Table y has changed in values A, D, F"_. This is different from saying _"SEPA Transaction executed"_. And we have to deal with eventual consistency. There is no way of avoiding this.
 
@@ -169,10 +169,10 @@ In conclusion, we need to check the advantages and implications of the approache
 
 Here are some references for more in-depth information on related topics:
 
-- [Change Data Capture Pipelines with Debezium and Kafka Streams](https://www.confluent.io/resources/kafka-summit-2020/change-data-capture-pipelines-with-debezium-and-kafka-streams/)
-- [No More Silos: How to Integrate Your Databases with Apache Kafka and CDC](https://www.confluent.io/blog/no-more-silos-how-to-integrate-your-databases-with-apache-kafka-and-cdc/)
-- Reactive design patterns, Roland Kuhn et. al.
-- [Reliable Microservices Data Exchange With the Outbox Pattern](https://debezium.io/blog/2019/02/19/reliable-microservices-data-exchange-with-the-outbox-pattern/)
+* [Change Data Capture Pipelines with Debezium and Kafka Streams](https://www.confluent.io/resources/kafka-summit-2020/change-data-capture-pipelines-with-debezium-and-kafka-streams/)
+* [No More Silos: How to Integrate Your Databases with Apache Kafka and CDC](https://www.confluent.io/blog/no-more-silos-how-to-integrate-your-databases-with-apache-kafka-and-cdc/)
+* Reactive design patterns, Roland Kuhn et. al.
+* [Reliable Microservices Data Exchange With the Outbox Pattern](https://debezium.io/blog/2019/02/19/reliable-microservices-data-exchange-with-the-outbox-pattern/)
 
 ## Outlook
 
