@@ -13,3 +13,4 @@ tmp/
 .netlifypublic
 .netlify
 public/
+node_modules

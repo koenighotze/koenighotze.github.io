@@ -1,3 +1,3 @@
 # Koenighotze.de
 
-Repo for website at blog.koenighotze.de.
+Landingpage for website at koenighotze.de.
