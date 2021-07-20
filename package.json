@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "lint-posts": "markdownlint-cli2 content/post",
-    "lint-posts-fix": "markdownlint-cli2 content/post"
+    "lint-posts-fix": "markdownlint-cli2-fix content/post"
   },
   "repository": {
     "type": "git",
